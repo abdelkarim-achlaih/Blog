@@ -213,3 +213,45 @@ header .container .sign ul li a {
   }
 }
 /* End Landing Section */
+/* Start articles Section */
+.articles {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.articles .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+.articles .container .article {
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  transition-duration: var(--transitionDuration);
+}
+.articles .container .article:hover {
+  transform: translateY(-10px);
+}
+.articles .container .article .image {
+  /* width: 100%; */
+}
+.articles .container .article .image img {
+  width: 100%;
+}
+.articles .container .article .content {
+  padding: 25px;
+}
+.articles .container .article .content .type{
+  color: hsl(258deg 100% 67%);
+  margin-bottom: 15px;
+}
+.articles .container .article .content .title {
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+.articles .container .article .content .date {
+  color: hsl(0deg 0% 0% / 50%);
+  margin-bottom: 15px;
+}
+/* End articles Section */
