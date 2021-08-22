@@ -2,7 +2,7 @@
 :root {
   --color1: rgb(174, 174, 174);
   --color2: #0199ff;
-  --transitionDuration: .2s;
+  --transitionDuration: 0.2s;
 }
 /* End Variables */
 /* Start Global Rules */
@@ -25,7 +25,7 @@ a {
   color: black;
 }
 body {
-  font-family: 'Georama', sans-serif;
+  font-family: "Georama", sans-serif;
 }
 .container {
   padding-left: 15px;
@@ -128,3 +128,60 @@ header .container .sign ul li a {
   color: white;
 }
 /* End Header */
+/* Start Landing Section */
+.landing {
+  text-align: center;
+}
+.landing .container {
+  margin-top: 80px;
+}
+.landing .container h1 {
+  font-size: 70px;
+  margin: 30px;
+}
+.landing .container p {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.8;
+  width: 80%;
+  margin: auto auto 40px;
+}
+.landing .container form {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+}
+.landing .container form input {
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  transition-duration: var(--transitionDuration);
+}
+.landing .container form input:first-child {
+  flex-basis: 400px;
+  background-color: rgb(202, 202, 202);
+  padding: 10px;
+  margin-right: 20px;
+  color: black;
+}
+.landing .container form input:first-child::placeholder {
+  color: white;
+}
+.landing .container form input:first-child:focus {
+  border: 1px solid var(--color2);
+  background-color: white;
+}
+.landing .container form input:nth-child(2) {
+  flex-basis: fit-content;
+  background-color: var(--color2);
+  color: white;
+  padding: 10px 30px;
+}
+.landing .container form input:nth-child(2):hover {
+  background-color: #0088f0;
+}
+.landing .container form input:nth-child(2):active {
+  background-color: #33adff;
+}
+/* End Landing Section */
