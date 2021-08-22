@@ -127,6 +127,18 @@ header .container .sign ul li:nth-child(2):hover a {
 header .container .sign ul li a {
   color: white;
 }
+@media (max-width: 767px) {
+  header .container .logo {
+    margin: auto;
+  }
+  header .container .logo a {
+    text-align: center;
+  }
+  header .container nav,
+  header .container .sign {
+    display: none;
+  }
+}
 /* End Header */
 /* Start Landing Section */
 .landing {
@@ -183,5 +195,21 @@ header .container .sign ul li a {
 }
 .landing .container form input:nth-child(2):active {
   background-color: #33adff;
+}
+@media (max-width: 767px) {
+  .landing .container h1 {
+    font-size: 45px;
+  }
+  .landing .container p {
+    font-size: 20px;
+  }
+  .landing .container form {
+    flex-direction: column;
+  }
+  .landing .container form input:first-child {
+    flex-basis: auto;
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 /* End Landing Section */
