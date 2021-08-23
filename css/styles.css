@@ -57,6 +57,9 @@ body {
 /* End Global Components */
 
 /* Start Header */
+header {
+  padding-top: 10px;
+}
 header .container {
   display: flex;
   align-items: center;
@@ -233,25 +236,68 @@ header .container .sign ul li a {
 .articles .container .article:hover {
   transform: translateY(-10px);
 }
-.articles .container .article .image {
-  /* width: 100%; */
-}
 .articles .container .article .image img {
   width: 100%;
 }
 .articles .container .article .content {
   padding: 25px;
 }
-.articles .container .article .content .type{
+.articles .container .article .content .type {
   color: hsl(258deg 100% 67%);
   margin-bottom: 15px;
+  font-size: 15px;
+  font-weight: 600;
 }
 .articles .container .article .content .title {
   font-weight: 800;
   margin-bottom: 15px;
+  font-size: 22px;
 }
 .articles .container .article .content .date {
   color: hsl(0deg 0% 0% / 50%);
   margin-bottom: 15px;
+  font-size: 14px;
 }
 /* End articles Section */
+/* Start Footer */
+footer {
+  padding-bottom: 100px;
+}
+footer .container {
+  display: flex;
+  justify-content: space-around;
+}
+footer .container .logo a img {
+  width: 100px;
+}
+footer .container .more h3,
+footer .container .support h3 {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+footer .container .more ul li:not(li:last-child) {
+  margin-bottom: 10px;
+}
+footer .container .more ul li a,
+footer .container .support a {
+  font-size: 17px;
+  color: var(--color1);
+  transition-duration: var(--transitionDuration);
+}
+footer .container .more ul li a:hover,
+footer .container .support a:hover {
+  transform: translateX(10px);
+  color: black;
+  font-weight: 600;
+}
+@media (max-width: 767px) {
+  footer .container {
+    flex-direction: column;
+  }
+  footer .container > * {
+    margin: auto auto 30px;
+    text-align: center;
+  }
+}
+/* End Footer */
