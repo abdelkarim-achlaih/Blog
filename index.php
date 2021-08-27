@@ -1,46 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Template One</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,400;0,600;0,800;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="/images/logo.png" />
-  </head>
-
-  <body>
-    <header>
-      <div class="container">
-        <div class="logo">
-          <a href="index.html">
-            <img src="images/logo.png" alt="Home" />
-          </a>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="">About</a></li>
-            <li><a href="post.html">Post</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Servics</a></li>
-          </ul>
-        </nav>
-        <div class="sign">
-          <ul>
-            <li><a href="log.html">Sign in</a></li>
-            <li><a href="sign.html">Sign up for free</a></li>
-          </ul>
-        </div>
-      </div>
-    </header>
+<?php
+require_once('header.php');
+?>
     <section class="landing">
       <div class="container">
         <h1>Blog</h1>
@@ -130,24 +90,7 @@
         </a>
       </div>
     </section>
-    <footer>
-      <div class="container">
-        <div class="logo">
-          <a href="index.html"><img src="/images/logo.png" alt="Home" /></a>
-        </div>
-        <div class="more">
-          <h3>More</h3>
-          <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Post</a></li>
-            <li><a href="#">Servics</a></li>
-          </ul>
-        </div>
-        <div class="support">
-          <h3>Support</h3>
-          <a href="mailto:#">Contact us</a>
-        </div>
-      </div>
-    </footer>
+    <?php require_once('footer.php');
+    ?>
   </body>
 </html>
