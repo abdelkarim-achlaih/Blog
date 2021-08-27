@@ -1,4 +1,5 @@
 <?php
+$title = 'Create a new post';
 require_once('header.php');
 ?>
     <section class="box">

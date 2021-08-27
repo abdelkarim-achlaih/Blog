@@ -1,4 +1,5 @@
 <?php
+$title = 'Sign-in';
 require_once('header.php');
 ?>
     <section class="box">

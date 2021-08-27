@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Template One</title>
+    <title><?php echo $title; ?></title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
@@ -35,7 +35,7 @@
         </nav>
         <div class="sign">
           <ul>
-            <li><a href="log.php">Sign in</a></li>
+            <li><a href="log.php">Log in</a></li>
             <li><a href="sign.php">Sign up for free</a></li>
           </ul>
         </div>

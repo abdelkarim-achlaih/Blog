@@ -1,4 +1,5 @@
 <?php
+$title = 'Home';
 require_once('header.php');
 ?>
     <section class="landing">
