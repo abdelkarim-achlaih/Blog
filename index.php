@@ -17,7 +17,7 @@ require_once('header.php');
     <section class="articles">
       <div class="container">
         <a class="article" href="#">
-          <div class="image"><img src="/images/article1.png" /></div>
+          <div class="image"><img src="images/article1.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
@@ -25,7 +25,7 @@ require_once('header.php');
           </div>
         </a>
         <a class="article" href="#">
-          <div class="image"><img src="/images/article2.png" /></div>
+          <div class="image"><img src="images/article2.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
@@ -33,7 +33,7 @@ require_once('header.php');
           </div>
         </a>
         <a class="article" href="#">
-          <div class="image"><img src="/images/article3.png" /></div>
+          <div class="image"><img src="images/article3.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
@@ -41,7 +41,7 @@ require_once('header.php');
           </div>
         </a>
         <a class="article" href="#">
-          <div class="image"><img src="/images/article2.png" /></div>
+          <div class="image"><img src="images/article2.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
@@ -49,7 +49,7 @@ require_once('header.php');
           </div>
         </a>
         <a class="article" href="#">
-          <div class="image"><img src="/images/article3.png" /></div>
+          <div class="image"><img src="images/article3.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
@@ -57,7 +57,7 @@ require_once('header.php');
           </div>
         </a>
         <a class="article" href="#">
-          <div class="image"><img src="/images/article1.png" /></div>
+          <div class="image"><img src="images/article1.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
@@ -65,7 +65,7 @@ require_once('header.php');
           </div>
         </a>
         <a class="article" href="#">
-          <div class="image"><img src="/images/article2.png" /></div>
+          <div class="image"><img src="images/article2.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
@@ -73,7 +73,7 @@ require_once('header.php');
           </div>
         </a>
         <a class="article" href="#">
-          <div class="image"><img src="/images/article3.png" /></div>
+          <div class="image"><img src="images/article3.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
@@ -81,7 +81,7 @@ require_once('header.php');
           </div>
         </a>
         <a class="article" href="#">
-          <div class="image"><img src="/images/article1.png" /></div>
+          <div class="image"><img src="images/article1.png" /></div>
           <div class="content">
             <div class="type">Product</div>
             <div class="title">Lorem ipsum dolor, sit amet</div>
