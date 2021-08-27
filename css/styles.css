@@ -53,7 +53,21 @@ body {
 }
 /* End Global Rules */
 /* Start Global Components */
-
+.main-button {
+  text-align: center;
+  background-color: var(--color2);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  width: fit-content;
+}
+.main-button:hover {
+  background-color: #0088f0;
+}
+.main-button:active {
+  background-color: #33adff;
+}
 /* End Global Components */
 
 /* Start Header */
@@ -187,18 +201,6 @@ header .container .sign ul li a {
   border: 1px solid var(--color2);
   background-color: white;
 }
-.landing .container form input:nth-child(2) {
-  flex-basis: fit-content;
-  background-color: var(--color2);
-  color: white;
-  padding: 10px 30px;
-}
-.landing .container form input:nth-child(2):hover {
-  background-color: #0088f0;
-}
-.landing .container form input:nth-child(2):active {
-  background-color: #33adff;
-}
 @media (max-width: 767px) {
   .landing .container h1 {
     font-size: 45px;
@@ -213,6 +215,9 @@ header .container .sign ul li a {
     flex-basis: auto;
     width: 100%;
     margin-bottom: 10px;
+  }
+  .landing .container form input:nth-child(2) {
+    width: 100%;
   }
 }
 /* End Landing Section */
@@ -301,3 +306,108 @@ footer .container .support a:hover {
   }
 }
 /* End Footer */
+/* Start Post Section */
+.box {
+  margin-top: 20vh;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20vh;
+}
+.box .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box .container .box-container {
+  border: 1px solid var(--color1);
+  border-radius: 20px;
+  padding: 10px;
+}
+@media (max-width: 991px) {
+  .box .container {
+    width: 100%;
+  }
+  .box .container .box-container {
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .box .container .box-container {
+    width: 50%;
+  }
+}
+.box .container .box-container .author {
+}
+.box .container .box-container form input[type="text"],
+.box .container .box-container form input[type="mail"],
+.box .container .box-container form input[type="password"],
+.box .container .box-container form textarea {
+  display: block;
+  border: none;
+  outline: none;
+  resize: none;
+  margin: 20px 0;
+  color: black;
+  transition-duration: var(--transitionDuration);
+  border-radius: 20px;
+  padding: 10px;
+  border: solid transparent 1px;
+  width: 100%;
+  text-align: justify;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+}
+.box .container .box-container form input::placeholder,
+.box .container .box-container form textarea::placeholder {
+  color: var(--color1);
+}
+
+.box .container .box-container form input[type="submit"] {
+  display: flex;
+  margin-left: auto;
+}
+.box .container .box-container form[class="sign"] input[type="text"],
+.box .container .box-container form[class="sign"] input[type="mail"],
+.box .container .box-container form[class="sign"] input[type="password"],
+.box .container .box-container form[class="sign"] a {
+  font-size: 12px;
+  color: var(--color2);
+  text-decoration: none;
+  transition-duration: var(--transitionDuration);
+}
+.box .container .box-container form[class="sign"] input[type="text"]:focus,
+.box .container .box-container form[class="sign"] input[type="mail"]:focus,
+.box .container .box-container form[class="sign"] input[type="password"]:focus {
+  text-decoration: underline;
+  transform: translateX(20px);
+}
+.box .container .box-container form .checkbox .check {
+  margin: 20px 0;
+}
+.box .container .box-container form .checkbox .checkbox-title,
+.box .container .box-container form .checkbox .check label {
+  text-transform: capitalize;
+  text-decoration: none;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  color: var(--color1);
+  font-size: 12px;
+  padding: 10px;
+}
+.box .container .box-container form .checkbox .checkbox-title {
+  color: black;
+  font-size: 14px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.box .container .box-container form .already {
+  margin-top: 40px;
+}
+.box .container .box-container form .already:hover {
+  text-decoration: underline;
+}
+/* End Post Section */
