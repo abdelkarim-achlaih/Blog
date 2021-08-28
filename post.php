@@ -1,6 +1,6 @@
 <?php
 $title = 'Create a new post';
-require_once('header.php');
+require_once('session.php');
 ?>
     <section class="box">
       <div class="container">

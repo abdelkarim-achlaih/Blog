@@ -35,8 +35,16 @@
         </nav>
         <div class="sign">
           <ul>
-            <li><a href="log.php">Log in</a></li>
-            <li><a href="sign.php">Sign up for free</a></li>
+            <?php 
+              if(isset($_SESSION['first_name'])) {
+                echo '<li><a href="config.php?option=logout">Log out</a></li>';
+                echo '<li><a href="#">'.$_SESSION['first_name'].'</a></li>';
+              }
+              else {
+                echo '<li><a href="log.php">Log in</a></li>
+                      <li><a href="sign.php">Sign up for free</a></li>';
+              }
+            ?>
           </ul>
         </div>
       </div>

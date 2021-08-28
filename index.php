@@ -1,6 +1,6 @@
 <?php
 $title = 'Home';
-require_once('header.php');
+require_once('session.php');
 ?>
     <section class="landing">
       <div class="container">
@@ -9,7 +9,7 @@ require_once('header.php');
           Stories to help you bring your best ideas to life. Subscribe to get
           the best prototyping tips, tricks, and tutorials in your inbox.
         </p>
-        <form action="" method="POST">
+        <form action="config.php?option=subscribe" method="POST">
           <input type="text" name="email" id="email" placeholder="Your email" />
           <input type="submit" value="Subscribe" class="main-button"/>
         </form>
