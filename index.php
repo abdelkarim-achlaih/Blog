@@ -3,17 +3,21 @@ $title = 'Home';
 require_once('session.php');
 if(isset($_GET['message']) && isset($_GET['option'])) {
   if($_GET['option'] == 'log') {
-    if(! isset($_SESSION['counter'])) {
+    if(! isset($_SESSION['counter_log'])) {
       require('functions.php');
       show_index_message($_GET['message']);
-      $_SESSION['counter'] = 1;
+      $_SESSION['counter_log'] = 1;
     }
   }
   elseif($_GET['option'] == 'logout') {
-    require('functions.php');
-    show_index_message($_GET['message']);
+    if(! isset($_SESSION['counter_logout'])) {
+      require('functions.php');
+      show_index_message($_GET['message']);
+      $_SESSION['counter_logout'] = 1;
+    }
+    
   }
-
+  
 }
 ?>
 <section class="landing">
@@ -24,7 +28,7 @@ if(isset($_GET['message']) && isset($_GET['option'])) {
       the best prototyping tips, tricks, and tutorials in your inbox.
     </p>
     <form action="config.php?option=subscribe" method="POST">
-      <input type="text" name="email" id="email" placeholder="Your email" />
+      <input type="text" name="email" id="email" placeholder="Your email" required />
       <input type="submit" value="Subscribe" class="main-button"/>
     </form>
   </div>
@@ -107,6 +111,5 @@ if(isset($_GET['message']) && isset($_GET['option'])) {
 </section>
 <?php require_once('footer.php');
 ?>
-<script src='js.js'></script>
 </body>
 </html>

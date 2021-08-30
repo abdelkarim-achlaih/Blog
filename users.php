@@ -23,9 +23,18 @@ function user_exists_for_sign ($user) {
   require('dbconnect.php');
   $query = "SELECT username, email FROM users";
   $reponse = $pdo -> query($query);
-  while ($data = $reponse-> fetch()) {
-    if(in_array($user['username'], $data) OR in_array($user['email'], $data)) {
-      return true;
+  if(isset($user['username']) && isset($user['email'])) {
+    while ($data = $reponse-> fetch()) {
+      if(in_array($user['username'], $data) OR in_array($user['email'], $data)) {
+        return true;
+      }
+    }
+  }
+  elseif(! isset($user['username'])) {
+    while ($data = $reponse-> fetch()) {
+      if(in_array($user['email'], $data)) {
+        return true;
+      }
     }
   }
   return false;

@@ -15,6 +15,7 @@
       rel="stylesheet"
     />
     <link rel="icon" href="images/logo.png" />
+    <script src="js/index-message.js"></script>
   </head>
 
   <body>
@@ -25,7 +26,9 @@
             <img src="images/logo.png" alt="Home" />
           </a>
         </div>
-        <nav>
+
+
+        <nav id='nav'>
           <ul>
             <li><a href="">About</a></li>
             <li><a href="post.php">Post</a></li>
@@ -33,7 +36,9 @@
             <li><a href="">Servics</a></li>
           </ul>
         </nav>
-        <div class="sign">
+
+
+        <div class="sign" id='sign'>
           <ul>
             <?php 
               if(isset($_SESSION['first_name'])) {
@@ -47,5 +52,10 @@
             ?>
           </ul>
         </div>
+
+        <div class="button">
+          <i class="fas fa-arrow-down" id="button"><span class='jsvar' id='jsvar'></span></i>
+        </div>
       </div>
     </header>
+    <script src='js/menu.js'></script>

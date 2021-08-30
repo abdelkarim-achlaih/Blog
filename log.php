@@ -27,6 +27,9 @@ if(isset($_GET['message'])) {
             echo $_GET['email'];
             echo '"';
           }
+          else {
+            echo "autofocus";
+          }
           ?>
           required
         />

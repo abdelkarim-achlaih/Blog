@@ -61,6 +61,7 @@ elseif ($option == 'log') {
     if(email_exists_for_log_in($user)){
       if(verify_password($user)) {
         $user = get_user_infos($user);
+        unset($_SESSION['counter_log']);
         $_SESSION['first_name'] = $user['first_name'];
         $message = "Welcome ".$user['first_name'];
         header("location: index.php?message=$message&option=$option");
