@@ -1,21 +1,12 @@
 <?php
 $title = 'Log-in';
 require_once('session.php');
+require('functions.php');
 if(isset($_GET['error'])) {
-  echo '
-    <section class="error-section">
-    <div class="container">
-    <div class="error">
-    <h4>Error</h4>
-    <div class="error-name">
-  ';
-  echo $_GET['error'] ;
-  echo '
-    </div>
-    </div>
-    </div>
-    </section>
-  ' ;
+  show_notification ($_GET['error'], 'Error');
+}
+if(isset($_GET['message'])) {
+  show_notification ($_GET['message'], 'Success');
 }
 ?>
 <section class="box">
@@ -45,6 +36,10 @@ if(isset($_GET['error'])) {
           name="password"
           id="password"
           required
+          <?php if(isset($_GET['email'])) {
+            echo "autofocus";
+            }
+          ?>
         />
         <input type="submit" value="log-in" class="main-button" />
         <a href="sign.php" class="already">Not registred yet, create an account</a>

@@ -26,7 +26,8 @@ if ($option == 'sign') {
         if(! user_exists_for_sign($user)) {
           sign_up($user);
           $email = $_POST['email'];
-          header("location: log.php?email=$email");
+          $message = 'You are signed in seccessfully, log in now with you email';
+          header("location: log.php?email=$email&message=$message");
         }
         else {
           $error = "Username or/and email already exist(s)";
@@ -61,7 +62,8 @@ elseif ($option == 'log') {
       if(verify_password($user)) {
         $user = get_user_infos($user);
         $_SESSION['first_name'] = $user['first_name'];
-        header("location: index.php");
+        $message = "Welcome ".$user['first_name'];
+        header("location: index.php?message=$message&option=$option");
       }
       else {
         $error = "Wrong password";
@@ -76,12 +78,28 @@ elseif ($option == 'log') {
 }
 elseif($option == 'logout') {
   session_destroy();
-  header("location: index.php");
+  $message = "See you soon";
+  header("location: index.php?message=$message&option=$option");
 }
+
+
 elseif($option == 'subscribe') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $subscribe = $_POST['email'];
-    header("location: sign.php?subscribe=$subscribe");
+    require('functions.php');
+    $_POST = remove_script($_POST);
+    $user = array(
+    'email' => $_POST['email'],
+    );
+    $email = $_POST['email'];
+    require_once('users.php');
+    if(user_exists_for_sign($user)) {
+      $error = "Email already exists, log in instead";
+      header("location: log.php?error=$error&email=$email");
+    }
+    else {
+      $message = "Complete your sign up";
+      header("location: sign.php?email=$email&message=$message");
+    }
   }
 }
 else {

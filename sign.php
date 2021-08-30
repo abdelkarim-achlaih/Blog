@@ -1,21 +1,12 @@
 <?php
   $title = 'Sign-in';
   require_once('session.php');
+  require('functions.php');
   if(isset($_GET['error'])) {
-    echo '
-      <section class="error-section">
-      <div class="container">
-      <div class="error">
-      <h4>Error</h4>
-      <div class="error-name">
-    ';
-    echo $_GET['error'] ;
-    echo '
-      </div>
-      </div>
-      </div>
-      </section>
-    ' ;
+    show_notification ($_GET['error'], 'Error');
+  }
+  if(isset($_GET['message'])) {
+    show_notification ($_GET['message'], 'Notification');
   }
 ?>
 <section class="box">
@@ -31,6 +22,7 @@
           name="first_name"
           id="first_name"
           required
+          autofocus
         />
         <input
           type="text"
@@ -52,10 +44,10 @@
           name="email"
           id="email"
           required
-          <?php if(isset($_GET['subscribe'])) {
+          <?php if(isset($_GET['email'])) {
             echo "value=";
             echo '"';
-            echo $_GET['subscribe'];
+            echo $_GET['email'];
             echo '"';
           }
           ?>
