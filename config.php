@@ -61,8 +61,10 @@ elseif ($option == 'log') {
     if(email_exists_for_log_in($user)){
       if(verify_password($user)) {
         $user = get_user_infos($user);
-        unset($_SESSION['counter_log']);
         $_SESSION['first_name'] = $user['first_name'];
+        $_SESSION['last_name'] = $user['last_name'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['email'];
         $_SESSION['message_index'] = "Welcome ".$user['first_name'];
         header("location: index.php");
       }
@@ -108,6 +110,6 @@ elseif($option == 'subscribe') {
   }
 }
 else {
-  $error = "You are not permited to see this page this way: url error";
-  header("location: sign.php?error=$error");
+  $_SESSION['message_error'] = "You are not permited to see this page this way: url error";
+  header("location: sign.php");
 }

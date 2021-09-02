@@ -403,6 +403,26 @@ footer .container .support a:hover {
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 .box .container .box-container .author {
+  display: flex;
+  align-items: center;
+  transition-duration: var(--transitionDuration);
+  cursor: pointer;
+  width: 100%;
+}
+.box .container .box-container .author .image img {
+  width: 25px;
+  margin-top: 20px;
+  border-radius: 20%;
+}
+.box .container .box-container .author .name {
+  text-transform: capitalize;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: var(--color2);
+  font-weight: 600;
+}
+.box .container .box-container .author:hover {
+  transform: translateX(20px);
 }
 .box .container .box-container form input[type="text"],
 .box .container .box-container form input[type="mail"],
@@ -415,14 +435,23 @@ footer .container .support a:hover {
   margin: 20px 0;
   color: black;
   transition-duration: var(--transitionDuration);
-  border-radius: 20px;
-  padding: 10px;
+  padding: 10px 0;
   border: solid transparent 1px;
   width: 100%;
   text-align: justify;
   line-height: 1.5;
   letter-spacing: 1px;
   word-spacing: 1px;
+}
+.box .container .box-container form[class="post"] input[type="text"],
+.box .container .box-container form[class="post"] textarea {
+  transition-duration: var(--transitionDuration);
+}
+.box .container .box-container form[class="post"] input[type="text"]:focus,
+.box .container .box-container form[class="post"] textarea:focus {
+  transform: translateX(20px);
+  border-bottom: var(--color2) 1px solid;
+  width: calc(100% - 20px);
 }
 .box .container .box-container form input::placeholder,
 .box .container .box-container form textarea::placeholder {
@@ -501,6 +530,12 @@ footer .container .support a:hover {
   margin-bottom: 20px;
   font-weight: 600;
   font-size: 18px;
+}
+.message-section .container .message .message-name a {
+  color: #0b0b3c;
+  display: block;
+  text-decoration: underline;
+  margin-top: 10px;
 }
 @media (max-width: 991px) {
   .box .container,
