@@ -482,11 +482,18 @@ footer .container .support a:hover {
   width: calc(100% - 20px);
   border-bottom: var(--color2) 1px solid;
 }
-.box .container .box-container form .checkbox {
-  margin: 20px 0;
+.box .container .box-container form .checkbox-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-.box .container .box-container form .checkbox .checkbox-title,
-.box .container .box-container form .checkbox label {
+.box .container .box-container form .checkbox-container .checkbox {
+  margin-top: 20px;
+}
+.box .container .box-container form .checkbox-container .checkbox:last-child {
+  margin-left: 40px;
+}
+.box .container .box-container form .checkbox-container .checkbox .checkbox-title,
+.box .container .box-container form .checkbox-container .checkbox label {
   text-transform: capitalize;
   text-decoration: none;
   line-height: 1.5;
@@ -495,7 +502,7 @@ footer .container .support a:hover {
   color: var(--color1);
   font-size: 12px;
 }
-.box .container .box-container form .checkbox .checkbox-title {
+.box .container .box-container form .checkbox-container .checkbox .checkbox-title {
   color: black;
   font-size: 14px;
   margin-bottom: 10px;

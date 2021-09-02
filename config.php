@@ -21,6 +21,7 @@ if ($option == 'sign') {
           'category' => $_POST['category'],
           'type' => 'user',
           'sign_in_date' => date('Y-m-d H:i:s', time()),
+          'gender' => $_POST['gender'],
         );
         require_once('users.php');
         if(! user_exists_for_sign($user)) {

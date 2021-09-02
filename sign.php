@@ -78,63 +78,87 @@ if(isset($_GET['message'])) {
           id="re_password"
           required
         />
-        <div class="checkbox">
-          <div class="checkbox-title">
-            Categories you are intersted in
+        <div class="checkbox-container">
+          <div class="checkbox">
+            <div class="checkbox-title">
+              Categories you are intersted in
+            </div>
+              <input 
+                type="radio"
+                name="category"
+                value="1"
+                id="products"
+                required
+              />
+              <label for="products">products</label>
+              <br><br>
+              <input
+                type="radio"
+                name="category"
+                value="2"
+                id="self-developement"
+                required
+              />
+              <label for="self-developement">self-developement</label>
+              <br><br>
+              <input
+                type="radio"
+                name="category"
+                value="3"
+                id="sport"
+                required
+              />
+              <label for="sport">sport</label>
+              <br><br>
+              <input
+                type="radio"
+                name="category"
+                value="4"
+                id="nature"
+                required
+              />
+              <label for="nature">nature</label>
+              <br><br>
+              <input
+                type="radio"
+                name="category"
+                value="5"
+                id="work"
+                required
+              />
+              <label for="work">work</label>
+              <br><br>
+              <input
+                type="radio"
+                name="category"
+                value="6"
+                id="school"
+                required
+              />
+              <label for="school">school</label>
           </div>
-            <input 
-              type="radio"
-              name="category"
-              value="1"
-              id="products"
-              required
-            />
-            <label for="products">products</label>
-            <br><br>
-            <input
-              type="radio"
-              name="category"
-              value="2"
-              id="self-developement"
-              required
-            />
-            <label for="self-developement">self-developement</label>
-            <br><br>
-            <input
-              type="radio"
-              name="category"
-              value="3"
-              id="sport"
-              required
-            />
-            <label for="sport">sport</label>
-            <br><br>
-            <input
-              type="radio"
-              name="category"
-              value="4"
-              id="nature"
-              required
-            />
-            <label for="nature">nature</label>
-            <br><br>
-            <input
-              type="radio"
-              name="category"
-              value="5"
-              id="work"
-              required
-            />
-            <label for="work">work</label>
-            <br><br>
-            <input
-              type="radio"
-              name="category"
-              value="6"
-              id="school"
-              required
-            />
-            <label for="school">school</label>
+          <div class="checkbox">
+            <div class="checkbox-title">
+              Gender
+            </div>
+              <input 
+                type="radio"
+                name="gender"
+                value="1"
+                id="male"
+                required
+              />
+              <label for="male">male</label>
+              <br><br>
+              <input
+                type="radio"
+                name="gender"
+                value="2"
+                id="female"
+                required
+              />
+              <label for="female">female</label>
+          </div>
         </div>
         <input type="submit" value="Sign-in" class="main-button" />
         <a href="log.php" class="already">Already have an account, log in</a>
