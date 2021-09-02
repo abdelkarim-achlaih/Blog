@@ -78,6 +78,6 @@ function get_user_infos($user) {
   $user['category '] = $data['category '];
   $user['type'] = $data['type'];
   $user['sign_in_date'] = $data['sign_in_date'];
-  $user['gender '] = $data['gender '];
+  $user['gender'] = $data['gender'];
   return $user;
 }

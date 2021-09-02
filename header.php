@@ -7,7 +7,7 @@
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css?version=2" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?version=1.1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

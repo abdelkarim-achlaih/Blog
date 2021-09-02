@@ -13,14 +13,17 @@ if(! isset($_SESSION['first_name']) && ! isset($_SESSION['last_name'])) {
             <h3>Create a new post</h3>
           </div>
           <div class="author">
-            <div class="image"><img src="images/avatar-man.png" alt="User"></div>
-            <div class="name">
-              <?php
-                if (isset($_SESSION['first_name']) && isset($_SESSION['last_name'])) {
-                  echo $_SESSION['first_name'].' '.$_SESSION['last_name'];
+            <?php
+              if (isset($_SESSION['first_name']) && isset($_SESSION['last_name']) && isset($_SESSION['gender'])) {
+                if ($_SESSION['gender'] == 1) {
+                  echo '<div class="image"><img src="images/avatar-man.png" alt="User"></div>';
                 }
-              ?>
-            </div>
+                elseif ($_SESSION['gender'] == 2) {
+                  echo '<div class="image"><img src="images/avatar-woman.png" alt="User"></div>';
+                }
+                echo '<div class="name">'.$_SESSION['first_name'].' '.$_SESSION['last_name'].'</div>';
+              }
+            ?>
           </div>
           <form action="#" method="POST" class="post">
             <input  type="text" 

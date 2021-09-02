@@ -21,7 +21,7 @@ if ($option == 'sign') {
           'category' => $_POST['category'],
           'type' => 'user',
           'sign_in_date' => date('Y-m-d H:i:s', time()),
-          'gender' => $_POST['gender'],
+          'gender' => $_POST['gender']
         );
         require_once('users.php');
         if(! user_exists_for_sign($user)) {
@@ -66,6 +66,7 @@ elseif ($option == 'log') {
         $_SESSION['last_name'] = $user['last_name'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['email'] = $user['email'];
+        $_SESSION['gender'] = $user['gender'];
         $_SESSION['message_index'] = "Welcome ".$user['first_name'];
         header("location: index.php");
       }
