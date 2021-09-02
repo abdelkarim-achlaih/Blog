@@ -1,7 +1,7 @@
 <footer>
       <div class="container">
         <div class="logo">
-          <a href="index.html"><img src="images/logo.png" alt="Home" /></a>
+          <a href="index.php"><img src="images/logo.png" alt="Home" /></a>
         </div>
         <div class="more">
           <h3>More</h3>

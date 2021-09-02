@@ -10,7 +10,7 @@ function print_array ($array) {
   print_r($array);
   echo '</pre>';
 }
-function show_notification ($notification, $title) {
+function show_message ($message, $title) {
   if($title == 'Error') {
     $color ='red';
   }
@@ -21,13 +21,13 @@ function show_notification ($notification, $title) {
     $color ='blue';
   }
   echo '
-    <section class="notification-section">
+    <section class="message-section">
       <div class="container">
-        <div class="notification '.$color.'">
+        <div class="message '.$color.'">
           <h4>'.$title.'</h4>
-          <div class="notification-name">
+          <div class="message-name">
   ';
-  echo $notification ;
+  echo $message ;
   echo '
           </div>
         </div>

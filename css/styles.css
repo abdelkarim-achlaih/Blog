@@ -441,7 +441,7 @@ footer .container .support a:hover {
   color: var(--color2);
   text-decoration: none;
   transition-duration: var(--transitionDuration);
-  width: 40%;
+  width: 100%;
   border: transparent 1px solid;
   border-radius: 0px;
   padding: 0;
@@ -479,7 +479,7 @@ footer .container .support a:hover {
   text-decoration: underline;
 }
 /* End Post Section */
-.notification-section .container .notification {
+.message-section .container .message {
   color: white;
   border-radius: 10px;
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
@@ -488,33 +488,33 @@ footer .container .support a:hover {
   text-align: center;
   margin: 60px auto -30px;
 }
-.notification-section .container .notification.red {
+.message-section .container .message.red {
   background-color: rgb(211, 97, 97);
 }
-.notification-section .container .notification.green {
+.message-section .container .message.green {
   background-color: rgb(103, 211, 97);
 }
-.notification-section .container .notification.blue {
+.message-section .container .message.blue {
   background-color: #0088f0;
 }
-.notification-section .container .notification h4 {
+.message-section .container .message h4 {
   margin-bottom: 20px;
   font-weight: 600;
   font-size: 18px;
 }
 @media (max-width: 991px) {
   .box .container,
-  .notification-section .container .notification {
+  .message-section .container .message {
     width: 100%;
   }
   .box .container .box-container,
-  .notification-section .container .notification {
+  .message-section .container .message {
     width: 100%;
   }
 }
 @media (min-width: 992px) {
   .box .container .box-container,
-  .notification-section .container .notification {
+  .message-section .container .message {
     width: 50%;
   }
 }

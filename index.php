@@ -1,23 +1,14 @@
 <?php
 $title = 'Home';
 require_once('session.php');
-if(isset($_GET['message']) && isset($_GET['option'])) {
-  if($_GET['option'] == 'log') {
-    if(! isset($_SESSION['counter_log'])) {
-      require('functions.php');
-      show_index_message($_GET['message']);
-      $_SESSION['counter_log'] = 1;
+require('functions.php');
+if(isset($_SESSION['message_source'])) {
+  if($_SESSION['message_source'] == 'config.php') {
+    if(isset($_SESSION['message_index'])) {
+      show_index_message($_SESSION['message_index']);
+      unset($_SESSION['message_index']);
     }
   }
-  elseif($_GET['option'] == 'logout') {
-    if(! isset($_SESSION['counter_logout'])) {
-      require('functions.php');
-      show_index_message($_GET['message']);
-      $_SESSION['counter_logout'] = 1;
-    }
-    
-  }
-  
 }
 ?>
 <section class="landing">

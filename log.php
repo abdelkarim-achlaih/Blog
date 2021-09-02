@@ -2,11 +2,17 @@
 $title = 'Log-in';
 require_once('session.php');
 require('functions.php');
-if(isset($_GET['error'])) {
-  show_notification ($_GET['error'], 'Error');
-}
-if(isset($_GET['message'])) {
-  show_notification ($_GET['message'], 'Success');
+if(isset($_SESSION['message_source'])) {
+  if($_SESSION['message_source'] == 'config.php') {
+    if(isset($_SESSION['message_success'])) {
+      show_message ($_SESSION['message_success'], 'Success');
+      unset($_SESSION['message_source']);
+    }
+    if(isset($_SESSION['message_error'])) {
+      show_message ($_SESSION['message_error'], 'Error');
+      unset($_SESSION['message_error']);
+    }
+  }
 }
 ?>
 <section class="box">
@@ -21,10 +27,10 @@ if(isset($_GET['message'])) {
           placeholder="Your email"
           name="email"
           id="email"
-          <?php if(isset($_GET['email'])) {
+          <?php if(isset($_SESSION['message_email'])) {
             echo "value=";
             echo '"';
-            echo $_GET['email'];
+            echo $_SESSION['message_email'];
             echo '"';
           }
           else {
@@ -39,8 +45,9 @@ if(isset($_GET['message'])) {
           name="password"
           id="password"
           required
-          <?php if(isset($_GET['email'])) {
+          <?php if(isset($_SESSION['message_email'])) {
             echo "autofocus";
+            unset($_SESSION['message_email']);
             }
           ?>
         />

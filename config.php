@@ -5,7 +5,7 @@ $option ="";
 if(isset($_GET['option'])) {
   $option = htmlspecialchars($_GET['option']);
 }
-
+$_SESSION['message_source'] = basename(__FILE__);
 if ($option == 'sign') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if($_POST['password'] == $_POST['re_password']) {
@@ -25,28 +25,28 @@ if ($option == 'sign') {
         require_once('users.php');
         if(! user_exists_for_sign($user)) {
           sign_up($user);
-          $email = $_POST['email'];
-          $message = 'You are signed in seccessfully, log in now with you email';
-          header("location: log.php?email=$email&message=$message");
+          $_SESSION['message_email'] = $_POST['email'];
+          $_SESSION['message_success'] = 'You are signed in seccessfully, log in now with you email';
+          header("location: log.php");
         }
         else {
-          $error = "Username or/and email already exist(s)";
-          header("location: sign.php?error=$error");
+          $_SESSION['message_error'] = "Username or/and email already exist(s)";
+          header("location: sign.php");
         }
       }
       else {
-        $error = "Password too short";
-        header("location: sign.php?error=$error");
+        $_SESSION['message_error'] = "Password too short";
+        header("location: sign.php");
       }
     }
     else {
-      $error = 'Passwords are not the same';
-      header("location: sign.php?error=$error");
+      $_SESSION['message_error'] = 'Passwords are not the same';
+      header("location: sign.php");
     }
   }
   else {
-    $error = "You are not permited to see this page this way: informations are not sent properly";
-    header("location: sign.php?error=$error");
+    $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
+    header("location: sign.php");
   }
 }
 elseif ($option == 'log') {
@@ -63,27 +63,31 @@ elseif ($option == 'log') {
         $user = get_user_infos($user);
         unset($_SESSION['counter_log']);
         $_SESSION['first_name'] = $user['first_name'];
-        $message = "Welcome ".$user['first_name'];
-        header("location: index.php?message=$message&option=$option");
+        $_SESSION['message_index'] = "Welcome ".$user['first_name'];
+        header("location: index.php");
       }
       else {
-        $error = "Wrong password";
-        header("location: log.php?error=$error");
+        $_SESSION['message_email'] = $_POST['email'];
+        $_SESSION['message_error'] = "Wrong password";
+        header("location: log.php");
       }
     }
     else {
-      $error = "You are not a user, sign up instead";
-      header("location: sign.php?error=$error");
+      $_SESSION['message_email'] = $_POST['email'];
+      $_SESSION['message_error'] = "You are not a user, sign up instead";
+      header("location: sign.php");
     }
   }
 }
 elseif($option == 'logout') {
-  session_destroy();
-  $message = "See you soon";
-  header("location: index.php?message=$message&option=$option");
+  foreach($_SESSION as $key => $value) {
+    if($key != 'message_index' && $key != 'message_source') {
+      unset($_SESSION[$key]);
+    }
+  }
+  $_SESSION['message_index'] = "See you soon";
+  header("location: index.php");
 }
-
-
 elseif($option == 'subscribe') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     require('functions.php');
@@ -91,15 +95,15 @@ elseif($option == 'subscribe') {
     $user = array(
     'email' => $_POST['email'],
     );
-    $email = $_POST['email'];
+    $_SESSION['message_email'] = $_POST['email'];
     require_once('users.php');
     if(user_exists_for_sign($user)) {
-      $error = "Email already exists, log in instead";
-      header("location: log.php?error=$error&email=$email");
+      $_SESSION['message_error'] = "Email already exists, log in instead";
+      header("location: log.php");
     }
     else {
-      $message = "Complete your sign up";
-      header("location: sign.php?email=$email&message=$message");
+      $_SESSION['message_notification'] = "Complete your sign up";
+      header("location: sign.php");
     }
   }
 }

@@ -17,7 +17,6 @@ function sign_up ($user) {
       $user['sign_in_date'],
     )
   );
-  header('location: log.php');
 }
 function user_exists_for_sign ($user) {
   require('dbconnect.php');

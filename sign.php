@@ -1,13 +1,24 @@
 <?php
-  $title = 'Sign-in';
-  require_once('session.php');
-  require('functions.php');
-  if(isset($_GET['error'])) {
-    show_notification ($_GET['error'], 'Error');
+$title = 'Sign-in';
+require_once('session.php');
+require('functions.php');
+if(isset($_SESSION['message_source'])) {
+  if($_SESSION['message_source'] == 'config.php') {
+    if(isset($_SESSION['message_error'])) {
+      show_message ($_SESSION['message_error'], 'Error');
+      unset($_SESSION['message_error']);
+    }
+    if(isset($_SESSION['message_notification'])) {
+      show_message ($_SESSION['message_notification'], 'Notification');
+      unset($_SESSION['message_notification']);
+    }
   }
-  if(isset($_GET['message'])) {
-    show_notification ($_GET['message'], 'Notification');
-  }
+}
+
+
+if(isset($_GET['message'])) {
+  show_message ($_GET['message'], 'Notification');
+}
 ?>
 <section class="box">
   <div class="container">
@@ -44,11 +55,12 @@
           name="email"
           id="email"
           required
-          <?php if(isset($_GET['email'])) {
+          <?php if(isset($_SESSION['message_email'])) {
             echo "value=";
             echo '"';
-            echo $_GET['email'];
+            echo $_SESSION['message_email'];
             echo '"';
+            unset($_SESSION['message_email']);
           }
           ?>
         />
