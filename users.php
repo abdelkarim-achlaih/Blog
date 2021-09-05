@@ -75,9 +75,27 @@ function get_user_infos($user) {
   $user['first_name'] = $data['first_name'];
   $user['last_name'] = $data['last_name'];
   $user['username'] = $data['username'];
+  $user['password'] = $data['password'];
   $user['category'] = $data['category'];
   $user['type'] = $data['type'];
   $user['sign_in_date'] = $data['sign_in_date'];
   $user['gender'] = $data['gender'];
   return $user;
+}
+function update_user_info($user) {
+  require('dbconnect.php');
+  $query = "UPDATE users SET first_name=?, last_name=?, password=?, category=?, gender=? WHERE id=?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $user['first_name'], $user['last_name'], $user['password'], $user['category'], $user['gender'], $user['id']
+  ));
+}
+
+function delete_user($user) {
+  require('dbconnect.php');
+  $query = "DELETE FROM users WHERE id=?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $user['id']
+  ));
 }

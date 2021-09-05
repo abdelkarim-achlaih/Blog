@@ -6,7 +6,7 @@ if(isset($_SESSION['message_source'])) {
   if($_SESSION['message_source'] == 'config.php') {
     if(isset($_SESSION['message_success'])) {
       show_message ($_SESSION['message_success'], 'Success');
-      unset($_SESSION['message_source']);
+      unset($_SESSION['message_success']);
     }
     if(isset($_SESSION['message_error'])) {
       show_message ($_SESSION['message_error'], 'Error');

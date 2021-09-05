@@ -520,10 +520,42 @@ footer .container .support a:hover {
 .box .container .box-container form textarea::placeholder {
   color: var(--color1);
 }
-
+.box .container .box-container p {
+  margin-bottom: 20px;
+}
+.box .container .box-container form input.red {
+  display: flex;
+  margin-left: auto;
+  background-color: transparent;
+  color: rgb(211, 97, 97);
+  border: rgb(211, 97, 97) 1px solid;
+  transition-duration: var(--transitionDuration);
+}
+.box .container .box-container h3 i {
+  margin-right: 10px;
+  color: rgb(211, 97, 97);
+}
+.fa-user-edit {
+  color: var(--color2) !important;
+}
+.box .container .box-container .title.red {
+  border-bottom: 1px solid rgb(211, 97, 97);
+}
+.box .container .box-container form input.red:hover {
+  background-color: rgb(211, 97, 97);
+  color: white;
+}
+.box .container .box-container form .field.red input:focus {
+  border-bottom: 1px solid rgb(211, 97, 97);
+}
+.box .container .box-container form .field.red input {
+  caret-color: rgb(211, 97, 97);
+  color: rgb(211, 97, 97);
+}
 .box .container .box-container form input[type="submit"] {
   display: flex;
   margin-left: auto;
+  cursor: pointer;
 }
 .box .container .box-container .update-form input[type="text"],
 .box .container .box-container .update-form input[type="mail"],

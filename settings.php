@@ -1,15 +1,26 @@
-<!-- update user info
-delete user account -->
 <?php
 session_start();
 $title = 'Settings | '.ucfirst($_SESSION['first_name']).' '.ucfirst($_SESSION['last_name']);
 require_once('header.php');
+require('functions.php');
+if(isset($_SESSION['message_source'])) {
+  if($_SESSION['message_source'] == 'config.php') {
+    if(isset($_SESSION['message_success'])) {
+      show_message ($_SESSION['message_success'], 'Success');
+      unset($_SESSION['message_success']);
+    }
+    if(isset($_SESSION['message_error'])) {
+      show_message ($_SESSION['message_error'], 'Error');
+      unset($_SESSION['message_error']);
+    }
+  }
+}
 ?>
 <section class="box border">
   <div class="container">
     <div class="box-container update">
       <div class="title">
-        <h3>Update your info</h3>
+        <h3><i class="fas fa-user-edit"></i>Update your info</h3>
       </div>
       <form action="config.php?option=update" method="POST" class="sign update-form">
         <div class="field">
@@ -40,7 +51,7 @@ require_once('header.php');
         />
         </div>
         <div class="field">
-          <label for="username" class='disabled'>username</label>  
+          <label for="username" class='disabled'>Username</label>  
         <input
           type="text"
           placeholder="Your username"
@@ -54,7 +65,7 @@ require_once('header.php');
         />
         </div>
         <div class="field">
-          <label for="email" class='disabled'>email</label>  
+          <label for="email" class='disabled'>Email</label>  
         <input
           type="mail"
           placeholder="Your email"
@@ -68,14 +79,32 @@ require_once('header.php');
         />
         </div>
         <div class="field">
-          <label for="password">password</label>
-        <input
+          <label for="password">Old password</label>
+          <input
           type="password"
-          placeholder="Your password"
+          placeholder="Your old password"
           name="password"
           id="password"
           required
-        />
+          />
+        </div>
+        <div class="field">
+          <label for="new_password">New password</label>
+          <input
+          type="password"
+          placeholder="Your new password"
+          name="new_password"
+          id="new_password"
+          />
+        </div>
+        <div class="field">
+          <label for="re_new_password">Re-tap your new password</label>
+          <input
+          type="password"
+          placeholder="Re-tap your new password"
+          name="re_new_password"
+          id="re_new_password"
+          />
         </div>
         <div class="checkbox-container">
           <div class="checkbox">
@@ -160,7 +189,7 @@ require_once('header.php');
           </div>
         </div>
 
-        <input type="submit" value="Update" class="main-button" />
+        <input type="submit" value="Update profile" class="main-button" />
       </form>
     </div>
   </div>
@@ -168,9 +197,24 @@ require_once('header.php');
 <section class="box">
   <div class="container">
     <div class="box-container update">
-      <div class="title">
-        <h3>Delete your account</h3>
+      <div class="title red">
+        <h3><i class="fas fa-ban"></i>Delete your account</h3>
       </div>
+      <p>Once you delete your account, there is no going back. Please be certain.</p>
+      <form action="config.php?option=delete" method="POST" class="sign update-form">
+        <div class="field red">
+          <label for="password">Password</label>
+          <input
+          type="password"
+          placeholder="Your password"
+          name="password"
+          id="password"
+          required
+          />
+        </div>
+        <input type="submit" class="main-button red" value="Delete your account">
+      </form>
     </div>
   </div>
 </section>
+<?php include('footer.php'); ?>
