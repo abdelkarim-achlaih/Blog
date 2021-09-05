@@ -74,8 +74,8 @@ function get_user_infos($user) {
   $user['id'] = $data['id'];
   $user['first_name'] = $data['first_name'];
   $user['last_name'] = $data['last_name'];
-  $user['username '] = $data['username '];
-  $user['category '] = $data['category '];
+  $user['username'] = $data['username'];
+  $user['category'] = $data['category'];
   $user['type'] = $data['type'];
   $user['sign_in_date'] = $data['sign_in_date'];
   $user['gender'] = $data['gender'];
