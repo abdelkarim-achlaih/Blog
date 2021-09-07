@@ -13,7 +13,7 @@ if(isset($_SESSION['message_source'])) {
 ?>
 <section class="landing">
   <div class="container">
-    <h1>Bloggg</h1>
+    <h1>Blog</h1>
     <p>
       Stories to help you bring your best ideas to life. Subscribe to get
       the best prototyping tips, tricks, and tutorials in your inbox.
