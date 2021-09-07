@@ -20,13 +20,13 @@ if(isset($_GET['message'])) {
   show_message ($_GET['message'], 'Notification');
 }
 ?>
-<section class="box">
+<section class="data">
   <div class="container">
-    <div class="box-container">
+    <div class="form user-sign">
       <div class="title">
-        <h3>Sign in</h3>
+        <h3><i class="fas fa-user-plus"></i>Sign in</h3>
       </div>
-      <form action="config.php?option=sign" method="POST" class="sign">
+      <form action="config.php?option=sign" method="POST">
         <input
           type="text"
           placeholder="Your first-name"
@@ -81,25 +81,25 @@ if(isset($_GET['message'])) {
         <div class="checkbox-container">
           <div class="checkbox">
             <div class="checkbox-title">
-              Categories you are intersted in
+              Choose a category you are intersted in
             </div>
               <input 
                 type="radio"
                 name="category"
                 value="1"
-                id="products"
+                id="technology"
                 required
               />
-              <label for="products">products</label>
+              <label for="technology">technology</label>
               <br><br>
               <input
                 type="radio"
                 name="category"
                 value="2"
-                id="self-developement"
+                id="self-development"
                 required
               />
-              <label for="self-developement">self-developement</label>
+              <label for="self-development">self-development</label>
               <br><br>
               <input
                 type="radio"
@@ -139,7 +139,7 @@ if(isset($_GET['message'])) {
           </div>
           <div class="checkbox">
             <div class="checkbox-title">
-              Gender
+              Select your gender
             </div>
               <input 
                 type="radio"

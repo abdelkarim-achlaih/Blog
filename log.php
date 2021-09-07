@@ -15,13 +15,13 @@ if(isset($_SESSION['message_source'])) {
   }
 }
 ?>
-<section class="box">
+<section class="data">
   <div class="container">
-    <div class="box-container">
+    <div class="form user-log">
       <div class="title">
-        <h3>log in</h3>
+        <h3><i class="fas fa-sign-in-alt"></i>log in</h3>
       </div>
-      <form action="config.php?option=log" method="POST" class="sign">
+      <form action="config.php?option=log" method="POST">
         <input
           type="mail"
           placeholder="Your email"

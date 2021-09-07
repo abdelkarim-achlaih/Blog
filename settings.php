@@ -16,15 +16,14 @@ if(isset($_SESSION['message_source'])) {
   }
 }
 ?>
-<section class="box border">
+<section class="data">
   <div class="container">
-    <div class="box-container update">
+    <div class="form user-update">
       <div class="title">
         <h3><i class="fas fa-user-edit"></i>Update your info</h3>
       </div>
-      <form action="config.php?option=update" method="POST" class="sign update-form">
-        <div class="field">
-          <label for="first_name">first-name</label>
+      <form action="config.php?option=update" method="POST">
+        <label for="first_name">first-name</label>
         <input
           type="text"
           placeholder="Your first-name"
@@ -36,9 +35,7 @@ if(isset($_SESSION['message_source'])) {
             echo ' value="'.$_SESSION['first_name'].'"';
           ?>
         />
-        </div>
-        <div class="field">
-          <label for="last_name">last-name</label>  
+        <label for="last_name">last-name</label>  
         <input
           type="text"
           placeholder="Your last-name"
@@ -49,9 +46,7 @@ if(isset($_SESSION['message_source'])) {
             echo ' value="'.$_SESSION['last_name'].'"';
           ?>
         />
-        </div>
-        <div class="field">
-          <label for="username" class='disabled'>Username</label>  
+        <label for="username">Username</label>  
         <input
           type="text"
           placeholder="Your username"
@@ -63,9 +58,7 @@ if(isset($_SESSION['message_source'])) {
             echo ' value="'.$_SESSION['username'].'"';
           ?>
         />
-        </div>
-        <div class="field">
-          <label for="email" class='disabled'>Email</label>  
+        <label for="email">Email</label>  
         <input
           type="mail"
           placeholder="Your email"
@@ -77,57 +70,52 @@ if(isset($_SESSION['message_source'])) {
             echo ' value="'.$_SESSION['email'].'"';
           ?>
         />
-        </div>
-        <div class="field">
-          <label for="password">Old password</label>
-          <input
-          type="password"
-          placeholder="Your old password"
-          name="password"
-          id="password"
-          required
-          />
-        </div>
-        <div class="field">
-          <label for="new_password">New password</label>
-          <input
-          type="password"
-          placeholder="Your new password"
-          name="new_password"
-          id="new_password"
-          />
-        </div>
-        <div class="field">
-          <label for="re_new_password">Re-tap your new password</label>
-          <input
-          type="password"
-          placeholder="Re-tap your new password"
-          name="re_new_password"
-          id="re_new_password"
-          />
-        </div>
+        <label for="password">Old password</label>
+        <input
+        type="password"
+        placeholder="Your old password"
+        name="password"
+        id="password"
+        required
+        />
+        <label for="new_password">New password</label>
+        <input
+        type="password"
+        placeholder="Your new password"
+        name="new_password"
+        id="new_password"
+        />
+        <label for="re_new_password">Re-tap your new password</label>
+        <input
+        type="password"
+        placeholder="Re-tap your new password"
+        name="re_new_password"
+        id="re_new_password"
+        />
+
+        
         <div class="checkbox-container">
           <div class="checkbox">
             <div class="checkbox-title">
-              Categories you are intersted in
+              Category you are intersted in
             </div>
               <input 
                 type="radio"
                 name="category"
                 value="1"
-                id="products"
+                id="technology"
                 required
               />
-              <label for="products">products</label>
+              <label for="technology">technology</label>
               <br><br>
               <input
                 type="radio"
                 name="category"
                 value="2"
-                id="self-developement"
+                id="self-development"
                 required
               />
-              <label for="self-developement">self-developement</label>
+              <label for="self-development">self-development</label>
               <br><br>
               <input
                 type="radio"
@@ -167,7 +155,7 @@ if(isset($_SESSION['message_source'])) {
           </div>
           <div class="checkbox">
             <div class="checkbox-title">
-              Gender
+              Modify your gender
             </div>
               <input 
                 type="radio"
@@ -194,25 +182,25 @@ if(isset($_SESSION['message_source'])) {
     </div>
   </div>
 </section>
-<section class="box">
+
+
+<section class="data">
   <div class="container">
-    <div class="box-container update">
-      <div class="title red">
+    <div class="form user-delete">
+      <div class="title">
         <h3><i class="fas fa-ban"></i>Delete your account</h3>
       </div>
       <p>Once you delete your account, there is no going back. Please be certain.</p>
-      <form action="config.php?option=delete" method="POST" class="sign update-form">
-        <div class="field red">
-          <label for="password">Password</label>
-          <input
-          type="password"
-          placeholder="Your password"
-          name="password"
-          id="password"
-          required
-          />
-        </div>
-        <input type="submit" class="main-button red" value="Delete your account">
+      <form action="config.php?option=delete" method="POST">
+        <label for="password">Password</label>
+        <input
+        type="password"
+        placeholder="Your password"
+        name="password"
+        id="password"
+        required
+        />
+        <input type="submit" class="main-button" value="Delete your account">
       </form>
     </div>
   </div>

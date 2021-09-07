@@ -13,7 +13,7 @@ if(isset($_SESSION['message_source'])) {
 ?>
 <section class="landing">
   <div class="container">
-    <h1>Blog</h1>
+    <h1>Bloggg</h1>
     <p>
       Stories to help you bring your best ideas to life. Subscribe to get
       the best prototyping tips, tricks, and tutorials in your inbox.
@@ -26,78 +26,23 @@ if(isset($_SESSION['message_source'])) {
 </section>
 <section class="articles">
   <div class="container">
-    <a class="article" href="#">
-      <div class="image"><img src="images/article1.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="image"><img src="images/article2.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="image"><img src="images/article3.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="image"><img src="images/article2.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="image"><img src="images/article3.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="image"><img src="images/article1.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="image"><img src="images/article2.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="image"><img src="images/article3.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
-    <a class="article" href="#">
-      <div class="image"><img src="images/article1.png" /></div>
-      <div class="content">
-        <div class="type">Product</div>
-        <div class="title">Lorem ipsum dolor, sit amet</div>
-        <div class="date">May 17, 2021</div>
-      </div>
-    </a>
+    <?php 
+      require('blogs.php');
+      $number_of_blogs = number_of_blogs();
+      for($i = 2; $i <= $number_of_blogs + 1; $i = $i + 1) {
+        $blog[$i] = get_blog($i);
+        echo '
+          <a class="article" href="#">
+            <div class="image"><img src="images/'.$blog[$i]['category'].'.jpg" /></div>
+            <div class="content">
+              <div class="type">'.$blog[$i]['category'].'</div>
+              <div class="title">'.$blog[$i]['title'].'</div>
+              <div class="date">'.edit_date($blog[$i]['creation_date']).'</div>
+            </div>
+          </a>
+        ';
+      }
+    ?>
   </div>
 </section>
 <?php require_once('footer.php');

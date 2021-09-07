@@ -8,12 +8,12 @@ require_once('header.php');
     <div class="info">
       <div class="img"><img 
       <?php 
-        if($_SESSION['gender']==1) {
+        if($_SESSION['gender'] == 1) {
           echo '
           src="images/avatar-man.png"
           ';
         }
-        if($_SESSION['gender']==2) {
+        if($_SESSION['gender'] == 2) {
           echo '
           src="images/avatar-woman.png"
           ';

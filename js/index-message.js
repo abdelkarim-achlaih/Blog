@@ -4,6 +4,6 @@ function appearElement(id) {
 function hideElement(id) {
   document.getElementById(id).className = "index-message-hide";
 }
-setTimeout(appearElement, 500, "hide");
-setTimeout(hideElement, 3000, "hide");
+setTimeout(appearElement, 2500, "hide");
+setTimeout(hideElement, 5000, "hide");
 

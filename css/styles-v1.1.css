@@ -2,6 +2,9 @@
 :root {
   --color1: rgb(174, 174, 174);
   --color2: #0199ff;
+  --color3: rgb(211, 97, 97);
+  --color4: rgb(103, 211, 97);
+  --color5: #0088f0;
   --transitionDuration: 0.2s;
 }
 /* End Variables */
@@ -12,6 +15,25 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+*::selection {
+  color: white;
+  background-color: var(--color2);
+}
+input:-webkit-autofill::selection {
+  background-color: var(--color2) !important;
+  color: white !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px white inset !important;
+  border: none !important;
+  -webkit-text-fill-color: var(--color2);
 }
 html {
   scroll-behavior: smooth;
@@ -63,7 +85,7 @@ body {
   width: fit-content;
 }
 .main-button:hover {
-  background-color: #0088f0;
+  background-color: var(--color5);
 }
 .main-button:active {
   background-color: #33adff;
@@ -106,11 +128,6 @@ header .container nav ul li:hover {
 header .container nav ul li:hover a {
   color: white;
 }
-
-/* *********************************************************** */
-/* *********************************************************** */
-/* *********************************************************** */
-
 header .container .sign {
   flex-grow: 0.15;
 }
@@ -193,15 +210,9 @@ header .container .sign .links:hover .toogle {
   visibility: visible;
   opacity: 1;
 }
-
-/* *********************************************************** */
-/* *********************************************************** */
-/* *********************************************************** */
-
 header .container .button {
   display: none;
 }
-
 @media (max-width: 767px) {
   header .container {
     flex-direction: column;
@@ -321,12 +332,22 @@ header .container .button {
   border-radius: 20px;
   transition-duration: var(--transitionDuration);
 }
+.landing .container form input:last-child {
+  cursor: pointer;
+}
 .landing .container form input:first-child {
   flex-basis: 400px;
   background-color: rgb(202, 202, 202);
   padding: 10px;
   margin-right: 20px;
   color: black;
+  transition-duration: var(--transitionDuration);
+}
+.landing .container form input:-webkit-autofill {
+  border: 1px solid var(--color2) !important;
+}
+.landing .container form input:first-child:focus {
+  border: 1px solid var(--color2);
 }
 .landing .container form input:first-child::placeholder {
   color: white;
@@ -375,8 +396,15 @@ header .container .button {
 .articles .container .article:hover {
   transform: translateY(-10px);
 }
+.articles .container .article .image {
+  overflow: hidden;
+}
 .articles .container .article .image img {
   width: 100%;
+  transition-duration: var(--transitionDuration);
+}
+.articles .container .article .image img:hover {
+  transform: rotate(5deg) scale(1.2);
 }
 .articles .container .article .content {
   padding: 25px;
@@ -386,11 +414,13 @@ header .container .button {
   margin-bottom: 15px;
   font-size: 15px;
   font-weight: 600;
+  text-transform: capitalize;
 }
 .articles .container .article .content .title {
   font-weight: 800;
   margin-bottom: 15px;
   font-size: 22px;
+  text-transform: capitalize;
 }
 .articles .container .article .content .date {
   color: hsl(0deg 0% 0% / 50%);
@@ -400,7 +430,7 @@ header .container .button {
 /* End articles Section */
 /* Start Footer */
 footer {
-  padding-bottom: 100px;
+  padding-bottom: 20px;
 }
 footer .container {
   display: flex;
@@ -440,58 +470,78 @@ footer .container .support a:hover {
   }
 }
 /* End Footer */
-/* Start Post Section */
-.box {
+/* Start data Section */
+.data {
   margin-top: 60px;
   margin-bottom: 60px;
 }
-.box .container {
+.data .container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.box .container .box-container {
+.data .container .form {
   border-radius: 20px;
   padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 20px;
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
-.box .container .box-container .author {
+.data .container .form.user-update,
+.data .container .form.user-delete {
+  box-shadow: none;
+}
+.data .container .form .title {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color2);
+}
+.data .container .form.user-delete .title {
+  border-bottom: 1px solid var(--color3);
+}
+.data .container .form h3 {
+  color: var(--color2);
+  font-size: 20px;
+}
+.data .container .form.user-delete .title h3 {
+  color: var(--color3);
+}
+.data .container .form h3 i {
+  margin-right: 10px;
+  color: var(--color2);
+}
+.data .container .form.user-delete .title h3 i {
+  color: var(--color);
+}
+.data .container .form .author {
   display: flex;
   align-items: center;
   transition-duration: var(--transitionDuration);
   cursor: pointer;
   width: 100%;
+  font-size: 17px;
+  margin-bottom: 20px;
 }
-.box .container .box-container .author .image img {
-  width: 25px;
-  margin-top: 20px;
-  border-radius: 20%;
+.data .container .form .author .image img {
+  width: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--color2);
 }
-.box .container .box-container .author .name {
+.data .container .form .author .name {
   text-transform: capitalize;
-  margin-top: 20px;
   margin-left: 20px;
   color: var(--color2);
   font-weight: 600;
 }
-.box .container .box-container .author:hover {
+.data .container .form .author:hover {
   transform: translateX(20px);
 }
-.box .container .box-container .title {
-  margin-bottom: 40px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--color2);
-}
-.box .container .box-container form input[type="text"],
-.box .container .box-container form input[type="mail"],
-.box .container .box-container form input[type="password"],
-.box .container .box-container form textarea {
+.data .container .form form input:not(input[type="radio"]),
+.data .container .form form textarea {
   display: block;
   border: none;
   outline: none;
   resize: none;
-  color: black;
+  color: var(--color2);
   transition-duration: var(--transitionDuration);
   padding: 10px 0;
   border: solid transparent 1px;
@@ -500,121 +550,112 @@ footer .container .support a:hover {
   line-height: 1.5;
   letter-spacing: 1px;
   word-spacing: 1px;
+  caret-color: var(--color2);
+  margin-bottom: 20px;
+  font-size: 14px;
 }
-.box .container .box-container form[class="post"] input:disabled,
-.box .container .box-container form[class="post"] textarea:disabled {
+.data .container .form.user-delete form input:not(input[type="radio"]) {
+  caret-color: var(--color3);
+  color: var(--color3);
+}
+.data .container .form.blog-add form textarea {
+  border: none;
+}
+.data .container .form form input:not(input[type="radio"]):disabled,
+.data .container .form form textarea:disabled {
   cursor: not-allowed;
+  background-color: var(--color3);
+  padding-left: 10px;
+  border-radius: 20px;
+  color: white;
+  margin-top: 10px;
 }
-.box .container .box-container form[class="post"] input[type="text"],
-.box .container .box-container form[class="post"] textarea {
-  transition-duration: var(--transitionDuration);
-}
-.box .container .box-container form[class="post"] input[type="text"]:focus,
-.box .container .box-container form[class="post"] textarea:focus {
+.data .container .form form input:not(input[type="radio"]):focus,
+.data .container .form form textarea:focus {
   transform: translateX(20px);
   border-bottom: var(--color2) 1px solid;
   width: calc(100% - 20px);
-  margin: 20px 0;
 }
-.box .container .box-container form input::placeholder,
-.box .container .box-container form textarea::placeholder {
+.data .container .form.user-delete form input:not(input[type="radio"]):focus {
+  border-bottom: var(--color3) 1px solid;
+}
+.data .container .form.blog-add form textarea:focus {
+  transform: translateX(0);
+  border-bottom: none;
+  width: 100%;
+}
+.data .container .form form input:not(input[type="radio"])::placeholder,
+.data .container .form form textarea::placeholder {
   color: var(--color1);
 }
-.box .container .box-container p {
-  margin-bottom: 20px;
+.data .container .form.user-delete form input:not(input[type="radio"])::placeholder {
+  color: var(--color3);
 }
-.box .container .box-container form input.red {
-  display: flex;
-  margin-left: auto;
-  background-color: transparent;
-  color: rgb(211, 97, 97);
-  border: rgb(211, 97, 97) 1px solid;
-  transition-duration: var(--transitionDuration);
-}
-.box .container .box-container h3 i {
-  margin-right: 10px;
-  color: rgb(211, 97, 97);
-}
-.fa-user-edit {
-  color: var(--color2) !important;
-}
-.box .container .box-container .title.red {
-  border-bottom: 1px solid rgb(211, 97, 97);
-}
-.box .container .box-container form input.red:hover {
-  background-color: rgb(211, 97, 97);
+.data .container .form.blog-add form input:disabled::placeholder,
+.data .container .form.blog-add form textarea:disabled::placeholder {
   color: white;
 }
-.box .container .box-container form .field.red input:focus {
-  border-bottom: 1px solid rgb(211, 97, 97);
-}
-.box .container .box-container form .field.red input {
-  caret-color: rgb(211, 97, 97);
-  color: rgb(211, 97, 97);
-}
-.box .container .box-container form input[type="submit"] {
+body .data .container .form form input[type="submit"],
+.data .container .form.blog-add form input[type="submit"]:disabled {
   display: flex;
   margin-left: auto;
   cursor: pointer;
+  color: white;
+  width: fit-content;
+  padding: 5px 20px;
 }
-.box .container .box-container .update-form input[type="text"],
-.box .container .box-container .update-form input[type="mail"],
-.box .container .box-container .update-form input[type="password"] {
-  margin-bottom: 30px;
+.data .container .form.blog-add form input[type="submit"]:disabled {
+  cursor: not-allowed;
 }
-.box .container .box-container .update-form .field label {
+.data .container .form.user-delete form input[type="submit"] {
+  background-color: transparent;
+  color: var(--color3);
+  border: 1px solid var(--color3);
+}
+body .data .container .form form input[type="submit"]:focus {
+  width: unset;
+  transform: unset;
+}
+.data .container .form.user-delete form input[type="submit"]:hover {
+  background-color: var(--color3);
+  color: white;
+  border: 1px solid transparent;
+}
+.data .container .form label {
   margin-bottom: 10px;
   text-transform: capitalize;
   cursor: pointer;
 }
-.box .container .box-container .sign input[type="text"],
-.box .container .box-container .sign input[type="mail"],
-.box .container .box-container .sign input[type="password"],
-.box .container .box-container .sign a {
-  margin: 20px 0;
-  font-size: 14px;
-  color: var(--color2);
-  text-decoration: none;
-  transition-duration: var(--transitionDuration);
-  width: 100%;
-  border: transparent 1px solid;
-  border-radius: 0px;
-  padding: 0;
+.data .container .form.user-delete p {
+  margin-bottom: 30px;
+  line-height: 1.8;
 }
-
-.box .container .box-container .sign input[type="text"]:focus,
-.box .container .box-container .sign input[type="mail"]:focus,
-.box .container .box-container .sign input[type="password"]:focus {
-  transform: translateX(20px);
-  width: calc(100% - 20px);
-  border-bottom: var(--color2) 1px solid;
-}
-.box .container .box-container form .checkbox-container {
+.data .container .form form .checkbox-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.box .container .box-container form .checkbox-container .checkbox {
+.data .container .form.blog-add form .checkbox-container {
+  display: block;
+}
+.data .container .form form .checkbox-container .checkbox {
   margin-top: 20px;
 }
-.box .container .box-container form .checkbox-container .checkbox:last-child {
+.data .container .form form .checkbox-container .checkbox:last-child {
   margin-left: 40px;
 }
+.data .container .form.blog-add form .checkbox-container .checkbox:last-child {
+  margin-left: 0;
+}
 @media (max-width: 767px) {
-  .box .container .box-container form .checkbox-container {
+  .data .container .form form .checkbox-container {
     grid-template-columns: 1fr;
   }
-  .box .container .box-container form .checkbox-container .checkbox:last-child {
+  .data .container .form form .checkbox-container .checkbox:last-child {
     margin-left: 0;
   }
 }
-.box
-  .container
-  .box-container
-  form
-  .checkbox-container
-  .checkbox
-  .checkbox-title,
-.box .container .box-container form .checkbox-container .checkbox label {
+.data .container .form form .checkbox-container .checkbox .checkbox-title,
+.data .container .form form .checkbox-container .checkbox label {
   text-transform: capitalize;
   text-decoration: none;
   line-height: 1.5;
@@ -623,25 +664,23 @@ footer .container .support a:hover {
   color: var(--color1);
   font-size: 12px;
 }
-.box
-  .container
-  .box-container
-  form
-  .checkbox-container
-  .checkbox
-  .checkbox-title {
+.data .container .form form .checkbox-container .checkbox .checkbox-title {
   color: black;
-  font-size: 14px;
-  margin-bottom: 10px;
-  margin-top: 0;
+  font-size: 15px;
+  margin-bottom: 20px;
 }
-.box .container .box-container form .already {
-  margin-top: 40px;
-}
-.box .container .box-container form .already:hover {
+.data .container .form form a {
+  font-size: 13px;
+  color: var(--color2);
   text-decoration: underline;
+  font-weight: 600;
+  transition-duration: var(--transitionDuration);
 }
-/* End Post Section */
+.data .container .form form a:hover {
+  transform: translateX(20px);
+}
+/* End data Section */
+/* Start messages */
 .message-section .container .message {
   color: white;
   border-radius: 10px;
@@ -652,13 +691,13 @@ footer .container .support a:hover {
   margin: 60px auto -30px;
 }
 .message-section .container .message.red {
-  background-color: rgb(211, 97, 97);
+  background-color: var(--color3);
 }
 .message-section .container .message.green {
-  background-color: rgb(103, 211, 97);
+  background-color: var(--color4);
 }
 .message-section .container .message.blue {
-  background-color: #0088f0;
+  background-color: var(--color5);
 }
 .message-section .container .message h4 {
   margin-bottom: 20px;
@@ -672,17 +711,17 @@ footer .container .support a:hover {
   margin-top: 10px;
 }
 @media (max-width: 991px) {
-  .box .container,
+  .data .container,
   .message-section .container .message {
     width: 100%;
   }
-  .box .container .box-container,
+  .data .container .form,
   .message-section .container .message {
     width: 100%;
   }
 }
 @media (min-width: 992px) {
-  .box .container .box-container,
+  .data .container .form,
   .message-section .container .message {
     width: 50%;
   }
@@ -701,6 +740,7 @@ footer .container .support a:hover {
   background-color: var(--color2);
   transition-duration: var(--transitionDuration);
   text-transform: capitalize;
+  width: fit-content;
 }
 .index-message-hide {
   top: -100px;
@@ -708,58 +748,14 @@ footer .container .support a:hover {
 .index-message-appear {
   top: 53px;
 }
-.box .container .update {
-  box-shadow: none;
-  border-radius: 0;
+@media (max-width: 767px) {
+  .index-message-appear,
+  .index-message-hide {
+    padding: 20px 20px;
+  }
 }
-.box .container .box-container .update-form .field,
-.box .container .box-container .update-form .checkbox-container {
-  box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  padding: 20px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
-.box .container .box-container .update-form .field .disabled + input {
-  color: rgb(211, 97, 97);
-  cursor: not-allowed;
-}
-.box .container .box-container .update-form .field .disabled {
-  position: relative;
-  text-transform: capitalize;
-}
-.box .container .box-container .update-form .field .disabled::before {
-  position: absolute;
-  top: -5px;
-  left: 180px;
-  width: 200px;
-  font-size: 15px;
-  z-index: 100;
-  background-color: rgb(211, 97, 97);
-  color: white;
-  border-radius: 20px;
-  padding: 5px 10px;
-  text-align: center;
-  transition-duration: var(--transitionDuration);
-  content: "Sorry, can not edit this field";
-  opacity: 0;
-}
-.box .container .box-container .update-form .field .disabled::after {
-  content: "";
-  top: 22px;
-  left: 200px;
-  height: 0;
-  width: 0;
-  background-color: rgb(211, 97, 97);
-  position: absolute;
-  border: 10px solid white;
-  border-top-color: rgb(211, 97, 97);
-  opacity: 0;
-  transition-duration: var(--transitionDuration);
-}
-.box .container .box-container .update-form-form .field .disabled:hover::before,
-.box .container .box-container .update-form-form .field .disabled:hover::after {
-  opacity: 1;
-}
+/* End messages */
+/* Start account section */
 .account {
   padding-top: 60px;
   padding-bottom: 60px;
@@ -901,3 +897,4 @@ footer .container .support a:hover {
     margin: auto;
   }
 }
+/* End account section */
