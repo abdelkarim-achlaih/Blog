@@ -29,7 +29,7 @@ if(isset($_SESSION['message_source'])) {
     <?php 
       require('blogs.php');
       $number_of_blogs = number_of_blogs();
-      for($i = 2; $i <= $number_of_blogs + 1; $i = $i + 1) {
+      for($i = 2; $i <= 5; $i = $i + 1) {
         $blog[$i] = get_blog($i);
         echo '
           <a class="article" href="#">

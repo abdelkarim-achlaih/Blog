@@ -819,53 +819,98 @@ body .data .container .form form input[type="submit"]:focus {
   font-size: 25px;
   margin-right: 5px;
 }
-.account .container .blogs {
+.account .container .user-blogs {
   flex-basis: 70%;
+}
+.account .container .user-blogs .blogs-container:not(:last-child) {
+  margin-bottom: 40px;
+}
+.account .container .user-blogs .blogs-container > .title {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--color2);
+  padding-bottom: 10px;
+}
+.account .container .user-blogs .blogs-container > .title i {
+  color: var(--color2);
+  margin-right: 10px;
+}
+.account .container .user-blogs .blogs-container .title span {
+  color: var(--color2);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.account .container .user-blogs .blogs-container .blogs {
   display: flex;
   flex-wrap: wrap;
   row-gap: 20px;
-  column-gap: 20px;
+  column-gap: 10px;
 }
-.account .container .blogs .blog {
+.account .container .user-blogs .blogs-container .blogs .blog {
   border: 1px solid var(--color2);
-  flex-basis: calc((100% / 3) - 40px);
+  flex-basis: calc(95% / 3);
   border-radius: 7px;
   overflow: hidden;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.account .container .blogs .blog:hover {
+.account .container .user-blogs .blogs-container .blogs .blog:hover {
   transform: translateY(-10px);
 }
-.account .container .blogs .blog .blog-image img {
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info {
+  position: relative;
+}
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .pending {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #5e1fde;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .pending i {
+  color: white;
+  margin-right: 10px;
+}
+.account .container .user-blogs .blogs-container .blogs .blog .blog-image img {
   width: 100%;
 }
-.account .container .blogs .blog .blog-info {
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info {
   padding: 16px;
   display: flex;
   flex-direction: column;
   row-gap: 16px;
 }
-.account .container .blogs .blog .blog-info .title a {
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .title a {
   color: var(--color2);
   font-size: 14px;
   transition-duration: 0.5s;
   width: fit-content;
 }
-.account .container .blogs .blog .blog-info .title a:hover {
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .title a:hover {
   transform: translateX(20px);
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.account .container .blogs .blog .blog-info .type {
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .type {
   font-size: 12px;
   color: #57606a;
+  text-transform: capitalize;
 }
-.account .container .blogs .blog .blog-info .date {
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .date {
   font-size: 12px;
 }
-.account .container .blogs .blog .blog-info .date i {
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .date i {
   margin-right: 7px;
   color: var(--color2);
+}
+.account .container .user-blogs .blogs-container .title span a {
+  display: inline-block;
+  color: var(--color2);
+  transition-duration: var(--transitionDuration);
+}
+.account .container .user-blogs .blogs-container .title span a:hover {
+  text-decoration: underline;
 }
 @media (max-width: 1199px) {
   .account .container .blogs .blog {
@@ -873,8 +918,13 @@ body .data .container .form form input[type="submit"]:focus {
   }
 }
 @media (max-width: 991px) {
-  .account .container .blogs {
+  .account .container .user-blogs .blogs-container .blogs {
     flex-direction: column;
+  }
+  .account .container .user-blogs .blogs-container .blogs .blog .message {
+    text-align: center;
+    align-self: center;
+    margin-top: 20px;
   }
 }
 @media (max-width: 767px) {
@@ -889,12 +939,21 @@ body .data .container .form form input[type="submit"]:focus {
   .account .container .info .img {
     width: 80%;
   }
-  .account .container .blogs .blog {
+  .account .container .user-blogs .blogs-container .blogs .blog {
     justify-content: center;
   }
-  .account .container .blogs .blog * {
+  .account .container .user-blogs .blogs-container .blogs .blog  * {
     text-align: center;
     margin: auto;
+  }
+  .account .container .blogs .message {
+    text-align: center;
+    align-self: center;
+    margin-top: 20px;
+  }
+  .account .container .user-blogs .blogs-container .title {
+    text-align: center;
+    line-height: 1.8;
   }
 }
 /* End account section */

@@ -38,49 +38,162 @@ require_once('header.php');
         <span class="follow"><a href="#">3</a></span>
       </div>
     </div>
+    <div class="user-blogs">
+      <div class="blogs-container">
+        <div class="title">
+          <?php
+            require('blogs.php');
+            $user['id'] = $_SESSION['id'];
+            $blogs = get_user_blogs($user);
+            if (isset($blogs)) {
+              require('functions.php');
+              $num_of_blogs = number_of_user_blogs($user);
+              $num_of_pending_blogs = number_of_user_pending_blogs($user);
+              $num_of_existed_blogs = $num_of_blogs - $num_of_pending_blogs;
+              if($num_of_existed_blogs > 0 && $num_of_pending_blogs > 0) {
+                echo '
+                      <i class="fas fa-file-alt"></i>
+                      '.ucfirst($_SESSION['first_name']).'\'s blogs ( <span>'.$num_of_existed_blogs.'</span> )
+                    </div><!-- .title closed -->
+                    <div class="blogs">
+                ';
+                for ($i = 0; $i < count($blogs); $i = $i + 1) {
+                  if($blogs[$i]['pending'] == 0) {
+                    echo '
+                      <div class="blog">
+                        <div class="blog-image">
+                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                        </div>
+                        <div class="blog-info">
+                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                          <div class="type">'.$blogs[$i]['category'].'</div>
+                          <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                        </div>
+                      </div><!-- .blog closed -->
+                
+                ';
+                  }
+                }
+                echo '</div><!-- .blogs closed -->';
+                echo '</div><!-- .blogs-container closed -->';
+                echo '
+                  <div class="blogs-container">
+                    <div class="title">
+                    <i class="fas fa-hourglass-half"></i>
+                    '.ucfirst($_SESSION['first_name']).'\'s pending blogs ( <span>'.$num_of_pending_blogs.'</span> )
+                    </div><!-- .title closed -->
+                    <div class="blogs">
+                ';
+                for ($i = 0; $i < count($blogs); $i = $i + 1) {
+                  if($blogs[$i]['pending'] == 1) {
+                    echo '
+                      <div class="blog">
+                        <div class="blog-image">
+                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                        </div>
+                        <div class="blog-info">
+                          <div class="pending"><i class="fas fa-hourglass-half"></i>Pending</div>
+                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                          <div class="type">'.$blogs[$i]['category'].'</div>
+                          <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                        </div>
+                      </div><!-- .blog closed -->
+                    ';
+                  }
+                }
+                echo '</div><!-- .blogs closed -->';
+                echo '</div><!-- .blogs-container closed -->';
+              }
+              if($num_of_existed_blogs > 0 && $num_of_pending_blogs == 0) {
+                echo '
+                      <i class="fas fa-file-alt"></i>
+                      '.ucfirst($_SESSION['first_name']).'\'s blogs ( <span>'.$num_of_existed_blogs.'</span> )
+                    </div><!-- .title closed -->
+                    <div class="blogs">
+                ';
+                for ($i = 0; $i < count($blogs); $i = $i + 1) {
+                  if($blogs[$i]['pending'] == 0) {
+                    echo '
+                      <div class="blog">
+                        <div class="blog-image">
+                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                        </div>
+                        <div class="blog-info">
+                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                          <div class="type">'.$blogs[$i]['category'].'</div>
+                          <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                        </div>
+                      </div><!-- .blog closed -->
+                
+                ';
+                  }
+                }
+                echo '</div><!-- .blogs closed -->';
+                echo '</div><!-- .blogs-container closed -->';
+                echo '
+                  <div class="blogs-container">
+                    <div class="title">
+                      <i class="fas fa-hourglass-half"></i>
+                      '.ucfirst($_SESSION['first_name']).'\'s pending blogs ( You don\'t have any pending blog start blogging <span><a href="post.php">now</a></span> )
+                    </div>
+                  </div>
+                ';
 
-    <div class="blogs">
-      <div class="blog">
-        <div class="blog-image">
-          <img src="images/article1.png" alt="" />
-        </div>
-        <div class="blog-info">
-          <div class="title"><a href="#">Blog 1</a></div>
-          <div class="type">Product</div>
-          <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
-        </div>
-      </div>
-      <div class="blog">
-        <div class="blog-image">
-          <img src="images/article2.png" alt="" />
-        </div>
-        <div class="blog-info">
-          <div class="title"><a href="#">Blog 1</a></div>
-          <div class="type">Product</div>
-          <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
-        </div>
-      </div>
-      <div class="blog">
-        <div class="blog-image">
-          <img src="images/article3.png" alt="" />
-        </div>
-        <div class="blog-info">
-          <div class="title"><a href="#">Blog 1</a></div>
-          <div class="type">Product</div>
-          <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
-        </div>
-      </div>
-      <div class="blog">
-        <div class="blog-image">
-          <img src="images/article1.png" alt="" />
-        </div>
-        <div class="blog-info">
-          <div class="title"><a href="#">Blog 1</a></div>
-          <div class="type">Product</div>
-          <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
-        </div>
-      </div>
+              }
+              if($num_of_existed_blogs == 0 && $num_of_pending_blogs > 0) {
+                  echo '
+                    <i class="fas fa-file-alt"></i>
+                    '.ucfirst($_SESSION['first_name']).'\'s blogs ( You don\'t have any blog start blogging <span><a href="post.php">now</a></span> )
+                  </div>
+                </div>
+                ';
+                  echo '
+                  <div class="blogs-container">
+                    <div class="title">
+                    <i class="fas fa-hourglass-half"></i>
+                    '.ucfirst($_SESSION['first_name']).'\'s pending blogs ( <span>'.$num_of_pending_blogs.'</span> )
+                    </div><!-- .title closed -->
+                    <div class="blogs">
+                ';
+                for ($i = 0; $i < count($blogs); $i = $i + 1) {
+                  if($blogs[$i]['pending'] == 1) {
+                    echo '
+                      <div class="blog">
+                        <div class="blog-image">
+                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                        </div>
+                        <div class="blog-info">
+                          <div class="pending"><i class="fas fa-hourglass-half"></i>Pending</div>
+                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                          <div class="type">'.$blogs[$i]['category'].'</div>
+                          <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                        </div>
+                      </div><!-- .blog closed -->
+                    ';
+                  }
+                }
+                echo '</div><!-- .blogs closed -->';
+                echo '</div><!-- .blogs-container closed -->';
+              }
+            }
+            else {
+              echo '
+                    <i class="fas fa-file-alt"></i>
+                    '.ucfirst($_SESSION['first_name']).'\'s blogs ( You don\'t have any blog start blogging <span><a href="post.php">now</a></span> )
+                  </div>
+                </div>
+                <div class="blogs-container">
+                  <div class="title">
+                    <i class="fas fa-hourglass-half"></i>
+                    '.ucfirst($_SESSION['first_name']).'\'s pending blogs ( You don\'t have any pending blog start blogging <span><a href="post.php">now</a></span> )
+                  </div>
+                </div>
+              ';
+            }
+          ?>
+        
     </div>
+
   </div>
 </section>
 <?php 

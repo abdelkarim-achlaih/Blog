@@ -31,7 +31,48 @@ function get_blog($id) {
   }
   $blog['creation_date'] = $data['creation_date'];
   $blog['content'] = $data['content'];
+  $blog['pending'] = $data['pending'];
   return $blog;
+}
+function get_user_blogs($user) {
+  require('dbconnect.php');
+  $query = "SELECT * FROM blogs WHERE author=?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $user['id']
+  ));
+  $i = 0;
+  while($data = $reponse -> fetch()) {
+    $blog[$i]['id'] = $data['id'];
+    $blog[$i]['title'] = $data['title'];
+    $blog[$i]['author'] = $data['author'];
+    if($data['category'] == 1) {
+      $blog[$i]['category'] = 'technology';
+    }
+    elseif($data['category'] == 2) {
+      $blog[$i]['category'] = 'self-development';
+    }
+    elseif($data['category'] == 3) {
+      $blog[$i]['category'] = 'sport';
+    }
+    elseif($data['category'] == 4) {
+      $blog[$i]['category'] = 'nature';
+    }
+    elseif($data['category'] == 5) {
+      $blog[$i]['category'] = 'work';
+    }
+    elseif($data['category'] == 6) {
+      $blog[$i]['category'] = 'school';
+    }
+    $blog[$i]['creation_date'] = $data['creation_date'];
+    $blog[$i]['content'] = $data['content'];
+    $blog[$i]['pending'] = $data['pending'];
+    $i = $i + 1;
+  }
+  if(isset($blog)) {
+    return $blog;
+  }
+  
 }
 function number_of_blogs() {
   require('dbconnect.php');
@@ -39,4 +80,41 @@ function number_of_blogs() {
   $reponse = $pdo -> query($query);
   $data = $reponse -> fetch();
   return $data[0];
+}
+function number_of_user_blogs($user) {
+  require('dbconnect.php');
+  $query = "SELECT count(id) FROM blogs WHERE author = ?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $user['id']
+  ));
+  $data = $reponse -> fetch();
+  return $data[0];
+}
+function number_of_user_pending_blogs($user) {
+  require('dbconnect.php');
+  $query = "SELECT count(id) FROM blogs WHERE author = ? AND pending = 1";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $user['id']
+  ));
+  $data = $reponse -> fetch();
+  return $data[0];
+}
+function blog_add ($blog) {
+  require('dbconnect.php');
+  $query = 
+  "INSERT INTO blogs (title, content, category, pending, author, creation_date)
+  VALUES (?, ?, ?, ?, ?, ?)";
+  $req = $pdo -> prepare($query);
+  $req -> execute(
+    array(
+      $blog['title'],
+      $blog['content'],
+      $blog['category'],
+      $blog['pending'],
+      $blog['author'],
+      $blog['creation_date']
+    )
+  );
 }

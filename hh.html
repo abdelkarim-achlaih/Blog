@@ -7,7 +7,7 @@
     <title>Account</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css?version=1.1" />
+    <link rel="stylesheet" type="text/css" href="css/styles-v1.1.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -40,48 +40,49 @@
           </div>
         </div>
 
-        <div class="blogs">
-          <div class="blog">
-            <div class="blog-image">
-              <img src="images/article1.png" alt="" />
-            </div>
-            <div class="blog-info">
-              <div class="title"><a href="#">Blog 1</a></div>
-              <div class="type">Product</div>
-              <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
+        <div class="user-blogs">
+
+          <div class="blogs-container">
+
+
+            <div class="title"><i class="fas fa-file-alt"></i>'.ucfirst($_SESSION['first_name']).'\'s blogs ( <span>4</span> )</div>
+            <div class="blogs">
+              <div class="blog">
+                <div class="blog-image">
+                  <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                </div>
+                <div class="blog-info">
+                  <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                  <div class="type">'.$blogs[$i]['category'].'</div>
+                  <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                </div>
+              </div>
+            </div>  
+          </div>
+
+
+          <div class="blogs-container">
+
+
+            <div class="title"><i class="fas fa-hourglass-half"></i>'.ucfirst($_SESSION['first_name']).'\'s pending blogs ( <span>2</span> )</div>
+            <div class="blogs">
+              <div class="blog">
+                <div class="blog-image">
+                  <img src="images/article1.png" alt="" />
+                </div>
+                <div class="blog-info">
+                  <div class="pending">Pending</div>
+                  <div class="title"><a href="#">Blog 1</a></div>
+                  <div class="type">Product</div>
+                  <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="blog">
-            <div class="blog-image">
-              <img src="images/article2.png" alt="" />
-            </div>
-            <div class="blog-info">
-              <div class="title"><a href="#">Blog 1</a></div>
-              <div class="type">Product</div>
-              <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
-            </div>
-          </div>
-          <div class="blog">
-            <div class="blog-image">
-              <img src="images/article3.png" alt="" />
-            </div>
-            <div class="blog-info">
-              <div class="title"><a href="#">Blog 1</a></div>
-              <div class="type">Product</div>
-              <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
-            </div>
-          </div>
-          <div class="blog">
-            <div class="blog-image">
-              <img src="images/article1.png" alt="" />
-            </div>
-            <div class="blog-info">
-              <div class="title"><a href="#">Blog 1</a></div>
-              <div class="type">Product</div>
-              <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
-            </div>
-          </div>
+
         </div>
+
+
       </div>
     </section>
   </body>

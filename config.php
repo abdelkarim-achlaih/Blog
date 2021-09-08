@@ -69,7 +69,7 @@ elseif ($option == 'log') {
         $_SESSION['email'] = $user['email'];
         $_SESSION['password'] = $user['password'];
         $_SESSION['gender'] = $user['gender'];
-        $_SESSION['message_index'] = "Welcome ".$user['first_name'];
+        $_SESSION['message_index'] = "Welcome ".$user['first_name'].' ✌';
         header("location: index.php");
       }
       else {
@@ -91,7 +91,7 @@ elseif($option == 'logout') {
       unset($_SESSION[$key]);
     }
   }
-  $_SESSION['message_index'] = "See you soon";
+  $_SESSION['message_index'] = "See you soon 👋";
   header("location: index.php");
 }
 elseif($option == 'subscribe') {
@@ -183,7 +183,7 @@ elseif ($option == 'delete') {
           unset($_SESSION[$key]);
         }
       }
-      $_SESSION['message_index'] = "We are sad to lose you, see you soon";
+      $_SESSION['message_index'] = "We are sad to lose you, see you soon 😪";
       header("location: index.php");
     }
     else {
@@ -194,6 +194,40 @@ elseif ($option == 'delete') {
   else {
     $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
     header("location: settings.php");
+  }
+}
+elseif ($option == 'blog-add') {
+  if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if(strlen($_POST['title']) > 10) {
+      if(strlen($_POST['content']) > 50) {
+        require('functions.php');
+        $_POST = remove_script($_POST);
+        $blog = array(
+          'title' => $_POST['title'],
+          'content' => $_POST['content'],
+          'category' => $_POST['category'],
+          'pending' => 1,
+          'author' => $_SESSION['id'],
+          'creation_date' => date('Y-m-d H:i:s', time())
+        );
+        require_once('blogs.php');
+        blog_add($blog);
+        $_SESSION['message_success'] = 'The blog has been seccessfuly sent to admins, wait a bit until they approve it';
+        header("location: post.php");
+      }
+      else {
+        $_SESSION['message_error'] = "The blog is too short, you must have at least 50 charcters";
+        header("location: post.php");
+      }
+    }
+    else {
+      $_SESSION['message_error'] = "The title is too short, you must have at least 10 charcters";
+      header("location: post.php");
+    }
+  }
+  else {
+    $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
+    header("location: post.php");
   }
 }
 else {
