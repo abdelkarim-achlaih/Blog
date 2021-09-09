@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Account</title>
+    <title>Blog post</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="css/styles-v1.1.css" />
@@ -17,72 +17,39 @@
     <link rel="icon" href="images/logo.png" />
   </head>
   <body>
-    <section class="account">
+    <section class="blog-page">
       <div class="container">
-        <div class="info">
-          <div class="img"><img src="images/photo.png" alt="#" /></div>
-          <p class="full-name">Abdelkarim Achlaih</p>
-          <p class="user-name">AbdelkarimAch</p>
-          <a href="settings.php" class="main-button">Edit profile</a>
-          <div class="stats">
-            <i class="fas fa-users"></i>
-            <span class="follow">
-              <span class="follow-num">0 </span>
-              <a href="#"> followers</a>
-            </span>
-            <span class="point">.</span>
-            <span class="follow">
-              <span class="follow-num">0 </span>
-              <a href="#"> following</a></span>
-            <span class="point">.</span>
-            <i class="far fa-star"></i>
-            <span class="follow"><a href="#">3</a></span>
-          </div>
-        </div>
-
-        <div class="user-blogs">
-
-          <div class="blogs-container">
-
-
-            <div class="title"><i class="fas fa-file-alt"></i>'.ucfirst($_SESSION['first_name']).'\'s blogs ( <span>4</span> )</div>
-            <div class="blogs">
-              <div class="blog">
-                <div class="blog-image">
-                  <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
-                </div>
-                <div class="blog-info">
-                  <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
-                  <div class="type">'.$blogs[$i]['category'].'</div>
-                  <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
-                </div>
-              </div>
-            </div>  
-          </div>
-
-
-          <div class="blogs-container">
-
-
-            <div class="title"><i class="fas fa-hourglass-half"></i>'.ucfirst($_SESSION['first_name']).'\'s pending blogs ( <span>2</span> )</div>
-            <div class="blogs">
-              <div class="blog">
-                <div class="blog-image">
-                  <img src="images/article1.png" alt="" />
-                </div>
-                <div class="blog-info">
-                  <div class="pending">Pending</div>
-                  <div class="title"><a href="#">Blog 1</a></div>
-                  <div class="type">Product</div>
-                  <div class="date"><i class="far fa-clock"></i>2021-09-05</div>
-                </div>
-              </div>
+        <article>
+          <div class="image">
+            <img src="images/technology.jpg" alt="Blog photo" />
+            <div class="author-image">
+              <img src="images/avatar-man.png" alt="Blog author" />
             </div>
           </div>
-
-        </div>
-
-
+          <div class="info">
+            <div class="title">
+              <i class="fas fa-heading"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </div>
+            <div class="author"><i class="fas fa-pencil-alt"></i>Abdelkarim Achlaih</div>
+            <div class="num-of-comments"><i class="fas fa-comments"></i>28 comments</div>
+            <div class="date"><i class="fas fa-calendar-alt"></i>21 Avril 2021</div>
+          </div>
+          <div class="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+            eos ut odio harum exercitationem nesciunt repudiandae commodi
+            obcaecati libero saepe quasi dolor incidunt ullam numquam dolorum
+            voluptates dolores ipsam fugiat.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+            eos ut odio harum exercitationem nesciunt repudiandae commodi
+            obcaecati libero saepe quasi dolor incidunt ullam numquam dolorum
+            voluptates dolores ipsam fugiat.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+            eos ut odio harum exercitationem nesciunt repudiandae commodi
+            obcaecati libero saepe quasi dolor incidunt ullam numquam dolorum
+            voluptates dolores ipsam fugiat.
+          </div>
+        </article>
+        <aside></aside>
       </div>
     </section>
   </body>
