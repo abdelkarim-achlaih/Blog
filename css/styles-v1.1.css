@@ -1243,6 +1243,7 @@ body .data .container .form form input[type="submit"]:focus {
   border-radius: 5px;
   font-weight: initial;
   color: white;
+  z-index: -1;
 }
 .blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-date {
   font-size: 12px;
