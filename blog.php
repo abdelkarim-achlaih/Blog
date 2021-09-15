@@ -1,59 +1,101 @@
 <?php
 session_start();
-$title = 'Blog post | ### ';
-require_once('header.php');
-?>
+if($_SERVER['REQUEST_METHOD'] == 'GET') {
+  if(isset($_GET['blog_id'])) {
+    require('blogs.php');
+    require('users.php');
+    require('comments.php');
+    require('functions.php');
+    $blog = get_blog($_GET['blog_id']);
+    $user = get_user_infos_from_id($blog['author']);
+    $title = 'Blog post | '.$blog['title'];
+    require_once('header.php');
+echo '
 <section class="blog-page">
   <div class="container">
     <article>
       <div class="image">
-        <img src="images/technology.jpg" alt="Blog photo" />
+        <img src="images/'.$blog['category'].'.jpg" alt="Blog photo" />
         <div class="author-image">
-          <img src="images/avatar-man.png" alt="Blog author" />
+          <img ';
+          if($user['gender'] == 1) {
+          echo '
+          src="images/avatar-man.png"
+          ';
+        }
+        if($user['gender'] == 2) {
+          echo '
+          src="images/avatar-woman.png"
+          ';
+        }
+          echo '" alt="Blog author" />
         </div>
       </div>
       <div class="info">
         <div class="title">
-          <i class="fas fa-heading"></i>Lorem ipsum dolor sit amet
-          consectetur adipisicing elit.
+          <i class="fas fa-heading"></i>
+          '.$blog['title'].'
         </div>
         <div class="author">
-          <i class="fas fa-pencil-alt"></i>Abdelkarim Achlaih
+          <i class="fas fa-pencil-alt"></i>'.ucfirst($user['first_name']).' '.ucfirst($user['last_name']).'
         </div>
         <div class="num-of-comments">
-          <i class="fas fa-comments"></i>28 comments
+          <i class="fas fa-comments"></i>'.num_of_comments($blog['id']).' Comment(s)
         </div>
         <div class="date">
-          <i class="fas fa-calendar-alt"></i>21 Avril 2021
+          <i class="fas fa-calendar-alt"></i>'.edit_date($blog['creation_date']).'
         </div>
       </div>
       <div class="content">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
-        eos ut odio harum exercitationem nesciunt repudiandae commodi
-        obcaecati libero saepe quasi dolor incidunt ullam numquam dolorum
-        voluptates dolores ipsam fugiat. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Aperiam, eos ut odio harum
-        exercitationem nesciunt repudiandae commodi obcaecati libero saepe
-        quasi dolor incidunt ullam numquam dolorum voluptates dolores ipsam
-        fugiat. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Aperiam, eos ut odio harum exercitationem nesciunt repudiandae
-        commodi obcaecati libero saepe quasi dolor incidunt ullam numquam
-        dolorum voluptates dolores ipsam fugiat.
+        '.$blog['content'].'
       </div>
       <div class="tags">
         Tags:
-        <div class="tag"><a href="#">School</a></div>
-        <div class="tag"><a href="#">Work</a></div>
-        <div class="tag"><a href="#">self-development</a></div>
-        <div class="tag"><a href="#">Nature</a></div>
+        <div class="tag"><a href="#">'.ucfirst($blog['category']).'</a></div>
       </div>
       <div class="nav-buttons">
-        <div class="prev">
-          <a href="#"><i class="fas fa-hand-point-left"></i>Prev</a>
-        </div>
-        <div class="next">
-          <a href="#"><i class="fas fa-hand-point-right"></i>Next</a>
-        </div>
+        ';
+$j = 0;
+for($i = $blog['id'] - 1 ; $i > 1; $i = $i - 1 ) {
+  if(blog_id_exists($i)) {
+    $prev_blog_id = $i;
+    echo '
+      <div>
+        <a href="blog.php?blog_id='.$prev_blog_id.'"><i class="fas fa-hand-point-left"></i>Prev</a>
+      </div>
+    ';
+    $j = 1;
+    break;
+  }
+}
+if ($j == 0) {
+  echo '
+    <div class="prevented">
+      <a href="#"><i class="fas fa-hand-point-left"></i>Prev</a>
+    </div>
+  ';
+}
+$k = 0;
+for($i = $blog['id'] + 1 ; $i <= last_blog_id(); $i++) {
+  if(blog_id_exists($i) == 20) {
+    $next_blog_id = $i;
+    echo '
+      <div>
+        <a href="blog.php?blog_id='.$next_blog_id.'"><i class="fas fa-hand-point-right"></i>Next</a>
+      </div>
+    ';
+    $k = 1;
+    break;
+  }
+}
+if ($k == 0) {
+  echo '
+    <div class="prevented">
+      <a href="#"><i class="fas fa-hand-point-right"></i>Next</a>
+    </div>
+  ';
+}
+        echo'
       </div>
       <hr />
       <div class="comments">
@@ -177,6 +219,17 @@ require_once('header.php');
     </aside>
   </div>
 </section>
-<?php 
-  require_once('footer.php');
-?>
+';
+  }
+  else {
+    $_SESSION['message_source'] = 'blog.php';
+    $_SESSION['message_error'] = "The page requested is not found";
+    header("location: index.php");
+  }
+}
+else {
+  $_SESSION['message_source'] = 'blog.php';
+  $_SESSION['message_error'] = "The page requested is not found";
+  header("location: index.php");
+}
+require_once('footer.php');

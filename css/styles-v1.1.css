@@ -1125,6 +1125,19 @@ body .data .container .form form input[type="submit"]:focus {
 .blog-page .container article .nav-buttons > div a i {
   margin-right: 10px;
 }
+.blog-page .container article .nav-buttons > div.prevented {
+  transition-duration: unset;
+}
+.blog-page .container article .nav-buttons > div.prevented:hover {
+  transform: none;
+}
+.blog-page .container article .nav-buttons > div.prevented a {
+  color: var(--color1);
+  cursor: not-allowed;
+}
+.blog-page .container article .nav-buttons > div.prevented a:hover {
+  text-decoration: none;
+}
 .blog-page .container article hr {
   border: 1px solid var(--color2);
 }

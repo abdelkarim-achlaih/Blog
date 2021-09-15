@@ -9,6 +9,12 @@ if(isset($_SESSION['message_source'])) {
       unset($_SESSION['message_index']);
     }
   }
+  if($_SESSION['message_source'] == 'blog.php') {
+    if(isset($_SESSION['message_error'])) {
+      show_message ($_SESSION['message_error'], 'Error');
+      unset($_SESSION['message_error']);
+    }
+  }
 }
 ?>
 <section class="landing">
@@ -32,7 +38,7 @@ if(isset($_SESSION['message_source'])) {
       for($i = 2; $i <= 5; $i = $i + 1) {
         $blog[$i] = get_blog($i);
         echo '
-          <a class="article" href="#">
+          <a class="article" href="blog.php?blog_id='.$blog[$i]['id'].'">
             <div class="image"><img src="images/'.$blog[$i]['category'].'.jpg" /></div>
             <div class="content">
               <div class="type">'.$blog[$i]['category'].'</div>

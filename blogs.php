@@ -106,8 +106,8 @@ function blog_add ($blog) {
   $query = 
   "INSERT INTO blogs (title, content, category, pending, author, creation_date)
   VALUES (?, ?, ?, ?, ?, ?)";
-  $req = $pdo -> prepare($query);
-  $req -> execute(
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(
     array(
       $blog['title'],
       $blog['content'],
@@ -117,4 +117,23 @@ function blog_add ($blog) {
       $blog['creation_date']
     )
   );
+}
+function last_blog_id() {
+  require('dbconnect.php');
+  $query = 'SELECT max(id) FROM blogs';
+  $reponse = $pdo -> query($query);
+  $data = $reponse -> fetch();
+  return $data[0];
+}
+function blog_id_exists($blog_id) {
+  require('dbconnect.php');
+  $query = 'SELECT id FROM blogs';
+  $reponse = $pdo -> query($query);
+  $data = $reponse -> fetchAll(PDO::FETCH_ASSOC);
+  for($i = 0; $i < count($data); $i++) {
+    if(in_array($blog_id, $data[$i])) {
+      return TRUE;
+    }
+  }
+  return False;
 }
