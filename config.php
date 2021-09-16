@@ -230,7 +230,30 @@ elseif ($option == 'blog-add') {
     header("location: post.php");
   }
 }
+elseif ($option == 'comment-add') {
+  if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    require('functions.php');
+    $_POST = remove_script($_POST);
+    $comment = array(
+      'author' => $_SESSION['comment_author'],
+      'content' => $_POST['content'],
+      'blog' => $_SESSION['comment_blog'],
+      'creation_date' => date('Y-m-d H:i:s', time())
+    );
+    $blog_destination_id = $_SESSION['comment_blog'];
+    unset($_SESSION['comment_author']);
+    unset($_SESSION['comment_blog']);
+    require_once('comments.php');
+    comment_add($comment);
+    $_SESSION['message_index'] = 'The comment has been seccessfuly added';
+    header('location: blog.php?blog_id='.$blog_destination_id);
+  }
+  else {
+    $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
+    header("location: blog.php");
+  }
+}
 else {
   $_SESSION['message_error'] = "You are not permited to see this page this way: url error";
-  header("location: sign.php");
+  header("location: index.php");
 }

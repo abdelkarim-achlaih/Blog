@@ -10,6 +10,14 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $user = get_user_infos_from_id($blog['author']);
     $title = 'Blog post | '.$blog['title'];
     require_once('header.php');
+    if(isset($_SESSION['message_source'])) {
+      if($_SESSION['message_source'] == 'config.php') {
+        if(isset($_SESSION['message_index'])) {
+          show_index_message($_SESSION['message_index']);
+          unset($_SESSION['message_index']);
+        }
+      }
+    }
 echo '
 <section class="blog-page">
   <div class="container">
@@ -130,9 +138,14 @@ if ($k == 0) {
         }
         echo '
       </div>
-      <form action="#" method="POST">
+      <form action="config.php?option=comment-add" method="POST">';
+      if(isset($_SESSION['id'])) {
+        $_SESSION['comment_author'] = $_SESSION['id'];
+      }
+      $_SESSION['comment_blog'] = $_GET['blog_id'];
+      echo '
         <div class="div-title">Post Your Comment</div>
-        <textarea name="comment" placeholder="Comment"></textarea>
+        <textarea name="content" placeholder="Comment"></textarea>
         <input type="submit" value="Post Comment" class="main-button" />
       </form>
     </article>

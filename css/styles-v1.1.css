@@ -733,6 +733,7 @@ body .data .container .form form input[type="submit"]:focus {
 .index-message-appear,
 .index-message-hide {
   position: absolute;
+  z-index: 100;
   left: 50%;
   transform: translateX(-50%);
   color: white;

@@ -9,7 +9,7 @@ if(isset($_SESSION['message_source'])) {
       unset($_SESSION['message_index']);
     }
   }
-  if($_SESSION['message_source'] == 'blog.php') {
+  if($_SESSION['message_source'] == 'blog.php' OR $_SESSION['message_source'] == 'config.php') {
     if(isset($_SESSION['message_error'])) {
       show_message ($_SESSION['message_error'], 'Error');
       unset($_SESSION['message_error']);

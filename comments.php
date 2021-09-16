@@ -26,7 +26,7 @@ function num_of_comments_blog($blog_id) {
 }
 function get_blog_comments($blog) {
   require('dbconnect.php');
-  $query = "SELECT * FROM comments WHERE blog=? ORDER BY creation_date LIMIT 5 ";
+  $query = "SELECT * FROM comments WHERE blog=? ORDER BY creation_date DESC LIMIT 5 ";
   $reponse = $pdo -> prepare($query);
   $reponse -> execute(array(
     $blog['id']
@@ -43,4 +43,19 @@ function get_blog_comments($blog) {
   if(isset($comment)) {
     return $comment;
   }
+}
+function comment_add ($comment) {
+  require('dbconnect.php');
+  $query = 
+  "INSERT INTO comments (author, content, blog, creation_date)
+  VALUES (?, ?, ?, ?)";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(
+    array(
+      $comment['author'],
+      $comment['content'],
+      $comment['blog'],
+      $comment['creation_date']
+    )
+  );
 }
