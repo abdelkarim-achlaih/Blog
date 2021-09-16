@@ -40,7 +40,7 @@ echo '
           <i class="fas fa-pencil-alt"></i>'.ucfirst($user['first_name']).' '.ucfirst($user['last_name']).'
         </div>
         <div class="num-of-comments">
-          <i class="fas fa-comments"></i>'.num_of_comments($blog['id']).' Comment(s)
+          <i class="fas fa-comments"></i>'.num_of_comments_blog($blog['id']).' Comment(s)
         </div>
         <div class="date">
           <i class="fas fa-calendar-alt"></i>'.edit_date($blog['creation_date']).'
@@ -99,39 +99,36 @@ if ($k == 0) {
       </div>
       <hr />
       <div class="comments">
-        <div class="div-title">02 Comments</div>
-        <div class="comment">
-          <div class="author-img">
-            <img src="images/avatar-man.png" alt="" />
-          </div>
-          <div class="comment-info">
-            <div class="comment-author">
-              Abdelkarim Achlaih
-              <div class="reply"><i class="fas fa-reply"></i>Reply</div>
+        <div class="div-title">'.num_of_comments_blog($blog['id']).' Comment(s)</div>';
+        $comments = get_blog_comments($blog);
+        foreach($comments as $comment) {
+          $author_infos = get_user_infos_from_id($comment['author']);
+          echo '
+            <div class="comment">
+              <div class="author-img">
+                <img src="images/avatar-';
+                if($author_infos['gender'] == 1) {
+                  echo 'man';
+                }
+                else {
+                  echo 'woman';
+                }
+                echo '.png" alt="'.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'" />
+              </div>
+              <div class="comment-info">
+                <div class="comment-author">
+                  '.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'
+                  <div class="reply"><i class="fas fa-reply"></i>Reply</div>
+                </div>
+                <div class="comment-date">'.edit_date($comment['creation_date']).'</div>
+                <div class="comment-content">
+                  '.$comment['content'].'
+                </div>
+              </div>
             </div>
-            <div class="comment-date">21 Avril 2021 23:05:14</div>
-            <div class="comment-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Aperiam, eos ut odio harum exercitationem
-            </div>
-          </div>
-        </div>
-        <div class="comment">
-          <div class="author-img">
-            <img src="images/avatar-woman.png" alt="" />
-          </div>
-          <div class="comment-info">
-            <div class="comment-author">
-              Hind Benkirane
-              <div class="reply"><i class="fas fa-reply"></i>Reply</div>
-            </div>
-            <div class="comment-date">21 Avril 2021 23:05:14</div>
-            <div class="comment-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Aperiam, eos ut odio harum exercitationem
-            </div>
-          </div>
-        </div>
+          ';
+        }
+        echo '
       </div>
       <form action="#" method="POST">
         <div class="div-title">Post Your Comment</div>

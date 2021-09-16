@@ -1150,7 +1150,7 @@ body .data .container .form form input[type="submit"]:focus {
 }
 .blog-page .container article .comments .comment {
   display: flex;
-  justify-content: space-between;
+  column-gap: 20px;
 }
 .blog-page .container article .comments .comment .author-img {
 
@@ -1159,7 +1159,7 @@ body .data .container .form form input[type="submit"]:focus {
   width: 60px;
 }
 .blog-page .container article .comments .comment .comment-info {
-  
+  width: 100%;
 }
 .blog-page .container article .comments .comment .comment-info .comment-author {
   position: relative;
@@ -1240,6 +1240,7 @@ body .data .container .form form input[type="submit"]:focus {
   transform: translateX(10px);
 }
 .blog-page .container aside .aside-blogs .a-blog .a-blog-info {
+  width: 100%;
 }
 .blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-author {
   text-transform: capitalize;

@@ -72,7 +72,6 @@ function get_user_blogs($user) {
   if(isset($blog)) {
     return $blog;
   }
-  
 }
 function number_of_blogs() {
   require('dbconnect.php');
