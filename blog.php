@@ -151,80 +151,71 @@ if ($k == 0) {
     </article>
     <aside>
       <div class="aside-blogs">
-        <div class="aside-title">Most popular</div>
-        <div class="a-blog">
-          <div class="a-blog-image">
-            <a href="#"><img src="images/nature.jpg" alt="Blog image" /></a>
-          </div>
-          <div class="a-blog-info">
-            <div class="a-blog-author">
-              abdelkarim achlaih
-              <div class="a-blog-type">Work</div>
+        <div class="aside-title">Most seen</div>';
+      $blogs_seen = get_blogs('SELECT * FROM blogs ORDER BY views DESC LIMIT 3');
+      foreach($blogs_seen as $blog_seen) {
+        $user_seen = get_user_infos_from_id($blog_seen['author']);
+        echo '
+          <div class="a-blog">
+            <div class="a-blog-image">
+              <a href="#"><img src="images/'.$blog_seen['category'].'.jpg" alt="Blog image" /></a>
             </div>
-            <div class="a-blog-date">2021-08-15</div>
-            <div class="a-blog-Content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-          </div>
-        </div>
-        <div class="a-blog">
-          <div class="a-blog-image">
-            <a href="#"><img src="images/nature.jpg" alt="Blog image" /></a>
-          </div>
-          <div class="a-blog-info">
-            <div class="a-blog-author">
-              abdelkarim achlaih
-              <div class="a-blog-type">Work</div>
-            </div>
-            <div class="a-blog-date">2021-08-15</div>
-            <div class="a-blog-Content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <div class="a-blog-info">
+              <div class="a-blog-author">
+                '.ucfirst($user_seen['first_name']).' '. ucfirst($user_seen['last_name']).'
+                <div class="a-blog-type">'.$blog_seen['category'].'</div>
+              </div>
+              <div class="a-blog-date">'.edit_date($blog_seen['creation_date']).'</div>
+              <div class="a-blog-Content">
+                '.substr($blog_seen['content'], 0, 50). '...'.'
+              </div>
             </div>
           </div>
-        </div>
+        ';
+      }
+      echo '
       </div>
       <div class="aside-blogs">
-        <div class="aside-title">Recent posts</div>
-        <div class="a-blog">
-          <div class="a-blog-image">
-            <a href="#"><img src="images/nature.jpg" alt="Blog image" /></a>
-          </div>
-          <div class="a-blog-info">
-            <div class="a-blog-author">
-              abdelkarim achlaih
-              <div class="a-blog-type">Work</div>
+        <div class="aside-title">Recent posts</div>';
+        $blogs_latest = get_blogs('SELECT * FROM blogs ORDER BY creation_date ASC LIMIT 3');
+        foreach($blogs_latest as $blog_latest) {
+          $user_latest = get_user_infos_from_id($blog_latest['author']);
+          echo '
+            <div class="a-blog">
+              <div class="a-blog-image">
+                <a href="#"><img src="images/'.$blog_latest['category'].'.jpg" alt="Blog image" /></a>
+              </div>
+              <div class="a-blog-info">
+                <div class="a-blog-author">
+                  '.ucfirst($user_latest['first_name']).' '. ucfirst($user_latest['last_name']).'
+                  <div class="a-blog-type">'.$blog_latest['category'].'</div>
+                </div>
+                <div class="a-blog-date">'.edit_date($blog_latest['creation_date']).'</div>
+                <div class="a-blog-Content">
+                  '.substr($blog_latest['content'], 0, 50). '...'.'
+                </div>
+              </div>
             </div>
-            <div class="a-blog-date">2021-08-15</div>
-            <div class="a-blog-Content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-          </div>
-        </div>
-        <div class="a-blog">
-          <div class="a-blog-image">
-            <a href="#"><img src="images/nature.jpg" alt="Blog image" /></a>
-          </div>
-          <div class="a-blog-info">
-            <div class="a-blog-author">
-              abdelkarim achlaih
-              <div class="a-blog-type">Work</div>
-            </div>
-            <div class="a-blog-date">2021-08-15</div>
-            <div class="a-blog-Content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-          </div>
-        </div>
+          ';
+        }
+        echo '
       </div>
       <div class="aside-blogs">
         <div class="aside-title">Categories</div>
-        <ul>
-          <li><a href="">Work</a><span class="num">( 2 )</span></li>
-          <li><a href="">School</a><span class="num">( 2 )</span></li>
-          <li><a href="">Work</a><span class="num">( 2 )</span></li>
-          <li><a href="">School</a><span class="num">( 2 )</span></li>
-          <li><a href="">Work</a><span class="num">( 2 )</span></li>
-        </ul>
+        <ul>';
+        require('categories.php');
+        $number_of_categories = number_of_categories();
+        $numbers_of_categories_blogs = number_of_categories_blogs($number_of_categories);
+        $m = 1;
+        while($m <= $number_of_categories) {
+          $category = get_category_infos($m);
+          echo '
+            <li><a href="">'.$category['name'].'</a><span class="num">( '.$numbers_of_categories_blogs[$m].' )</span></li>
+          ';
+          $m = $m + 1;
+        }
+        echo '
+          </ul>
       </div>
     </aside>
   </div>

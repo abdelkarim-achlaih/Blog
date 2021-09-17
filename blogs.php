@@ -136,3 +136,54 @@ function blog_id_exists($blog_id) {
   }
   return False;
 }
+function get_blogs($query) {
+  require('dbconnect.php');
+  $reponse = $pdo -> query($query);
+  $i = 0;
+  while($data = $reponse -> fetch()) {
+    $blog[$i]['id'] = $data['id'];
+    $blog[$i]['title'] = $data['title'];
+    $blog[$i]['author'] = $data['author'];
+    if($data['category'] == 1) {
+      $blog[$i]['category'] = 'technology';
+    }
+    elseif($data['category'] == 2) {
+      $blog[$i]['category'] = 'self-development';
+    }
+    elseif($data['category'] == 3) {
+      $blog[$i]['category'] = 'sport';
+    }
+    elseif($data['category'] == 4) {
+      $blog[$i]['category'] = 'nature';
+    }
+    elseif($data['category'] == 5) {
+      $blog[$i]['category'] = 'work';
+    }
+    elseif($data['category'] == 6) {
+      $blog[$i]['category'] = 'school';
+    }
+    $blog[$i]['creation_date'] = $data['creation_date'];
+    $blog[$i]['content'] = $data['content'];
+    $blog[$i]['pending'] = $data['pending'];
+    $i = $i + 1;
+  }
+  if(isset($blog)) {
+    return $blog;
+  }
+}
+function number_of_categories_blogs($number_of_categories) {
+  require('dbconnect.php');
+  $i = 1;
+  while ($i <= $number_of_categories) {
+    $query = "SELECT count(id) FROM blogs WHERE category = ?";
+    $reponse = $pdo -> prepare($query);
+    $reponse -> execute(array(
+      $i
+    ));
+    $data = $reponse -> fetch();
+    $numbers_of_categories_blogs[$i] =  $data[0];
+    $i = $i + 1;
+    $reponse -> closeCursor();
+  }
+  return $numbers_of_categories_blogs;
+}
