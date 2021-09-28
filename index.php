@@ -30,24 +30,61 @@ if(isset($_SESSION['message_source'])) {
     </form>
   </div>
 </section>
+<section class="fltr">
+      <div class="container">
+        <div class="section-title">
+          <i class="fas fa-filter"></i>Filter
+        </div>
+        <form class="filter-container" action="config.php?option=filter" method="POST">
+          <div class="filter">
+          <div class="filter-title">By Upload date</div>
+          <select name="upload_date" id="">
+            <option value="1">Today</option>
+            <option value="2">This Week</option>
+            <option value="3">This Month</option>
+            <option value="4" selected>This Year</option>
+          </select>
+          </div>
+          <div class="filter">
+            <div class="filter-title">By Popularity</div>
+            <select name="popularity" id="">
+              <option value="1">Most Seen</option>
+              <option value="2">Most commented</option>
+            </select>
+          </div>
+          <div class="filter">
+            <div class="filter-title">By Category</div>
+            <select name="category" id="">
+              <option value="1">technology</option>
+              <option value="2">self-development</option>
+              <option value="3">sport</option>
+              <option value="4">nature</option>
+              <option value="5">work</option>
+              <option value="6">school</option>
+            </select>
+          </div>
+          <input type="submit" value="Filter" class="main-button">
+        </form>
+      </div>
+    </section>
 <section class="articles">
   <div class="container">
     <?php 
-      require('blogs.php');
-      $number_of_blogs = number_of_blogs();
-      for($i = 2; $i <= 5; $i = $i + 1) {
-        $blog[$i] = get_blog($i);
-        echo '
-          <a class="article" href="blog.php?blog_id='.$blog[$i]['id'].'">
-            <div class="image"><img src="images/'.$blog[$i]['category'].'.jpg" /></div>
-            <div class="content">
-              <div class="type">'.$blog[$i]['category'].'</div>
-              <div class="title">'.$blog[$i]['title'].'</div>
-              <div class="date">'.edit_date($blog[$i]['creation_date']).'</div>
-            </div>
-          </a>
-        ';
-      }
+      if (isset($_SESSION['filtred_blogs'])):
+        $number_of__filtred_blogs = count($_SESSION['filtred_blogs']);
+        for($i = 0; $i < $number_of__filtred_blogs; $i++) :
+          echo '
+            <a class="article" href="blog.php?blog_id='.$_SESSION['filtred_blogs'][$i]['id'].'">
+              <div class="image"><img src="images/'.$_SESSION['filtred_blogs'][$i]['category'].'.jpg" /></div>
+              <div class="content">
+                <div class="type">'.$_SESSION['filtred_blogs'][$i]['category'].'</div>
+                <div class="title">'.$_SESSION['filtred_blogs'][$i]['title'].'</div>
+                <div class="date">'.edit_date($_SESSION['filtred_blogs'][$i]['creation_date']).'</div>
+              </div>
+            </a>
+          ';
+        endfor;
+      endif;
     ?>
   </div>
 </section>

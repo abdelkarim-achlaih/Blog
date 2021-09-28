@@ -253,6 +253,41 @@ elseif ($option == 'comment-add') {
     header("location: blog.php");
   }
 }
+elseif ($option == 'filter') {
+  if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    require_once('blogs.php');
+    if ($_POST['upload_date'] == 1) {
+      $date = date('Y-m-d H:i:s',strtotime('today -1 day +1 day'));
+    }
+    elseif ($_POST['upload_date'] == 2) {
+      $date = date('Y-m-d H:i:s',strtotime('today -7 days'));
+    }
+    elseif ($_POST['upload_date'] == 3) {
+      $date = date('Y-m-d H:i:s',strtotime('today -31 days'));
+    }
+    elseif ($_POST['upload_date'] == 4) {
+      $date = date('Y-m-d H:i:s',strtotime('today -365 days'));
+    }
+    if ($_POST['popularity'] == 1):
+      $query = 'SELECT * FROM blogs WHERE 
+      creation_date BETWEEN \''.$date.'\' AND NOW() AND
+      category = '.$_POST['category'].'
+      ORDER BY views ASC LIMIT 3';
+    else:
+      $query = 'SELECT *, 
+      (SELECT COUNT(comments.id) FROM comments WHERE comments.blog = blogs.id) AS counter 
+      FROM blogs WHERE blogs.creation_date BETWEEN \''.$today.'\' AND NOW() 
+      AND blogs.category = '.$_POST['category'].' 
+      ORDER BY counter ASC LIMIT 5';
+    endif;
+    $_SESSION['filtred_blogs'] = get_blogs($query);
+    header("location: index.php");
+  }
+  else {
+    $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
+    header("location: blog.php");
+  }
+}
 else {
   $_SESSION['message_error'] = "You are not permited to see this page this way: url error";
   header("location: index.php");
