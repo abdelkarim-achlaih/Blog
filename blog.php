@@ -7,6 +7,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     require('comments.php');
     require('functions.php');
     $blog = get_blog($_GET['blog_id']);
+    $blog['views']++;
+    add_view($blog);
     $user = get_user_infos_from_id($blog['author']);
     $title = 'Blog post | '.$blog['title'];
     require_once('header.php');
@@ -49,6 +51,9 @@ echo '
         </div>
         <div class="num-of-comments">
           <i class="fas fa-comments"></i>'.num_of_comments_blog($blog['id']).' Comment(s)
+        </div>
+        <div class="num-of-views">
+          <i class="fas fa-eye"></i>'.$blog['views'].' View(s)
         </div>
         <div class="date">
           <i class="fas fa-calendar-alt"></i>'.edit_date($blog['creation_date']).'
@@ -158,11 +163,11 @@ if ($k == 0) {
         echo '
           <div class="a-blog">
             <div class="a-blog-image">
-              <a href="#"><img src="images/'.$blog_seen['category'].'.jpg" alt="Blog image" /></a>
+              <a href="blog.php?blog_id='.$blog_seen['id'].'"><img src="images/'.$blog_seen['category'].'.jpg" alt="Blog image" /></a>
             </div>
             <div class="a-blog-info">
               <div class="a-blog-author">
-                '.ucfirst($user_seen['first_name']).' '. ucfirst($user_seen['last_name']).'
+                '.$blog_seen['title'].'
                 <div class="a-blog-type">'.$blog_seen['category'].'</div>
               </div>
               <div class="a-blog-date">'.edit_date($blog_seen['creation_date']).'</div>
@@ -183,11 +188,11 @@ if ($k == 0) {
           echo '
             <div class="a-blog">
               <div class="a-blog-image">
-                <a href="#"><img src="images/'.$blog_latest['category'].'.jpg" alt="Blog image" /></a>
+                <a href="blog.php?blog_id='.$blog_latest['id'].'"><img src="images/'.$blog_latest['category'].'.jpg" alt="Blog image" /></a>
               </div>
               <div class="a-blog-info">
                 <div class="a-blog-author">
-                  '.ucfirst($user_latest['first_name']).' '. ucfirst($user_latest['last_name']).'
+                  '.$blog_latest['title'].'
                   <div class="a-blog-type">'.$blog_latest['category'].'</div>
                 </div>
                 <div class="a-blog-date">'.edit_date($blog_latest['creation_date']).'</div>

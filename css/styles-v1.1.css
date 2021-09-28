@@ -1012,7 +1012,6 @@ body .data .container .form form input[type="submit"]:focus {
   padding-bottom: 40px;
 }
 .blog-page .container article {
-  
 }
 .blog-page .container article .image ~ * {
   margin-bottom: 20px;
@@ -1154,7 +1153,6 @@ body .data .container .form form input[type="submit"]:focus {
   column-gap: 20px;
 }
 .blog-page .container article .comments .comment .author-img {
-
 }
 .blog-page .container article .comments .comment .author-img img {
   width: 60px;
@@ -1166,7 +1164,14 @@ body .data .container .form form input[type="submit"]:focus {
   position: relative;
   font-weight: 600;
 }
-.blog-page .container article .comments .comment .comment-info .comment-author .reply {
+.blog-page
+  .container
+  article
+  .comments
+  .comment
+  .comment-info
+  .comment-author
+  .reply {
   position: absolute;
   top: 0;
   right: 0;
@@ -1176,15 +1181,36 @@ body .data .container .form form input[type="submit"]:focus {
   cursor: pointer;
   font-weight: 400;
 }
-.blog-page .container article .comments .comment .comment-info .comment-author .reply:hover {
+.blog-page
+  .container
+  article
+  .comments
+  .comment
+  .comment-info
+  .comment-author
+  .reply:hover {
   transform: translateX(10px);
   text-decoration: underline;
 }
-.blog-page .container article .comments .comment .comment-info .comment-author .reply i {
+.blog-page
+  .container
+  article
+  .comments
+  .comment
+  .comment-info
+  .comment-author
+  .reply
+  i {
   margin-right: 10px;
   color: var(--color2);
 }
-.blog-page .container article .comments .comment .comment-info > *:not(:last-child) {
+.blog-page
+  .container
+  article
+  .comments
+  .comment
+  .comment-info
+  > *:not(:last-child) {
   margin-bottom: 10px;
 }
 .blog-page .container article .comments .comment .comment-info .comment-date {
@@ -1249,13 +1275,20 @@ body .data .container .form form input[type="submit"]:focus {
   position: relative;
   margin-bottom: 5px;
 }
-.blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-author .a-blog-type {
+.blog-page
+  .container
+  aside
+  .aside-blogs
+  .a-blog
+  .a-blog-info
+  .a-blog-author
+  .a-blog-type {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 0;
   padding: 2px 4px;
-  background-color: var( --color2);
+  background-color: var(--color2);
   border-radius: 5px;
   font-weight: initial;
   color: white;
@@ -1270,7 +1303,6 @@ body .data .container .form form input[type="submit"]:focus {
   font-size: 13px;
 }
 .blog-page .container aside .aside-blogs ul {
-  
 }
 .blog-page .container aside .aside-blogs ul li {
   display: flex;
@@ -1287,7 +1319,6 @@ body .data .container .form form input[type="submit"]:focus {
   transform: translateX(10px);
 }
 .blog-page .container aside .aside-blogs ul li span.num {
-
 }
 @media (max-width: 767px) {
   .blog-page .container article .tags {
@@ -1306,15 +1337,22 @@ body .data .container .form form input[type="submit"]:focus {
   .blog-page .container article .info .title {
     font-size: 18px;
   }
-  .blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-author .a-blog-type {
+  .blog-page
+    .container
+    aside
+    .aside-blogs
+    .a-blog
+    .a-blog-info
+    .a-blog-author
+    .a-blog-type {
     font-size: 13px;
   }
 }
 @media (min-width: 992px) {
   .blog-page .container article .info {
     grid-template-areas:
-      "t t t t t"
-      "a n n n d";
+      "t t t t t t"
+      "a n n v v d";
   }
   .blog-page .container article .info .title {
     grid-area: t;
@@ -1330,19 +1368,102 @@ body .data .container .form form input[type="submit"]:focus {
     align-items: center;
     justify-content: center;
   }
+  .blog-page .container article .info .num-of-views {
+    grid-area: v;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .blog-page .container article .info .date {
     grid-area: d;
     display: flex;
     margin-left: auto;
     align-items: center;
   }
-  .blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-author .a-blog-type {
+  .blog-page
+    .container
+    aside
+    .aside-blogs
+    .a-blog
+    .a-blog-info
+    .a-blog-author
+    .a-blog-type {
     font-size: 8px;
   }
 }
 @media (min-width: 1200px) {
-  .blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-author .a-blog-type {
+  .blog-page
+    .container
+    aside
+    .aside-blogs
+    .a-blog
+    .a-blog-info
+    .a-blog-author
+    .a-blog-type {
     font-size: 13px;
   }
 }
 /* End blog-page section */
+/* Start Filter section */
+.fltr {
+}
+.fltr .container {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.fltr .container .section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding-left: 30px;
+}
+.fltr .container .section-title i {
+  color: var(--color2);
+  font-size: 17px;
+  margin-right: 10px;
+}
+.fltr .container .filter-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.fltr .container .filter-container .filter {
+  flex-basis: calc(100% / 3);
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 30px;
+}
+.fltr .container .filter-container .filter .filter-title {
+  font-size: 17px;
+  margin-bottom: 20px;
+  text-align: left;
+  align-self: flex-start;
+}
+.fltr .container .filter-container .filter select {
+  background-color: var(--color2);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 7px;
+  text-transform: capitalize;
+  width: 100%;
+}
+.fltr .container .filter-container .filter select .option {
+
+}
+.fltr .container .filter-container input {
+  align-self: flex-end;
+  display: flex;
+  margin-left: auto;
+  margin-right: 30px;
+}
+@media (max-width: 767px) {
+  .fltr .container .filter-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* End Filter section */

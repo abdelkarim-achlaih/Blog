@@ -32,6 +32,7 @@ function get_blog($id) {
   $blog['creation_date'] = $data['creation_date'];
   $blog['content'] = $data['content'];
   $blog['pending'] = $data['pending'];
+  $blog['views'] = $data['views'];
   return $blog;
 }
 function get_user_blogs($user) {
@@ -165,6 +166,7 @@ function get_blogs($query) {
     $blog[$i]['creation_date'] = $data['creation_date'];
     $blog[$i]['content'] = $data['content'];
     $blog[$i]['pending'] = $data['pending'];
+    $blog[$i]['views'] = $data['views'];
     $i = $i + 1;
   }
   if(isset($blog)) {
@@ -186,4 +188,55 @@ function number_of_categories_blogs($number_of_categories) {
     $reponse -> closeCursor();
   }
   return $numbers_of_categories_blogs;
+}
+function add_view ($blog) {
+  require('dbconnect.php');
+  $query = 
+  "UPDATE blogs SET views = ? WHERE id = ?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(
+  array(
+    $blog['views'], $blog['id']
+  ));
+}
+function filter_blogs ($filter) {
+  require('dbconnect.php');
+  $query = 'SELECT * FROM blogs WHERE ?';
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(
+  array(
+    $filter
+  ));
+  $i = 0;
+  while($data = $reponse -> fetch()) {
+    $blog[$i]['id'] = $data['id'];
+    $blog[$i]['title'] = $data['title'];
+    $blog[$i]['author'] = $data['author'];
+    if($data['category'] == 1) {
+      $blog[$i]['category'] = 'technology';
+    }
+    elseif($data['category'] == 2) {
+      $blog[$i]['category'] = 'self-development';
+    }
+    elseif($data['category'] == 3) {
+      $blog[$i]['category'] = 'sport';
+    }
+    elseif($data['category'] == 4) {
+      $blog[$i]['category'] = 'nature';
+    }
+    elseif($data['category'] == 5) {
+      $blog[$i]['category'] = 'work';
+    }
+    elseif($data['category'] == 6) {
+      $blog[$i]['category'] = 'school';
+    }
+    $blog[$i]['creation_date'] = $data['creation_date'];
+    $blog[$i]['content'] = $data['content'];
+    $blog[$i]['pending'] = $data['pending'];
+    $blog[$i]['views'] = $data['views'];
+    $i = $i + 1;
+  }
+  if(isset($blog)) {
+    return $blog;
+  }
 }
