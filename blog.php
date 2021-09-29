@@ -84,7 +84,7 @@ for($i = $blog['id'] - 1 ; $i > 1; $i = $i - 1 ) {
 if ($j == 0) {
   echo '
     <div class="prevented">
-      <a href="#"><i class="fas fa-hand-point-left"></i>Prev</a>
+      <p href="#"><i class="fas fa-hand-point-left"></i>Prev</p>
     </div>
   ';
 }
@@ -104,7 +104,7 @@ for($i = $blog['id'] + 1 ; $i <= last_blog_id(); $i++) {
 if ($k == 0) {
   echo '
     <div class="prevented">
-      <a href="#"><i class="fas fa-hand-point-right"></i>Next</a>
+      <p href="#"><i class="fas fa-hand-point-right"></i>Next</p>
     </div>
   ';
 }
@@ -114,32 +114,34 @@ if ($k == 0) {
       <div class="comments">
         <div class="div-title">'.num_of_comments_blog($blog['id']).' Comment(s)</div>';
         $comments = get_blog_comments($blog);
-        foreach($comments as $comment) {
-          $author_infos = get_user_infos_from_id($comment['author']);
-          echo '
-            <div class="comment">
-              <div class="author-img">
-                <img src="images/avatar-';
-                if($author_infos['gender'] == 1) {
-                  echo 'man';
-                }
-                else {
-                  echo 'woman';
-                }
-                echo '.png" alt="'.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'" />
-              </div>
-              <div class="comment-info">
-                <div class="comment-author">
-                  '.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'
-                  <div class="reply"><i class="fas fa-reply"></i>Reply</div>
+        if (!empty($comments)) {
+          foreach($comments as $comment) {
+            $author_infos = get_user_infos_from_id($comment['author']);
+            echo '
+              <div class="comment">
+                <div class="author-img">
+                  <img src="images/avatar-';
+                  if($author_infos['gender'] == 1) {
+                    echo 'man';
+                  }
+                  else {
+                    echo 'woman';
+                  }
+                  echo '.png" alt="'.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'" />
                 </div>
-                <div class="comment-date">'.edit_date($comment['creation_date']).'</div>
-                <div class="comment-content">
-                  '.$comment['content'].'
+                <div class="comment-info">
+                  <div class="comment-author">
+                    '.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'
+                    <div class="reply soon"><i class="fas fa-reply"></i>Reply</div>
+                  </div>
+                  <div class="comment-date">'.edit_date($comment['creation_date']).'</div>
+                  <div class="comment-content">
+                    '.$comment['content'].'
+                  </div>
                 </div>
               </div>
-            </div>
-          ';
+            ';
+          }
         }
         echo '
       </div>
@@ -150,14 +152,25 @@ if ($k == 0) {
       $_SESSION['comment_blog'] = $_GET['blog_id'];
       echo '
         <div class="div-title">Post Your Comment</div>
-        <textarea name="content" placeholder="Comment"></textarea>
-        <input type="submit" value="Post Comment" class="main-button" />
+        <textarea name="content" ';
+        if(!isset($_SESSION['id'])) {
+          echo ' disabled placeholder="Please sign in first !"';
+        }
+        else {
+          echo ' placeholder="Comment"';
+        }
+        echo'  ></textarea>
+        <input type="submit" value="Post Comment" class="main-button"';
+        if(!isset($_SESSION['id'])) {
+          echo ' disabled';
+        }
+        echo ' />
       </form>
     </article>
     <aside>
       <div class="aside-blogs">
         <div class="aside-title">Most seen</div>';
-      $blogs_seen = get_blogs('SELECT * FROM blogs ORDER BY views DESC LIMIT 3');
+      $blogs_seen = get_blogs('SELECT * FROM blogs WHERE pending = 0 ORDER BY views DESC LIMIT 3');
       foreach($blogs_seen as $blog_seen) {
         $user_seen = get_user_infos_from_id($blog_seen['author']);
         echo '
@@ -182,7 +195,7 @@ if ($k == 0) {
       </div>
       <div class="aside-blogs">
         <div class="aside-title">Recent posts</div>';
-        $blogs_latest = get_blogs('SELECT * FROM blogs ORDER BY creation_date ASC LIMIT 3');
+        $blogs_latest = get_blogs('SELECT * FROM blogs WHERE pending = 0 ORDER BY creation_date ASC LIMIT 3');
         foreach($blogs_latest as $blog_latest) {
           $user_latest = get_user_infos_from_id($blog_latest['author']);
           echo '
@@ -215,7 +228,7 @@ if ($k == 0) {
         while($m <= $number_of_categories) {
           $category = get_category_infos($m);
           echo '
-            <li><a href="">'.$category['name'].'</a><span class="num">( '.$numbers_of_categories_blogs[$m].' )</span></li>
+            <li><a href="config.php?option=filter_category&category='.$category['id'].'">'.$category['name'].'</a><span class="num">( '.$numbers_of_categories_blogs[$m].' )</span></li>
           ';
           $m = $m + 1;
         }

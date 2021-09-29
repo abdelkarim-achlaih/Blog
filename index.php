@@ -71,8 +71,8 @@ if(isset($_SESSION['message_source'])) {
   <div class="container">
     <?php 
       if (isset($_SESSION['filtred_blogs'])):
-        $number_of__filtred_blogs = count($_SESSION['filtred_blogs']);
-        for($i = 0; $i < $number_of__filtred_blogs; $i++) :
+        $number_of_filtred_blogs = count($_SESSION['filtred_blogs']);
+        for($i = 0; $i < $number_of_filtred_blogs; $i++) :
           echo '
             <a class="article" href="blog.php?blog_id='.$_SESSION['filtred_blogs'][$i]['id'].'">
               <div class="image"><img src="images/'.$_SESSION['filtred_blogs'][$i]['category'].'.jpg" /></div>

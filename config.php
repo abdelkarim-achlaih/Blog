@@ -86,8 +86,9 @@ elseif ($option == 'log') {
   }
 }
 elseif($option == 'logout') {
+  $not_unset = array('message_index', 'message_source', 'filtred_blogs');
   foreach($_SESSION as $key => $value) {
-    if($key != 'message_index' && $key != 'message_source') {
+    if(! in_array($key, $not_unset) ) {
       unset($_SESSION[$key]);
     }
   }
@@ -232,24 +233,33 @@ elseif ($option == 'blog-add') {
 }
 elseif ($option == 'comment-add') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require('functions.php');
-    $_POST = remove_script($_POST);
-    $comment = array(
-      'author' => $_SESSION['comment_author'],
-      'content' => $_POST['content'],
-      'blog' => $_SESSION['comment_blog'],
-      'creation_date' => date('Y-m-d H:i:s', time())
-    );
-    $blog_destination_id = $_SESSION['comment_blog'];
-    unset($_SESSION['comment_author']);
-    unset($_SESSION['comment_blog']);
-    require_once('comments.php');
-    comment_add($comment);
-    $_SESSION['message_index'] = 'The comment has been seccessfuly added';
-    header('location: blog.php?blog_id='.$blog_destination_id);
+    if(isset($_POST['content']) AND !empty($_POST['content'])) {
+      require('functions.php');
+      $_POST = remove_script($_POST);
+      $comment = array(
+        'author' => $_SESSION['comment_author'],
+        'content' => $_POST['content'],
+        'blog' => $_SESSION['comment_blog'],
+        'creation_date' => date('Y-m-d H:i:s', time())
+      );
+      $blog_destination_id = $_SESSION['comment_blog'];
+      unset($_SESSION['comment_author']);
+      unset($_SESSION['comment_blog']);
+      require_once('comments.php');
+      comment_add($comment);
+      $_SESSION['message_index'] = 'The comment has been seccessfuly added';
+      header('location: blog.php?blog_id='.$blog_destination_id);
+    }
+    else {
+      $blog_destination_id = $_SESSION['comment_blog'];
+      unset($_SESSION['comment_author']);
+      unset($_SESSION['comment_blog']);
+      $_SESSION['message_index'] = "📛 You cannot submit an empty comment !";
+      header('location: blog.php?blog_id='.$blog_destination_id);
+    }
   }
   else {
-    $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
+    $_SESSION['message_index'] = "You are not permited to see this page this way: informations are not sent properly";
     header("location: blog.php");
   }
 }
@@ -271,13 +281,15 @@ elseif ($option == 'filter') {
     if ($_POST['popularity'] == 1):
       $query = 'SELECT * FROM blogs WHERE 
       creation_date BETWEEN \''.$date.'\' AND NOW() AND
-      category = '.$_POST['category'].'
+      category = '.$_POST['category'].' 
+      AND pending = 0 
       ORDER BY views ASC LIMIT 3';
     else:
       $query = 'SELECT *, 
       (SELECT COUNT(comments.id) FROM comments WHERE comments.blog = blogs.id) AS counter 
       FROM blogs WHERE blogs.creation_date BETWEEN \''.$today.'\' AND NOW() 
       AND blogs.category = '.$_POST['category'].' 
+      AND pending = 0 
       ORDER BY counter ASC LIMIT 5';
     endif;
     $_SESSION['filtred_blogs'] = get_blogs($query);
@@ -287,6 +299,16 @@ elseif ($option == 'filter') {
     $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
     header("location: blog.php");
   }
+}
+elseif ($option == 'filter_category') {
+  if(isset($_GET['category'])):
+    $category = $_GET['category'];
+    require('blogs.php');
+    $query = 'SELECT * FROM blogs WHERE category = '.$_GET['category'].' AND pending = 0 ';
+    $_SESSION['filtred_blogs_by_categories'] = get_blogs($query);
+    $_SESSION['category'] = ucfirst($_SESSION['filtred_blogs_by_categories'][0]['category']);
+    header("location: category.php");
+  endif;
 }
 else {
   $_SESSION['message_error'] = "You are not permited to see this page this way: url error";

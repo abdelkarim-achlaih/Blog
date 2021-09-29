@@ -2,7 +2,7 @@
 
 function get_blog($id) {
   require('dbconnect.php');
-  $query = "SELECT * FROM blogs WHERE id=?";
+  $query = "SELECT * FROM blogs WHERE id=? AND pending = 0 ";
   $reponse = $pdo -> prepare($query);
   $reponse -> execute(array(
     $id
@@ -177,7 +177,7 @@ function number_of_categories_blogs($number_of_categories) {
   require('dbconnect.php');
   $i = 1;
   while ($i <= $number_of_categories) {
-    $query = "SELECT count(id) FROM blogs WHERE category = ?";
+    $query = "SELECT count(id) FROM blogs WHERE category = ? AND pending = 0";
     $reponse = $pdo -> prepare($query);
     $reponse -> execute(array(
       $i

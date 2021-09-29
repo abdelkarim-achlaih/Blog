@@ -23,7 +23,7 @@ require_once('header.php');
       <p class="full-name"><?php echo ucfirst($_SESSION['first_name']).' '.ucfirst($_SESSION['last_name']); ?></p>
       <p class="user-name"><?php echo $_SESSION['username']; ?></p>
       <a href="settings.php" class="main-button">Edit profile</a>
-      <div class="stats">
+      <div class="stats soon">
         <i class="fas fa-users"></i>
         <span class="follow">
           <span class="follow-num">0 </span>

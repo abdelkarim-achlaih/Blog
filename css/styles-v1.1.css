@@ -90,6 +90,37 @@ body {
 .main-button:active {
   background-color: #33adff;
 }
+.soon {
+  position: relative;
+}
+.soon:hover::before {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  transform: translateX(-50%);
+  border: 10px #ff5722 solid;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+.soon:hover::after {
+  position: absolute;
+  font-weight: 900;
+  font-family: 'Font Awesome 5 Free';
+  content: '\f2f2    Coming soon';
+  top: calc(50% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  padding: 6px 4px;
+  text-align: center;
+  background-color: #ff5722;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+}
 /* End Global Components */
 
 /* Start Header */
@@ -382,9 +413,10 @@ header .container .button {
   margin-bottom: 100px;
 }
 .articles .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
   gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .articles .container .article {
   border-radius: 20px;
@@ -392,6 +424,19 @@ header .container .button {
   background-color: white;
   box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
   transition-duration: var(--transitionDuration);
+  flex-basis: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .articles .container .article {
+    flex-basis: calc(100% / 2 - 30px);
+  }
+}
+@media (min-width:992px) {
+  .articles .container .article {
+    flex-basis: calc(100% / 3 - 60px);
+  }
 }
 .articles .container .article:hover {
   transform: translateY(-10px);
@@ -1131,11 +1176,14 @@ body .data .container .form form input[type="submit"]:focus {
 .blog-page .container article .nav-buttons > div.prevented:hover {
   transform: none;
 }
-.blog-page .container article .nav-buttons > div.prevented a {
+.blog-page .container article .nav-buttons > div.prevented p {
   color: var(--color1);
   cursor: not-allowed;
 }
-.blog-page .container article .nav-buttons > div.prevented a:hover {
+.blog-page .container article .nav-buttons > div.prevented p i {
+  margin-right: 10px;
+}
+.blog-page .container article .nav-buttons > div.prevented p:hover {
   text-decoration: none;
 }
 .blog-page .container article hr {
@@ -1199,6 +1247,17 @@ body .data .container .form form input[type="submit"]:focus {
   .comment
   .comment-info
   .comment-author
+  .reply.soon:hover {
+  transform: unset;
+  text-decoration: unset;
+}
+.blog-page
+  .container
+  article
+  .comments
+  .comment
+  .comment-info
+  .comment-author
   .reply
   i {
   margin-right: 10px;
@@ -1239,6 +1298,13 @@ body .data .container .form form input[type="submit"]:focus {
   display: flex;
   margin-left: auto;
 }
+.blog-page .container article form *:disabled::placeholder {
+  color: white;
+}
+.blog-page .container article form *:disabled {
+  cursor: not-allowed;
+  background-color: var(--color3);
+}
 .blog-page .container aside {
 }
 .blog-page .container aside .aside-blogs {
@@ -1274,6 +1340,7 @@ body .data .container .form form input[type="submit"]:focus {
   font-weight: 600;
   position: relative;
   margin-bottom: 5px;
+  font-size: 17px;
 }
 .blog-page
   .container
@@ -1324,6 +1391,21 @@ body .data .container .form form input[type="submit"]:focus {
   .blog-page .container article .tags {
     flex-wrap: wrap;
     row-gap: 10px;
+  }
+  .blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-author {
+    font-size: 12px;
+  }
+  .blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-date {
+    font-size: 10px;
+  }
+  .blog-page
+    .container
+    aside
+    .aside-blogs
+    .a-blog
+    .a-blog-info
+    .a-blog-Content {
+    font-size: 11px;
   }
 }
 @media (max-width: 992px) {
@@ -1452,7 +1534,6 @@ body .data .container .form form input[type="submit"]:focus {
   width: 100%;
 }
 .fltr .container .filter-container .filter select .option {
-
 }
 .fltr .container .filter-container input {
   align-self: flex-end;
@@ -1467,3 +1548,15 @@ body .data .container .form form input[type="submit"]:focus {
   }
 }
 /* End Filter section */
+/* Start pagination section */
+.pagination {
+  margin-bottom: 60px;
+}
+.pagination .container {
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+}
+
+
+/* End pagination section */
