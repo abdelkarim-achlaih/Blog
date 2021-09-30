@@ -999,6 +999,23 @@ body .data .container .form form input[type="submit"]:focus {
   margin-right: 7px;
   color: var(--color2);
 }
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .edit {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  margin-left: auto;
+  margin-bottom: 20px;
+}
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .edit a {
+  transition-duration: var(--transitionDuration);
+}
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .edit a:hover {
+  transform: translateX(-10px);
+}
+.account .container .user-blogs .blogs-container .blogs .blog .blog-info .edit a i {
+  color: var(--color2);
+  margin-right: 7px;
+}
 .account .container .user-blogs .blogs-container .title span a {
   display: inline-block;
   color: var(--color2);

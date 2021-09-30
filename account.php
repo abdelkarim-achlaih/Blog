@@ -68,6 +68,11 @@ require_once('header.php');
                           <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                          <div class="edit">
+                            <a href="blog-settings.php?blog='.$blogs[$i]['id'].'">
+                              <i class="far fa-keyboard"></i>Edit blog
+                            </a>
+                          </div>
                         </div>
                       </div><!-- .blog closed -->
                 
@@ -96,6 +101,11 @@ require_once('header.php');
                           <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                          <div class="edit">
+                            <a href="blog-settings.php?blog='.$blogs[$i]['id'].'">
+                              <i class="far fa-keyboard"></i>Edit blog
+                            </a>
+                          </div>
                         </div>
                       </div><!-- .blog closed -->
                     ';
@@ -122,6 +132,11 @@ require_once('header.php');
                           <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                          <div class="edit">
+                            <a href="blog-settings.php?blog='.$blogs[$i]['id'].'">
+                              <i class="far fa-keyboard"></i>Edit blog
+                            </a>
+                          </div>
                         </div>
                       </div><!-- .blog closed -->
                 
@@ -167,6 +182,11 @@ require_once('header.php');
                           <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
+                          <div class="edit">
+                            <a href="blog-settings.php?blog='.$blogs[$i]['id'].'">
+                              <i class="far fa-keyboard"></i>Edit blog
+                            </a>
+                          </div>
                         </div>
                       </div><!-- .blog closed -->
                     ';

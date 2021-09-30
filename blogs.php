@@ -35,6 +35,41 @@ function get_blog($id) {
   $blog['views'] = $data['views'];
   return $blog;
 }
+function get_all_types_of_blog($id) {
+  require('dbconnect.php');
+  $query = "SELECT * FROM blogs WHERE id=?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $id
+  ));
+  $data = $reponse -> fetch();
+  $blog['id'] = $data['id'];
+  $blog['title'] = $data['title'];
+  $blog['author'] = $data['author'];
+  if($data['category'] == 1) {
+    $blog['category'] = 'technology';
+  }
+  elseif($data['category'] == 2) {
+    $blog['category'] = 'self-development';
+  }
+  elseif($data['category'] == 3) {
+    $blog['category'] = 'sport';
+  }
+  elseif($data['category'] == 4) {
+    $blog['category'] = 'nature';
+  }
+  elseif($data['category'] == 5) {
+    $blog['category'] = 'work';
+  }
+  elseif($data['category'] == 6) {
+    $blog['category'] = 'school';
+  }
+  $blog['creation_date'] = $data['creation_date'];
+  $blog['content'] = $data['content'];
+  $blog['pending'] = $data['pending'];
+  $blog['views'] = $data['views'];
+  return $blog;
+}
 function get_user_blogs($user) {
   require('dbconnect.php');
   $query = "SELECT * FROM blogs WHERE author=?";
@@ -197,5 +232,32 @@ function add_view ($blog) {
   $reponse -> execute(
   array(
     $blog['views'], $blog['id']
+  ));
+}
+function blog_exists ($id) {
+  require('dbconnect.php');
+  $query = "SELECT id FROM blogs";
+  $reponse = $pdo -> query($query);
+  while ($data = $reponse-> fetch()) {
+    if(in_array($id, $data)) {
+      return true;
+    }
+  }
+  return false;
+}
+function update_blog_info ($blog) {
+  require('dbconnect.php');
+  $query = "UPDATE blogs SET title=?, content=?, category=?, creation_date=? WHERE id=?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $blog['title'], $blog['content'], $blog['category'], $blog['creation_date'], $blog['id']
+  ));
+}
+function delete_blog ($blog) {
+  require('dbconnect.php');
+  $query = "DELETE FROM blogs WHERE id=?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $blog['id']
   ));
 }
