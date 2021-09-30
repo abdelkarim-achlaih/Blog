@@ -118,3 +118,14 @@ function delete_user($user) {
     $user['id']
   ));
 }
+function user_exists ($id) {
+  require('dbconnect.php');
+  $query = "SELECT id FROM users";
+  $reponse = $pdo -> query($query);
+  while ($data = $reponse-> fetch()) {
+    if(in_array($id, $data)) {
+      return true;
+    }
+  }
+  return false;
+}

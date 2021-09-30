@@ -26,7 +26,7 @@ echo '
     <article>
       <div class="image">
         <img src="images/'.$blog['category'].'.jpg" alt="Blog photo" />
-        <div class="author-image">
+        <div class="author-image"><a href="accounts.php?user='.$user['id'].'">
           <img ';
           if($user['gender'] == 1) {
           echo '
@@ -39,6 +39,7 @@ echo '
           ';
         }
           echo '" alt="Blog author" />
+          </a>
         </div>
       </div>
       <div class="info">
@@ -58,6 +59,9 @@ echo '
         <div class="date">
           <i class="fas fa-calendar-alt"></i>'.edit_date($blog['creation_date']).'
         </div>
+      </div>
+      <div class="star soon">
+        <i class="far fa-star"></i>Give a star
       </div>
       <div class="content">
         '.$blog['content'].'
@@ -119,7 +123,7 @@ if ($k == 0) {
             $author_infos = get_user_infos_from_id($comment['author']);
             echo '
               <div class="comment">
-                <div class="author-img">
+                <div class="author-img"><a href="accounts.php?user='.$author_infos['id'].'">
                   <img src="images/avatar-';
                   if($author_infos['gender'] == 1) {
                     echo 'man';
@@ -128,7 +132,8 @@ if ($k == 0) {
                     echo 'woman';
                   }
                   echo '.png" alt="'.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'" />
-                </div>
+                </a>
+                  </div>
                 <div class="comment-info">
                   <div class="comment-author">
                     '.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'
