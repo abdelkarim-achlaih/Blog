@@ -2,32 +2,31 @@
 $title = 'Home';
 require_once('session.php');
 require('functions.php');
-if(isset($_SESSION['message_source'])) {
-  if($_SESSION['message_source'] == 'config.php') {
-    if(isset($_SESSION['message_index'])) {
-      show_index_message($_SESSION['message_index']);
-      unset($_SESSION['message_index']);
-    }
-  }
-  if($_SESSION['message_source'] == 'blog.php' OR $_SESSION['message_source'] == 'config.php') {
-    if(isset($_SESSION['message_error'])) {
-      show_message ($_SESSION['message_error'], 'Error');
-      unset($_SESSION['message_error']);
-    }
-  }
-}
+error('config.php', 1);
+error('config.php', 4);
 ?>
 <section class="landing">
   <div class="container">
-    <h1>Blog</h1>
-    <p>
-      Stories to help you bring your best ideas to life. Subscribe to get
-      the best prototyping tips, tricks, and tutorials in your inbox.
-    </p>
-    <form action="config.php?option=subscribe" method="POST">
-      <input type="text" name="email" id="email" placeholder="Your email" required />
-      <input type="submit" value="Subscribe" class="main-button"/>
-    </form>
+    <div class="content">
+      <h1>How to</h1>
+      <p>
+        Blogs that help you bring your best ideas to life. Join us to view, edit and post
+        the best prototyping tips, tricks, and tutorials.
+      </p>
+      <form action="config.php?option=subscribe" method="POST">
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="Your email"
+          required
+        />
+        <input type="submit" value="Join us" class="main-button" />
+      </form>
+    </div>
+    <div class="landing-image">
+      <img src="images/landing.png" alt="" />
+    </div>
   </div>
 </section>
 <section class="fltr">
@@ -63,7 +62,14 @@ if(isset($_SESSION['message_source'])) {
               <option value="6">school</option>
             </select>
           </div>
-          <input type="submit" value="Filter" class="main-button">
+          <div class="buttons">
+            <?php 
+              if (isset($_SESSION['filtred_blogs'])):
+                echo '<a href="config.php?option=unfilter" class="main-button">Unfilter</a>';
+              endif;
+            ?>
+            <input type="submit" value="Filter" class="main-button">
+          </div>
         </form>
       </div>
     </section>
@@ -71,20 +77,25 @@ if(isset($_SESSION['message_source'])) {
   <div class="container">
     <?php 
       if (isset($_SESSION['filtred_blogs'])):
-        $number_of_filtred_blogs = count($_SESSION['filtred_blogs']);
-        for($i = 0; $i < $number_of_filtred_blogs; $i++) :
+        $blogs = $_SESSION['filtred_blogs'];
+      else:
+        $query ='SELECT * FROM blogs ORDER BY creation_date ASC LIMIT 9';
+        require('blogs.php');
+        $blogs = get_blogs($query);
+      endif;
+      $number_of_blogs = count($blogs);
+        for($i = 0; $i < $number_of_blogs; $i++) :
           echo '
-            <a class="article" href="blog.php?blog_id='.$_SESSION['filtred_blogs'][$i]['id'].'">
-              <div class="image"><img src="images/'.$_SESSION['filtred_blogs'][$i]['category'].'.jpg" /></div>
+            <a class="article" href="blog.php?blog_id='.$blogs[$i]['id'].'">
+              <div class="image"><img src="images/'.$blogs[$i]['category'].'.jpg" /></div>
               <div class="content">
-                <div class="type">'.$_SESSION['filtred_blogs'][$i]['category'].'</div>
-                <div class="title">'.$_SESSION['filtred_blogs'][$i]['title'].'</div>
-                <div class="date">'.edit_date($_SESSION['filtred_blogs'][$i]['creation_date']).'</div>
+                <div class="type">'.$blogs[$i]['category'].'</div>
+                <div class="title">'.$blogs[$i]['title'].'</div>
+                <div class="date">'.edit_date($blogs[$i]['creation_date']).'</div>
               </div>
             </a>
           ';
         endfor;
-      endif;
     ?>
   </div>
 </section>

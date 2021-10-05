@@ -91,3 +91,35 @@ function edit_date ($date) {
     return date('l jS F Y', strtotime($date));
   }
 }
+function error ($source=NULL, $type=NULL) {
+  $sources = array('blog.php', 'config.php', 'blog-settings');
+  if(! in_array($source, $sources)) {
+    echo 'hello source not correct';
+  }
+  else {
+    if($type == 1) {    //1 = mesage_index
+      if(isset($_SESSION['message_index'])) {
+        show_index_message($_SESSION['message_index']);
+        unset($_SESSION['message_index']);
+      }
+    }
+    elseif($type == 2) {//1 = message_success
+      if(isset($_SESSION['message_success'])) {
+        show_message ($_SESSION['message_success'], 'Success');
+        unset($_SESSION['message_success']);
+      }
+    }
+    elseif($type == 3) {//1 = message_notification
+      if(isset($_SESSION['message_notification'])) {
+        show_message ($_SESSION['message_notification'], 'Notification');
+        unset($_SESSION['message_notification']);
+      }
+    }
+    elseif($type == 4) {//1 = message_error
+      if(isset($_SESSION['message_error'])) {
+        show_message ($_SESSION['message_error'], 'Error');
+        unset($_SESSION['message_error']);
+      }
+    }
+  }
+}

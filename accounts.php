@@ -6,6 +6,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     require('users.php');
     if(user_exists($_GET['user'])) {
       $author = get_user_infos_from_id($_GET['user']);
+      if($_SESSION['id'] == $author['id']) {
+        header('location: account.php');
+        exit;
+      }
     }
     else {
       $error[] = 1;
@@ -19,13 +23,14 @@ else {
   $error[] = 1;
 }
 if (!empty($error)) {
-  $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
-  header("location: index.php");
+  $_SESSION['message_error'] = "User not Found !!";
+  header("location: error.php");
   exit;
 }
 $title = 'User | '.ucfirst($author['first_name']).' '.ucfirst($author['last_name']);
 require_once('header.php');
-require('functions.php');
+require("functions.php");
+error('blog-settings', 1);
 ?>
 <section class="account">
       <div class="container">

@@ -1,5 +1,4 @@
 <?php
-
 function get_blog($id) {
   require('dbconnect.php');
   $query = "SELECT * FROM blogs WHERE id=? AND pending = 0 ";
@@ -247,10 +246,10 @@ function blog_exists ($id) {
 }
 function update_blog_info ($blog) {
   require('dbconnect.php');
-  $query = "UPDATE blogs SET title=?, content=?, category=?, creation_date=? WHERE id=?";
+  $query = "UPDATE blogs SET title=?, content=?, category=? WHERE id=?";
   $reponse = $pdo -> prepare($query);
   $reponse -> execute(array(
-    $blog['title'], $blog['content'], $blog['category'], $blog['creation_date'], $blog['id']
+    $blog['title'], $blog['content'], $blog['category'], $blog['id']
   ));
 }
 function delete_blog ($blog) {

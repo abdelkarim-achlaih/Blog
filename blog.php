@@ -1,24 +1,33 @@
 <?php
+require('functions.php');
+error('config.php', 2);
+error('config.php', 4);
 session_start();
 if($_SERVER['REQUEST_METHOD'] == 'GET') {
   if(isset($_GET['blog_id'])) {
     require('blogs.php');
     require('users.php');
     require('comments.php');
-    require('functions.php');
-    $blog = get_blog($_GET['blog_id']);
-    $blog['views']++;
-    add_view($blog);
-    $user = get_user_infos_from_id($blog['author']);
-    $title = 'Blog post | '.$blog['title'];
-    require_once('header.php');
-    if(isset($_SESSION['message_source'])) {
-      if($_SESSION['message_source'] == 'config.php') {
-        if(isset($_SESSION['message_index'])) {
-          show_index_message($_SESSION['message_index']);
-          unset($_SESSION['message_index']);
+    if(blog_exists($_GET['blog_id'])) {
+      $blog = get_blog($_GET['blog_id']);
+      $blog['views']++;
+      add_view($blog);
+      $user = get_user_infos_from_id($blog['author']);
+      $title = 'Blog post | '.$blog['title'];
+      require_once('header.php');
+      if(isset($_SESSION['message_source'])) {
+        if($_SESSION['message_source'] == 'config.php') {
+          if(isset($_SESSION['message_index'])) {
+            show_index_message($_SESSION['message_index']);
+            unset($_SESSION['message_index']);
+          }
         }
       }
+    }
+    else {
+      $_SESSION['message_source'] = 'blog.php';
+      $_SESSION['message_error'] = "Blog not found";
+      header('location: error.php');
     }
 echo '
 <section class="blog-page">

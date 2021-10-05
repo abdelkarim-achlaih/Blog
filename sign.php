@@ -2,20 +2,8 @@
 $title = 'Sign-in';
 require_once('session.php');
 require('functions.php');
-if(isset($_SESSION['message_source'])) {
-  if($_SESSION['message_source'] == 'config.php') {
-    if(isset($_SESSION['message_error'])) {
-      show_message ($_SESSION['message_error'], 'Error');
-      unset($_SESSION['message_error']);
-    }
-    if(isset($_SESSION['message_notification'])) {
-      show_message ($_SESSION['message_notification'], 'Notification');
-      unset($_SESSION['message_notification']);
-    }
-  }
-}
-
-
+error('config.php', 3);
+error('config.php', 4);
 if(isset($_GET['message'])) {
   show_message ($_GET['message'], 'Notification');
 }

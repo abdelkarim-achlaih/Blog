@@ -2,6 +2,8 @@
 session_start();
 $title = 'Account | '.ucfirst($_SESSION['first_name']).' '.ucfirst($_SESSION['last_name']);
 require_once('header.php');
+require('functions.php');
+error('blog-settings', 1);
 ?>
 <section class="account">
   <div class="container">
@@ -46,7 +48,6 @@ require_once('header.php');
             $user['id'] = $_SESSION['id'];
             $blogs = get_user_blogs($user);
             if (isset($blogs)) {
-              require('functions.php');
               $num_of_blogs = number_of_user_blogs($user);
               $num_of_pending_blogs = number_of_user_pending_blogs($user);
               $num_of_existed_blogs = $num_of_blogs - $num_of_pending_blogs;

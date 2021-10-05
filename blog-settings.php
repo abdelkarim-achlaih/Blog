@@ -6,6 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     require('blogs.php');
     if(blog_exists($_GET['blog'])) {
       $blog = get_all_types_of_blog($_GET['blog']);
+      $_SESSION['edited_blog_id'] = $blog['id'];
       if($blog['author'] !== $_SESSION['id']) {
         $error[] = 1;
       }
@@ -23,12 +24,14 @@ else {
 }
 if (!empty($error)) {
   $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
-  header("location: index.php");
+  header("location: error.php");
   exit;
 }
 $title = 'Edit '.ucwords($blog['title']);
 require_once('header.php');
 require('functions.php');
+error('blog-settings', 2);
+error('blog-settings', 4);
 ?>
 <section class="data">
   <div class="container">
@@ -174,9 +177,6 @@ require('functions.php');
       </div>
       <p>Once you delete your blog, there is no going back. Please be certain.</p>
       <form action="config.php?option=blog-delete" method="POST">
-        <input type="text" value="
-          <?php echo $blog['id']; ?>
-        " disabled style="display: none;" name="blog-id"/>
         <label for="password">Password</label>
         <input
         type="password"

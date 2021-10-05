@@ -233,57 +233,16 @@ elseif ($option == 'blog-add') {
 }
 elseif ($option == 'blog-update') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if(sha1($_POST['password']) == $_SESSION['password']) {
-      $user = array(
-        'password' => $_SESSION['password']
-      );
-      if(isset($_POST['new_password']) && isset($_POST['re_new_password'])) {
-        if($_POST['new_password'] == $_POST['re_new_password']) {
-          if($_POST['new_password'] <> 0) {
-            if(strlen($_POST['new_password']) >= 8) {
-              $_POST['new_password'] = strip_tags($_POST['new_password']);
-              $user = array(
-                'password' => sha1($_POST['new_password']),
-              );
-            }
-            else {
-              $_SESSION['message_error'] = "Password is too short";
-              header("location: sign.php");
-              exit;
-            }
-          }
-        }
-        else {
-          $_SESSION['message_error'] = "The new passwords are not the same";
-          header("location: settings.php");
-          exit;
-        }
-      }
-      require('functions.php');
-      $_POST = remove_script($_POST);
-      $user['id'] = $_SESSION['id'];
-      $user['first_name'] = $_POST['first_name'];
-      $user['last_name'] = $_POST['last_name'];
-      $user['category'] = $_POST['category'];
-      $user['gender'] = $_POST['gender'];
-      require_once('users.php');
-      update_user_info($user);
-      $user['email'] = $_SESSION['email'];
-      $user = get_user_infos($user);
-      $_SESSION['id'] = $user['id'];
-      $_SESSION['first_name'] = $user['first_name'];
-      $_SESSION['last_name'] = $user['last_name'];
-      $_SESSION['username'] = $user['username'];
-      $_SESSION['email'] = $user['email'];
-      $_SESSION['password'] = $user['password'];
-      $_SESSION['gender'] = $user['gender'];
-      $_SESSION['message_success'] = 'Your informations have been updated seccessfuly';
-      header("location: settings.php");
-    }
-    else {
-        $_SESSION['message_error'] = "Wrong old password";
-        header("location: settings.php");
-    }
+    require('functions.php');
+    $_POST = remove_script($_POST);
+    $blog['id'] = $_SESSION['edited_blog_id'];
+    $blog['title'] = $_POST['title'];
+    $blog['content'] = $_POST['content'];
+    $blog['category'] = $_POST['category'];
+    require_once('blogs.php');
+    update_blog_info($blog);
+    $_SESSION['message_success'] = 'Your blog have been updated seccessfuly';
+    header("location: blog-settings.php?blog=".$_SESSION['edited_blog_id']);
   }
   else {
     $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
@@ -293,25 +252,20 @@ elseif ($option == 'blog-update') {
 elseif ($option == 'blog-delete') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(sha1($_POST['password']) == $_SESSION['password']) {
-      $user['id'] = $_SESSION['id'];
-      require('users.php');
-      delete_user($user);
-      foreach($_SESSION as $key => $value) {
-        if($key != 'message_index' && $key != 'message_source') {
-          unset($_SESSION[$key]);
-        }
-      }
-      $_SESSION['message_index'] = "We are sad to lose you, see you soon 😪";
-      header("location: index.php");
+      $blog['id'] = $_SESSION['edited_blog_id'];
+      require('blogs.php');
+      delete_blog($blog);
+      $_SESSION['message_index'] = "The blog have been deleted seccessfuly";
+      header("location: account.php");
     }
     else {
       $_SESSION['message_error'] = "Wrong password";
-      header("location: settings.php");
+      header('location: blog-settings.php?blog='.$_SESSION['edited_blog_id']);
     }
   }
   else {
     $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
-    header("location: settings.php");
+    header("location: index.php");
   }
 }
 elseif ($option == 'comment-add') {
@@ -381,6 +335,18 @@ elseif ($option == 'filter') {
   else {
     $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
     header("location: blog.php");
+  }
+}
+elseif ($option == 'unfilter') {
+  if($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if(isset($_SESSION['filtred_blogs'])) {
+      unset($_SESSION['filtred_blogs']);
+      header("location: index.php");
+    }
+  }
+  else {
+    $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
+    header("location: index.php");
   }
 }
 elseif ($option == 'filter_category') {
