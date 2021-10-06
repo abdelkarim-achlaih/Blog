@@ -39,7 +39,7 @@ error('blog-settings', 4);
       <div class="title">
         <h3><i class="fas fa-plus"></i>Edit post</h3>
       </div>
-      <form action="config.php?option=blog-update" method="POST">
+      <form action="config.php?option=blog-update" method="POST" enctype="multipart/form-data">
         <input type="text" 
           <?php
             if (isset($blog['title'])) {
@@ -159,6 +159,15 @@ error('blog-settings', 4);
             <label for="school">school</label>
           </div>
         </div>
+        <div class="checkbox-title" style="margin-bottom:20px;margin-top:40px;">
+          Update the background of your blog
+        </div>
+        <input 
+          type="file" 
+          name="bg" 
+          id="bg" 
+          class="upload"
+        />
         <input 
           type="submit" 
           value="Update Blog" 

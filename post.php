@@ -37,7 +37,7 @@ if(isset($_SESSION['message_source'])) {
           }
         ?>
       </div>
-      <form action="config.php?option=blog-add" method="POST">
+      <form action="config.php?option=blog-add" method="POST" enctype="multipart/form-data">
         <input type="text" 
           <?php
             if (! isset($_SESSION['first_name']) && ! isset($_SESSION['last_name'])) {
@@ -124,6 +124,15 @@ if(isset($_SESSION['message_source'])) {
             <label for="school">school</label>
           </div>
         </div>
+        <div class="checkbox-title" style="margin-bottom:20px;margin-top:40px;">
+          Set a background for your blog
+        </div>
+        <input 
+          type="file" 
+          name="bg" 
+          id="bg" 
+          class="upload"
+        />
         <input 
           type="submit" 
           value="Publish" 

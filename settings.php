@@ -22,7 +22,7 @@ if(isset($_SESSION['message_source'])) {
       <div class="title">
         <h3><i class="fas fa-user-edit"></i>Update your info</h3>
       </div>
-      <form action="config.php?option=update" method="POST">
+      <form action="config.php?option=update" method="POST" enctype="multipart/form-data">
         <label for="first_name">first-name</label>
         <input
           type="text"
@@ -92,8 +92,15 @@ if(isset($_SESSION['message_source'])) {
         name="re_new_password"
         id="re_new_password"
         />
-
-        
+        <div class="checkbox-title" style="margin-bottom:20px;">
+          Update you avatar
+        </div>
+        <input 
+          type="file" 
+          name="avatar" 
+          id="avatar" 
+          class="upload"
+        />
         <div class="checkbox-container">
           <div class="checkbox">
             <div class="checkbox-title">

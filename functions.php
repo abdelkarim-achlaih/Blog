@@ -123,3 +123,34 @@ function error ($source=NULL, $type=NULL) {
     }
   }
 }
+function upload_file ($file, $type) {
+  if($type = 'avatar'){
+    $dir = 'avatar';
+    $size = 200000;
+  }
+  if($type = 'bg') {
+    $dir = 'bg';
+    $size = 500000;
+  }
+  $errors = array();
+  if($file['error']==4):
+    $errors[] = '<div> You have not uploded any file !! </div>';
+  else:
+    if($file['size'] > $size):
+      $errors[] = '<div> The image size is more than the value allowed </div>';
+    endif;
+    $allowed_extensions = array('jpg', 'png', 'jpeg', 'gif');
+    $tmp = explode('.', $file['name']);
+    $extension = strtolower(end($tmp));
+    if(!in_array($extension, $allowed_extensions)):
+      $errors[] = '<div> The file you tried to upload is not an image </div>';
+    endif;
+  endif;
+  if(empty($errors)):
+    $tmp = rand(0, 100000000000);
+    $new_name = $tmp.'.'.$extension;
+    move_uploaded_file($file['tmp_name'], __DIR__.'\uploads\\'.$dir.'\\'.$new_name);
+  else:
+    return $errors;
+  endif;
+}

@@ -75,7 +75,8 @@ body {
 }
 /* End Global Rules */
 /* Start Global Components */
-.main-button {
+.main-button,
+.upload::file-selector-button {
   text-align: center;
   background-color: var(--color2);
   color: white;
@@ -83,11 +84,15 @@ body {
   border-radius: 20px;
   border: 1px solid transparent;
   width: fit-content;
+  cursor: pointer;
+  transition-duration: var(--transitionDuration);
 }
-.main-button:hover {
+.main-button:hover,
+.upload::file-selector-button:hover {
   background-color: var(--color5);
 }
-.main-button:active {
+.main-button:active,
+.upload::file-selector-button:active {
   background-color: #33adff;
 }
 .soon {
@@ -1667,6 +1672,7 @@ body .data .container .form form input[type="submit"]:focus {
   column-gap: 30px;
 }
 /* End pagination section */
-/* Start error section */
+/* Start upload section */
 
-/* End error section */
+
+/* End upload section */

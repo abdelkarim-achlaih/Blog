@@ -14,7 +14,7 @@ if(isset($_GET['message'])) {
       <div class="title">
         <h3><i class="fas fa-user-plus"></i>Sign in</h3>
       </div>
-      <form action="config.php?option=sign" method="POST">
+      <form action="config.php?option=sign" method="POST" enctype="multipart/form-data">
         <input
           type="text"
           placeholder="Your first-name"
@@ -65,6 +65,15 @@ if(isset($_GET['message'])) {
           name="re_password"
           id="re_password"
           required
+        />
+        <div class="checkbox-title" style="margin-bottom:20px;">
+          Upload you avatar
+        </div>
+        <input 
+          type="file" 
+          name="avatar" 
+          id="avatar" 
+          class="upload"
         />
         <div class="checkbox-container">
           <div class="checkbox">
