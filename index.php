@@ -87,7 +87,7 @@ error('config.php', 4);
         for($i = 0; $i < $number_of_blogs; $i++) :
           echo '
             <a class="article" href="blog.php?blog_id='.$blogs[$i]['id'].'">
-              <div class="image"><img src="images/'.$blogs[$i]['category'].'.jpg" /></div>
+              <div class="image"><img src="uploads/bg/'.$blogs[$i]['bg'].'" /></div>
               <div class="content">
                 <div class="type">'.$blogs[$i]['category'].'</div>
                 <div class="title">'.$blogs[$i]['title'].'</div>
