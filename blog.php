@@ -34,19 +34,12 @@ echo '
   <div class="container">
     <article>
       <div class="image">
-        <img src="images/'.$blog['category'].'.jpg" alt="Blog photo" />
+        <img src="uploads/bg/'.$blog['bg'].'" alt="Blog photo" />
         <div class="author-image"><a href="accounts.php?user='.$user['id'].'">
           <img ';
-          if($user['gender'] == 1) {
           echo '
-          src="images/avatar-man.png"
+          src="uploads/avatar/'.$user['avatar'].'"
           ';
-        }
-        if($user['gender'] == 2) {
-          echo '
-          src="images/avatar-woman.png"
-          ';
-        }
           echo '" alt="Blog author" />
           </a>
         </div>
@@ -133,13 +126,7 @@ if ($k == 0) {
             echo '
               <div class="comment">
                 <div class="author-img"><a href="accounts.php?user='.$author_infos['id'].'">
-                  <img src="images/avatar-';
-                  if($author_infos['gender'] == 1) {
-                    echo 'man';
-                  }
-                  else {
-                    echo 'woman';
-                  }
+                  <img src="uploads/avatar/'.$author_infos['avatar'].'"';
                   echo '.png" alt="'.ucfirst($author_infos['first_name']).' '.ucfirst($author_infos['last_name']).'" />
                 </a>
                   </div>
@@ -190,7 +177,7 @@ if ($k == 0) {
         echo '
           <div class="a-blog">
             <div class="a-blog-image">
-              <a href="blog.php?blog_id='.$blog_seen['id'].'"><img src="images/'.$blog_seen['category'].'.jpg" alt="Blog image" /></a>
+              <a href="blog.php?blog_id='.$blog_seen['id'].'"><img src="uploads/bg/'.$blog_seen['bg'].'" alt="Blog image" /></a>
             </div>
             <div class="a-blog-info">
               <div class="a-blog-author">
@@ -215,7 +202,7 @@ if ($k == 0) {
           echo '
             <div class="a-blog">
               <div class="a-blog-image">
-                <a href="blog.php?blog_id='.$blog_latest['id'].'"><img src="images/'.$blog_latest['category'].'.jpg" alt="Blog image" /></a>
+                <a href="blog.php?blog_id='.$blog_latest['id'].'"><img src="uploads/bg/'.$blog_latest['bg'].'" alt="Blog image" /></a>
               </div>
               <div class="a-blog-info">
                 <div class="a-blog-author">

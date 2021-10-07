@@ -15,18 +15,6 @@ error('blog-settings', 1);
           src="uploads/avatar/'.$_SESSION['avatar'].'"
           ';
         }
-        else {
-          if($_SESSION['gender'] == 1) {
-          echo '
-          src="images/avatar-man.png"
-          ';
-        }
-        if($_SESSION['gender'] == 2) {
-          echo '
-          src="images/avatar-woman.png"
-          ';
-        }
-        }
       ?>
       alt="#" /></div>
       <p class="full-name"><?php echo ucfirst($_SESSION['first_name']).' '.ucfirst($_SESSION['last_name']); ?></p>
@@ -106,7 +94,7 @@ error('blog-settings', 1);
                         </div>
                         <div class="blog-info">
                           <div class="pending"><i class="fas fa-hourglass-half"></i>Pending</div>
-                          <div class="title"><a href="blog.php?blog_id='.$blogs[$i]['id'].'">'.$blogs[$i]['title'].'</a></div>
+                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
                           <div class="edit">
@@ -187,7 +175,7 @@ error('blog-settings', 1);
                         </div>
                         <div class="blog-info">
                           <div class="pending"><i class="fas fa-hourglass-half"></i>Pending</div>
-                          <div class="title"><a href="blog.php?blog_id='.$blogs[$i]['id'].'">'.$blogs[$i]['title'].'</a></div>
+                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
                           <div class="edit">

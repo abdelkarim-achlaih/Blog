@@ -30,7 +30,7 @@ require('functions.php');
           endfor;
             echo '
               <a class="article" href="blog.php?blog_id='.$_SESSION['filtred_blogs_by_categories'][$i]['id'].'">
-                <div class="image"><img src="images/'.$_SESSION['filtred_blogs_by_categories'][$i]['category'].'.jpg" /></div>
+                <div class="image"><img src="uploads/bg/'.$_SESSION['filtred_blogs_by_categories'][$i]['bg'].'" /></div>
                 <div class="content">
                   <div class="type">'.$_SESSION['filtred_blogs_by_categories'][$i]['category'].'</div>
                   <div class="title">'.$_SESSION['filtred_blogs_by_categories'][$i]['title'].'</div>
