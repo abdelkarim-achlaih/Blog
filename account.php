@@ -10,7 +10,13 @@ error('blog-settings', 1);
     <div class="info">
       <div class="img"><img 
       <?php 
-        if($_SESSION['gender'] == 1) {
+        if(isset($_SESSION['avatar'])) {
+          echo '
+          src="uploads/avatar/'.$_SESSION['avatar'].'"
+          ';
+        }
+        else {
+          if($_SESSION['gender'] == 1) {
           echo '
           src="images/avatar-man.png"
           ';
@@ -19,6 +25,7 @@ error('blog-settings', 1);
           echo '
           src="images/avatar-woman.png"
           ';
+        }
         }
       ?>
       alt="#" /></div>
@@ -63,10 +70,10 @@ error('blog-settings', 1);
                     echo '
                       <div class="blog">
                         <div class="blog-image">
-                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                          <img src="uploads/bg/'.$blogs[$i]['bg'].'" alt="" />
                         </div>
                         <div class="blog-info">
-                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                          <div class="title"><a href="blog.php?blog_id='.$blogs[$i]['id'].'">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
                           <div class="edit">
@@ -95,11 +102,11 @@ error('blog-settings', 1);
                     echo '
                       <div class="blog">
                         <div class="blog-image">
-                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                          <img src="uploads/bg/'.$blogs[$i]['bg'].'" alt="" />
                         </div>
                         <div class="blog-info">
                           <div class="pending"><i class="fas fa-hourglass-half"></i>Pending</div>
-                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                          <div class="title"><a href="blog.php?blog_id='.$blogs[$i]['id'].'">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
                           <div class="edit">
@@ -127,10 +134,10 @@ error('blog-settings', 1);
                     echo '
                       <div class="blog">
                         <div class="blog-image">
-                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                          <img src="uploads/bg/'.$blogs[$i]['bg'].'" alt="" />
                         </div>
                         <div class="blog-info">
-                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                          <div class="title"><a href="blog.php?blog_id='.$blogs[$i]['id'].'">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
                           <div class="edit">
@@ -176,11 +183,11 @@ error('blog-settings', 1);
                     echo '
                       <div class="blog">
                         <div class="blog-image">
-                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                          <img src="uploads/bg/'.$blogs[$i]['bg'].'" alt="" />
                         </div>
                         <div class="blog-info">
                           <div class="pending"><i class="fas fa-hourglass-half"></i>Pending</div>
-                          <div class="title"><a href="#">'.$blogs[$i]['title'].'</a></div>
+                          <div class="title"><a href="blog.php?blog_id='.$blogs[$i]['id'].'">'.$blogs[$i]['title'].'</a></div>
                           <div class="type">'.$blogs[$i]['category'].'</div>
                           <div class="date"><i class="far fa-clock"></i>'.edit_date($blogs[$i]['creation_date']).'</div>
                           <div class="edit">

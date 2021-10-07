@@ -270,7 +270,7 @@ elseif ($option == 'blog-update') {
       $bg = upload_file ($_FILES['bg'], 'bg');
       if(isset($_SESSION['message_error'])) {
         echo $_SESSION['message_error'];
-        header("location: settings.php");
+        header("location: blog-settings.php");
         exit;
       }
       $blog['bg'] = $bg;
