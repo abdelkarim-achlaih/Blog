@@ -262,6 +262,17 @@ elseif ($option == 'blog-update') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     require('functions.php');
     $_POST = remove_script($_POST);
+    $blog['avatar'] = $_SESSION['edited_blog_bg'];
+    if(isset($_FILES['bg']) ) {
+      require_once('functions.php');
+      $bg = upload_file ($_FILES['bg'], 'bg');
+      if(isset($_SESSION['message_error'])) {
+        echo $_SESSION['message_error'];
+        header("location: settings.php");
+        exit;
+      }
+      $blog['bg'] = $bg;
+    }
     $blog['id'] = $_SESSION['edited_blog_id'];
     $blog['title'] = $_POST['title'];
     $blog['content'] = $_POST['content'];

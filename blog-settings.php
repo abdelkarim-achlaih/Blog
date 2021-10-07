@@ -7,6 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(blog_exists($_GET['blog'])) {
       $blog = get_all_types_of_blog($_GET['blog']);
       $_SESSION['edited_blog_id'] = $blog['id'];
+      $_SESSION['edited_blog_bg'] = $blog['bg'];
       if($blog['author'] !== $_SESSION['id']) {
         $error[] = 1;
       }
