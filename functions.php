@@ -124,11 +124,11 @@ function error ($source=NULL, $type=NULL) {
   }
 }
 function upload_file ($file, $type) {
-  if($type = 'avatar'){
+  if($type === 'avatar'){
     $dir = 'avatar';
     $size = 200000;
   }
-  if($type = 'bg') {
+  if($type === 'bg') {
     $dir = 'bg';
     $size = 500000;
   }

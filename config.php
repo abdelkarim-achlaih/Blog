@@ -150,7 +150,18 @@ elseif ($option == 'update') {
           exit;
         }
       }
-      require('functions.php');
+      $user['avatar'] = $_SESSION['avatar'];
+      if(isset($_FILES['avatar']) ) {
+        require_once('functions.php');
+        $avatar = upload_file ($_FILES['avatar'], 'avatar');
+        if(isset($_SESSION['message_error'])) {
+          echo $_SESSION['message_error'];
+          header("location: settings.php");
+          exit;
+        }
+        $user['avatar'] = $avatar;
+      }
+      require_once('functions.php');
       $_POST = remove_script($_POST);
       $user['id'] = $_SESSION['id'];
       $user['first_name'] = $_POST['first_name'];
@@ -168,6 +179,7 @@ elseif ($option == 'update') {
       $_SESSION['email'] = $user['email'];
       $_SESSION['password'] = $user['password'];
       $_SESSION['gender'] = $user['gender'];
+      $_SESSION['avatar'] = $user['avatar'];
       $_SESSION['message_success'] = 'Your informations have been updated seccessfuly';
       header("location: settings.php");
     }

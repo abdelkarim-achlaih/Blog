@@ -106,10 +106,10 @@ function get_user_infos_from_id($user_id) {
 }
 function update_user_info($user) {
   require('dbconnect.php');
-  $query = "UPDATE users SET first_name=?, last_name=?, password=?, category=?, gender=? WHERE id=?";
+  $query = "UPDATE users SET first_name=?, last_name=?, password=?, category=?, gender=?, avatar=? WHERE id=?";
   $reponse = $pdo -> prepare($query);
   $reponse -> execute(array(
-    $user['first_name'], $user['last_name'], $user['password'], $user['category'], $user['gender'], $user['id']
+    $user['first_name'], $user['last_name'], $user['password'], $user['category'], $user['gender'],$user['avatar'], $user['id']
   ));
 }
 
