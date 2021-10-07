@@ -1,14 +1,13 @@
 <?php
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     require('functions.php');
-    $errors = upload_file ($_FILES['avatar'], 'bg');
-    if(empty($errors)) {
+    upload_file ($_FILES['avatar'], 'bg');
+    if(! isset($_SESSION['message_error'])) {
       header('location: index.php');
     }
     else {
-      foreach($errors as $error):
-        echo $error;
-      endforeach;
+      echo $_SESSION['message_error'];
+      unset($_SESSION['message_error']);
     }
   }
 ?>

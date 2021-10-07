@@ -12,6 +12,12 @@ if ($option == 'sign') {
       if(strlen($_POST['password']) >= 8) {
         require('functions.php');
         $_POST = remove_script($_POST);
+        $avatar = upload_file ($_FILES['avatar'], 'avatar');
+        if(isset($_SESSION['message_error'])) {
+          echo $_SESSION['message_error'];
+          header("location: sign.php");
+          exit;
+        }
         $user = array(
           'first_name' => $_POST['first_name'],
           'last_name' => $_POST['last_name'],
@@ -21,7 +27,8 @@ if ($option == 'sign') {
           'category' => $_POST['category'],
           'type' => 'user',
           'sign_in_date' => date('Y-m-d H:i:s', time()),
-          'gender' => $_POST['gender']
+          'gender' => $_POST['gender'],
+          'avatar' => $avatar
         );
         require_once('users.php');
         if(! user_exists_for_sign($user)) {
@@ -69,6 +76,7 @@ elseif ($option == 'log') {
         $_SESSION['email'] = $user['email'];
         $_SESSION['password'] = $user['password'];
         $_SESSION['gender'] = $user['gender'];
+        $_SESSION['avatar'] = $user['avatar'];
         $_SESSION['message_index'] = "Welcome ".$user['first_name'].' ✌';
         header("location: index.php");
       }

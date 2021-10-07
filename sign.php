@@ -74,6 +74,7 @@ if(isset($_GET['message'])) {
           name="avatar" 
           id="avatar" 
           class="upload"
+          required
         />
         <div class="checkbox-container">
           <div class="checkbox">

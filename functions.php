@@ -150,7 +150,11 @@ function upload_file ($file, $type) {
     $tmp = rand(0, 100000000000);
     $new_name = $tmp.'.'.$extension;
     move_uploaded_file($file['tmp_name'], __DIR__.'\uploads\\'.$dir.'\\'.$new_name);
+    return $new_name;
   else:
-    return $errors;
+    $_SESSION['message_error'] = '';
+    foreach($errors as $error):
+      $_SESSION['message_error'] .= $error . '<br>';
+    endforeach;
   endif;
 }

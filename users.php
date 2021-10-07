@@ -2,8 +2,8 @@
 function sign_up ($user) {
   require('dbconnect.php');
   $query = 
-  "INSERT INTO users (first_name, last_name, username, email, password, category, type, sign_in_date, gender)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  "INSERT INTO users (first_name, last_name, username, email, password, category, type, sign_in_date, gender, avatar)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
   $req = $pdo -> prepare($query);
   $req -> execute(
     array(
@@ -16,6 +16,7 @@ function sign_up ($user) {
       $user['type'],
       $user['sign_in_date'],
       $user['gender'],
+      $user['avatar']
     )
   );
 }
@@ -80,6 +81,7 @@ function get_user_infos($user) {
   $user['type'] = $data['type'];
   $user['sign_in_date'] = $data['sign_in_date'];
   $user['gender'] = $data['gender'];
+  $user['avatar'] = $data['avatar'];
   return $user;
 }
 function get_user_infos_from_id($user_id) {
@@ -99,6 +101,7 @@ function get_user_infos_from_id($user_id) {
   $user['type'] = $data['type'];
   $user['sign_in_date'] = $data['sign_in_date'];
   $user['gender'] = $data['gender'];
+  $user['avatar'] = $data['avatar'];
   return $user;
 }
 function update_user_info($user) {
