@@ -32,6 +32,7 @@ function get_blog($id) {
   $blog['content'] = $data['content'];
   $blog['pending'] = $data['pending'];
   $blog['views'] = $data['views'];
+  $blog['bg'] = $data['bg'];
   return $blog;
 }
 function get_all_types_of_blog($id) {
@@ -67,6 +68,7 @@ function get_all_types_of_blog($id) {
   $blog['content'] = $data['content'];
   $blog['pending'] = $data['pending'];
   $blog['views'] = $data['views'];
+  $blog['bg'] = $data['bg'];
   return $blog;
 }
 function get_user_blogs($user) {
@@ -102,6 +104,7 @@ function get_user_blogs($user) {
     $blog[$i]['creation_date'] = $data['creation_date'];
     $blog[$i]['content'] = $data['content'];
     $blog[$i]['pending'] = $data['pending'];
+    $blog[$i]['bg'] = $data['bg'];
     $i = $i + 1;
   }
   if(isset($blog)) {
@@ -138,8 +141,8 @@ function number_of_user_pending_blogs($user) {
 function blog_add ($blog) {
   require('dbconnect.php');
   $query = 
-  "INSERT INTO blogs (title, content, category, pending, author, creation_date)
-  VALUES (?, ?, ?, ?, ?, ?)";
+  "INSERT INTO blogs (title, content, category, pending, author, creation_date, bg)
+  VALUES (?, ?, ?, ?, ?, ?, ?)";
   $reponse = $pdo -> prepare($query);
   $reponse -> execute(
     array(
@@ -148,7 +151,8 @@ function blog_add ($blog) {
       $blog['category'],
       $blog['pending'],
       $blog['author'],
-      $blog['creation_date']
+      $blog['creation_date'],
+      $blog['bg']
     )
   );
 }
@@ -201,6 +205,7 @@ function get_blogs($query) {
     $blog[$i]['content'] = $data['content'];
     $blog[$i]['pending'] = $data['pending'];
     $blog[$i]['views'] = $data['views'];
+    $blog[$i]['bg'] = $data['bg'];
     $i = $i + 1;
   }
   if(isset($blog)) {
@@ -246,10 +251,10 @@ function blog_exists ($id) {
 }
 function update_blog_info ($blog) {
   require('dbconnect.php');
-  $query = "UPDATE blogs SET title=?, content=?, category=? WHERE id=?";
+  $query = "UPDATE blogs SET title=?, content=?, category=?, bg=? WHERE id=?";
   $reponse = $pdo -> prepare($query);
   $reponse -> execute(array(
-    $blog['title'], $blog['content'], $blog['category'], $blog['id']
+    $blog['title'], $blog['content'], $blog['category'], $blog['bg'], $blog['id']
   ));
 }
 function delete_blog ($blog) {

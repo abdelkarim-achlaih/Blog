@@ -132,6 +132,7 @@ if(isset($_SESSION['message_source'])) {
           name="bg" 
           id="bg" 
           class="upload"
+          required
         />
         <input 
           type="submit" 

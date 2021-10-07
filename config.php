@@ -223,13 +223,20 @@ elseif ($option == 'blog-add') {
       if(strlen($_POST['content']) > 50) {
         require('functions.php');
         $_POST = remove_script($_POST);
+        $bg = upload_file ($_FILES['bg'], 'bg');
+        if(isset($_SESSION['message_error'])) {
+          echo $_SESSION['message_error'];
+          header("location: post.php");
+          exit;
+        }
         $blog = array(
           'title' => $_POST['title'],
           'content' => $_POST['content'],
           'category' => $_POST['category'],
           'pending' => 1,
           'author' => $_SESSION['id'],
-          'creation_date' => date('Y-m-d H:i:s', time())
+          'creation_date' => date('Y-m-d H:i:s', time()),
+          'bg' => $bg
         );
         require_once('blogs.php');
         blog_add($blog);
