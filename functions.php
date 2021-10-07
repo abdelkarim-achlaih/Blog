@@ -123,6 +123,38 @@ function error ($source=NULL, $type=NULL) {
     }
   }
 }
+function resize_image ($img, $type){//$img = basename.extension
+  if($type === 'avatar'){
+    $dir = 'avatar';
+    $new_width = 350;
+    $new_height = 350;
+  }
+  if($type === 'bg') {
+    $dir = 'bg';
+    $new_width = 640;
+    $new_height = 480;
+  }
+  $dir = __DIR__.'\uploads\\'.$dir.'\\';
+  $path = $dir.$img;
+  $tmp = explode('.', $img);
+  $extension = strtolower(end($tmp));$tmp = explode('.', $img);
+  $extension = strtolower(end($tmp));
+  if($extension == 'jpg' || $extension == 'jpeg') {
+    $image = imagecreatefromjpeg($path);
+  }
+  elseif($extension == 'png') {
+    $image = imagecreatefrompng($path);
+  }
+  elseif($extension == 'gif') {
+    $image = imagecreatefromgif($path);
+  }
+  $new_image = imagecreatetruecolor($new_width, $new_height);
+  $image_width = imagesx($image);
+  $image_height = imagesy($image);
+  imagecopyresampled($new_image, $image, 0, 0, 0, 0, $new_width, $new_height, $image_width, $image_height);
+  unlink($path);
+  imagejpeg($new_image, $dir.'\\'.$img);
+}
 function upload_file ($file, $type) {
   if($type === 'avatar'){
     $dir = 'avatar';
@@ -150,6 +182,7 @@ function upload_file ($file, $type) {
     $tmp = rand(0, 100000000000);
     $new_name = $tmp.'.'.$extension;
     move_uploaded_file($file['tmp_name'], __DIR__.'\uploads\\'.$dir.'\\'.$new_name);
+    resize_image($new_name, $type);
     return $new_name;
   else:
     $_SESSION['message_error'] = '';

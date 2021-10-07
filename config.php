@@ -153,6 +153,7 @@ elseif ($option == 'update') {
       $user['avatar'] = $_SESSION['avatar'];
       if(isset($_FILES['avatar']) ) {
         require_once('functions.php');
+        unlink('uploads\\avatar\\'.$_SESSION['avatar']);
         $avatar = upload_file ($_FILES['avatar'], 'avatar');
         if(isset($_SESSION['message_error'])) {
           echo $_SESSION['message_error'];
@@ -262,9 +263,10 @@ elseif ($option == 'blog-update') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     require('functions.php');
     $_POST = remove_script($_POST);
-    $blog['avatar'] = $_SESSION['edited_blog_bg'];
+    $blog['bg'] = $_SESSION['edited_blog_bg'];
     if(isset($_FILES['bg']) ) {
       require_once('functions.php');
+      unlink('uploads\\bg\\'.$_SESSION['edited_blog_bg']);
       $bg = upload_file ($_FILES['bg'], 'bg');
       if(isset($_SESSION['message_error'])) {
         echo $_SESSION['message_error'];
