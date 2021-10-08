@@ -6,9 +6,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     require('users.php');
     if(user_exists($_GET['user'])) {
       $author = get_user_infos_from_id($_GET['user']);
-      if($_SESSION['id'] == $author['id']) {
-        header('location: account.php');
-        exit;
+      if(isset($_SESSION['id'])) {
+        if($_SESSION['id'] == $author['id']) {
+          header('location: account.php');
+          exit;
+        }
       }
     }
     else {
@@ -37,16 +39,9 @@ error('blog-settings', 1);
         <div class="info">
           <div class="img"><img 
           <?php 
-            if($author['gender'] == 1) {
-              echo '
-              src="images/avatar-man.png"
-              ';
-            }
-            if($author['gender'] == 2) {
-              echo '
-              src="images/avatar-woman.png"
-              ';
-            }
+            echo '
+            src="uploads/avatar/'.$author['avatar'].'"
+            ';
           ?>
           alt="#" /></div>
           <p class="full-name"><?php echo ucfirst($author['first_name']).' '.ucfirst($author['last_name']); ?></p>
@@ -92,7 +87,7 @@ error('blog-settings', 1);
                     echo '
                       <div class="blog">
                         <div class="blog-image">
-                          <img src="images/'.$blogs[$i]['category'].'.jpg" alt="" />
+                          <img src="uploads/bg/'.$blogs[$i]['bg'].'"" alt="" />
                         </div>
                         <div class="blog-info">
                           <div class="title"><a href="blog.php?blog_id='.$blogs[$i]['id'].'">'.$blogs[$i]['title'].'</a></div>
