@@ -251,10 +251,10 @@ function blog_exists ($id) {
 }
 function update_blog_info ($blog) {
   require('dbconnect.php');
-  $query = "UPDATE blogs SET title=?, content=?, category=?, bg=? WHERE id=?";
+  $query = "UPDATE blogs SET title=?, content=?, category=?, bg=?, pending=? WHERE id=?";
   $reponse = $pdo -> prepare($query);
   $reponse -> execute(array(
-    $blog['title'], $blog['content'], $blog['category'], $blog['bg'], $blog['id']
+    $blog['title'], $blog['content'], $blog['category'], $blog['bg'], $blog['pending'], $blog['id']
   ));
 }
 function delete_blog ($blog) {

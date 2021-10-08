@@ -79,7 +79,7 @@ error('config.php', 4);
       if (isset($_SESSION['filtred_blogs'])):
         $blogs = $_SESSION['filtred_blogs'];
       else:
-        $query ='SELECT * FROM blogs ORDER BY creation_date ASC LIMIT 9';
+        $query ='SELECT * FROM blogs WHERE pending=0 ORDER BY creation_date ASC LIMIT 9';
         require('blogs.php');
         $blogs = get_blogs($query);
       endif;

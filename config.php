@@ -151,9 +151,8 @@ elseif ($option == 'update') {
         }
       }
       $user['avatar'] = $_SESSION['avatar'];
-      if(isset($_FILES['avatar']) ) {
+      if(isset($_FILES['avatar']) && file_exists($_FILES['avatar']['tmp_name'])){
         require_once('functions.php');
-        unlink('uploads\\avatar\\'.$_SESSION['avatar']);
         $avatar = upload_file ($_FILES['avatar'], 'avatar');
         if(isset($_SESSION['message_error'])) {
           echo $_SESSION['message_error'];
@@ -191,7 +190,7 @@ elseif ($option == 'update') {
   }
   else {
     $_SESSION['message_error'] = "You are not permited to see this page this way: informations are not sent properly";
-    header("location: settings.php");
+    header("location: error.php");
   }
 }
 elseif ($option == 'delete') {
@@ -264,9 +263,8 @@ elseif ($option == 'blog-update') {
     require('functions.php');
     $_POST = remove_script($_POST);
     $blog['bg'] = $_SESSION['edited_blog_bg'];
-    if(isset($_FILES['bg']) ) {
+    if(isset($_FILES['bg']) && file_exists($_FILES['bg']['tmp_name'])) {
       require_once('functions.php');
-      unlink('uploads\\bg\\'.$_SESSION['edited_blog_bg']);
       $bg = upload_file ($_FILES['bg'], 'bg');
       if(isset($_SESSION['message_error'])) {
         echo $_SESSION['message_error'];
@@ -279,9 +277,10 @@ elseif ($option == 'blog-update') {
     $blog['title'] = $_POST['title'];
     $blog['content'] = $_POST['content'];
     $blog['category'] = $_POST['category'];
+    $blog['pending'] = 1;
     require_once('blogs.php');
     update_blog_info($blog);
-    $_SESSION['message_success'] = 'Your blog have been updated seccessfuly';
+    $_SESSION['message_success'] = 'Your blog have been updated seccessfuly, wait a bit again until admins check you modifications and approve them';
     header("location: blog-settings.php?blog=".$_SESSION['edited_blog_id']);
   }
   else {
