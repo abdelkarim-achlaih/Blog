@@ -158,12 +158,11 @@ function resize_image ($img, $type){//$img = basename.extension
 function upload_file ($file, $type) {
   if($type === 'avatar'){
     $dir = 'avatar';
-    $size = 200000;
   }
   if($type === 'bg') {
     $dir = 'bg';
-    $size = 500000;
   }
+  $size = 500000;
   $errors = array();
   if($file['error']==4):
     $errors[] = '<div> You have not uploded any file !! </div>';

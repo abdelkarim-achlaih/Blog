@@ -50,7 +50,9 @@ echo '
           '.$blog['title'].'
         </div>
         <div class="author">
-          <i class="fas fa-pencil-alt"></i>'.ucfirst($user['first_name']).' '.ucfirst($user['last_name']).'
+          <a href="accounts.php?user='.$user['id'].'">
+            <i class="fas fa-pencil-alt"></i>'.ucfirst($user['first_name']).' '.ucfirst($user['last_name']).'
+          </a>
         </div>
         <div class="num-of-comments">
           <i class="fas fa-comments"></i>'.num_of_comments_blog($blog['id']).' Comment(s)
@@ -70,7 +72,11 @@ echo '
       </div>
       <div class="tags">
         Tags:
-        <div class="tag"><a href="#">'.ucfirst($blog['category']).'</a></div>
+        ';
+        require_once('categories.php');
+        $cat = get_category_infos_from_name($blog['category']);
+        echo '
+        <div class="tag"><a href="config.php?option=filter_category&category='.$cat['id'].'">'.ucfirst($cat['name']).'</a></div>
       </div>
       <div class="nav-buttons">
         ';
@@ -222,7 +228,7 @@ if ($k == 0) {
       <div class="aside-blogs">
         <div class="aside-title">Categories</div>
         <ul>';
-        require('categories.php');
+        require_once('categories.php');
         $number_of_categories = number_of_categories();
         $numbers_of_categories_blogs = number_of_categories_blogs($number_of_categories);
         $m = 1;

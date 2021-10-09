@@ -75,6 +75,7 @@ elseif ($option == 'log') {
         $_SESSION['username'] = $user['username'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['password'] = $user['password'];
+        $_SESSION['category'] = $user['category'];
         $_SESSION['gender'] = $user['gender'];
         $_SESSION['avatar'] = $user['avatar'];
         $_SESSION['message_index'] = "Welcome ".$user['first_name'].' ✌';

@@ -20,6 +20,12 @@
   color: white;
   background-color: var(--color2);
 }
+::-webkit-scrollbar {
+  background-color: var(--color1);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color2);
+}
 input:-webkit-autofill::selection {
   background-color: var(--color2) !important;
   color: white !important;
@@ -126,6 +132,12 @@ body {
   border-radius: 10px;
   font-size: 15px;
 }
+@media (max-width: 991px) {
+  .soon:hover::before,
+  .soon:hover::after {
+    left: 0;
+  }
+}
 /* End Global Components */
 
 /* Start Header */
@@ -142,7 +154,7 @@ header .container .logo {
   flex-grow: 0.5;
 }
 header .container .logo a img {
-  width: 80px;
+  width: 60px;
 }
 header .container nav {
   flex-grow: 0.6;
@@ -554,7 +566,7 @@ footer .container {
   justify-content: space-around;
 }
 footer .container .logo a img {
-  width: 100px;
+  width: 70px;
 }
 footer .container .more h3,
 footer .container .support h3 {
@@ -678,6 +690,9 @@ footer .container .support a:hover {
 .data .container .form.blog-add form textarea {
   border: none;
 }
+.data .container .form.user-update form textarea {
+  padding-right: 20px;
+}
 .data .container .form form input:not(input[type="radio"]):disabled,
 .data .container .form form textarea:disabled {
   cursor: not-allowed;
@@ -689,9 +704,11 @@ footer .container .support a:hover {
 }
 .data .container .form form input:not(input[type="radio"]):focus,
 .data .container .form form textarea:focus {
-  transform: translateX(20px);
   border-bottom: var(--color2) 1px solid;
+}
+.data .container .form form input:not(input[type="radio"]):focus {
   width: calc(100% - 20px);
+  transform: translateX(20px);
 }
 .data .container .form.user-delete form input:not(input[type="radio"]):focus {
   border-bottom: var(--color3) 1px solid;
@@ -784,6 +801,9 @@ body .data .container .form form input[type="submit"]:focus {
   word-spacing: 1px;
   color: var(--color1);
   font-size: 12px;
+}
+.data .container .form form .checkbox-container .checkbox label {
+  margin-left: 10px;
 }
 .data .container .form form .checkbox-container .checkbox .checkbox-title {
   color: black;
@@ -1158,10 +1178,10 @@ body .data .container .form form input[type="submit"]:focus {
 }
 .blog-page .container article .image {
   position: relative;
+  margin-bottom: 90px;
 }
 .blog-page .container article .image > img {
   width: 100%;
-  height: 400px;
   position: relative;
 }
 .blog-page .container article .image::after {
@@ -1176,8 +1196,8 @@ body .data .container .form form input[type="submit"]:focus {
   z-index: 1;
 }
 .blog-page .container article .image .author-image {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -1202,7 +1222,7 @@ body .data .container .form form input[type="submit"]:focus {
 .blog-page .container article .info {
   margin-top: 60px;
   line-height: 1.8;
-  font-size: 17px;
+  font-size: 14px;
   display: grid;
 }
 .blog-page .container article .info i {
@@ -1314,6 +1334,7 @@ body .data .container .form form input[type="submit"]:focus {
 }
 .blog-page .container article .comments .comment .author-img img {
   width: 60px;
+  border-radius: 50%;
 }
 .blog-page .container article .comments .comment .comment-info {
   width: 100%;
@@ -1516,6 +1537,37 @@ body .data .container .form form input[type="submit"]:focus {
     .a-blog-info
     .a-blog-Content {
     font-size: 11px;
+  }
+  .blog-page .container aside .aside-blogs {
+    text-align: center;
+  }
+  .blog-page .container aside .aside-blogs .a-blog {
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 30px;
+    border: 1px solid var(--color2);
+    border-radius: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
+  }
+  .blog-page .container aside .aside-blogs .a-blog .a-blog-image {
+    width: 100%;
+    margin: auto;
+  }
+  .blog-page .container aside .aside-blogs .a-blog .a-blog-image a img {
+    width: 100%;
+  }
+  .blog-page .container aside .aside-blogs .a-blog .a-blog-image img:hover {
+    transform: unset;
+    width: 100%;
+  }
+  .blog-page .container aside .aside-blogs .a-blog .a-blog-info .a-blog-author .a-blog-type {
+    position: relative;
+    margin-top: 10px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 @media (max-width: 992px) {

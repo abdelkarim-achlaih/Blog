@@ -106,60 +106,30 @@ if(isset($_SESSION['message_source'])) {
             <div class="checkbox-title">
               Category you are intersted in
             </div>
-              <input 
+            <?php 
+              require('categories.php');
+              $num = number_of_categories();
+              for($i=0; $i<$num; $i++) {
+                $category = get_category_infos($i+1);
+                echo '<input 
                 type="radio"
                 name="category"
-                value="1"
-                id="technology"
-                required
-              />
-              <label for="technology">technology</label>
-              <br><br>
-              <input
-                type="radio"
-                name="category"
-                value="2"
-                id="self-development"
-                required
-              />
-              <label for="self-development">self-development</label>
-              <br><br>
-              <input
-                type="radio"
-                name="category"
-                value="3"
-                id="sport"
-                required
-              />
-              <label for="sport">sport</label>
-              <br><br>
-              <input
-                type="radio"
-                name="category"
-                value="4"
-                id="nature"
-                required
-              />
-              <label for="nature">nature</label>
-              <br><br>
-              <input
-                type="radio"
-                name="category"
-                value="5"
-                id="work"
-                required
-              />
-              <label for="work">work</label>
-              <br><br>
-              <input
-                type="radio"
-                name="category"
-                value="6"
-                id="school"
-                required
-              />
-              <label for="school">school</label>
-          </div>
+                required';
+                echo ' value="'.($i+1).'"
+                id="'.  $category['name'].'"';
+                if($category['id']==$_SESSION['category']) {
+                  echo ' checked';
+                }
+                echo '/>';
+                echo '<label for="'.$category['name'].'">'.$category['name'].'</label>';
+                if($i+1 <> $num) {
+                  echo '<br><br>';
+                }
+                else {
+                  echo '</div>';
+                }
+              }
+            ?>
           <div class="checkbox">
             <div class="checkbox-title">
               Modify your gender
@@ -169,18 +139,26 @@ if(isset($_SESSION['message_source'])) {
                 name="gender"
                 value="1"
                 id="male"
+                <?php 
+                  if($_SESSION['gender']==1) {
+                    echo ' checked';
+                  }
+                ?>
                 required
-              />
-              <label for="male">male</label>
+              /><label for="male">male</label>
               <br><br>
               <input
                 type="radio"
                 name="gender"
                 value="2"
                 id="female"
+                <?php 
+                  if($_SESSION['gender']==2) {
+                    echo ' checked';
+                  }
+                ?>
                 required
-              />
-              <label for="female">female</label>
+              /><label for="female">female</label>
           </div>
         </div>
 

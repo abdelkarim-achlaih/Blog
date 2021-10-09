@@ -18,3 +18,15 @@ function get_category_infos($category_id) {
   $category['name'] = $data['name'];
   return $category;
 }
+function get_category_infos_from_name($category_name) {
+  require('dbconnect.php');
+  $query = "SELECT * FROM categories WHERE name = ?";
+  $reponse = $pdo -> prepare($query);
+  $reponse -> execute(array(
+    $category_name
+  ));
+  $data = $reponse -> fetch();
+  $category['id'] = $data['id'];
+  $category['name'] = $data['name'];
+  return $category;
+}
