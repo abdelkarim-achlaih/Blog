@@ -6,15 +6,32 @@ if(isset($_GET['option'])) {
   $option = htmlspecialchars($_GET['option']);
 }
 $_SESSION['message_source'] = basename(__FILE__);
+
 if ($option == 'sign') {
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if($_POST['password'] == $_POST['re_password']) {
       if(strlen($_POST['password']) >= 8) {
         require('functions.php');
         $_POST = remove_script($_POST);
-        $avatar = upload_file ($_FILES['avatar'], 'avatar');
-        if(isset($_SESSION['message_error'])) {
-          echo $_SESSION['message_error'];
+        if(isset($_FILES['avatar'])){
+          if(file_exists($_FILES['avatar']['tmp_name'])) {
+            $avatar = upload_file ($_FILES['avatar'], 'avatar');
+            if(isset($_SESSION['message_error'])) {
+              header("location: sign.php");
+              exit;
+            }
+            else {
+              $user['avatar'] = $avatar;
+            }
+          }
+          else {
+            $_SESSION['message_error'] = 'The image size is more than the value allowed';
+            header("location: sign.php");
+            exit;
+          }
+        }
+        else {
+          $_SESSION['message_error'] = 'You have not uploaded any background for your blog';
           header("location: sign.php");
           exit;
         }
@@ -27,8 +44,7 @@ if ($option == 'sign') {
           'category' => $_POST['category'],
           'type' => 'user',
           'sign_in_date' => date('Y-m-d H:i:s', time()),
-          'gender' => $_POST['gender'],
-          'avatar' => $avatar
+          'gender' => $_POST['gender']
         );
         require_once('users.php');
         if(! user_exists_for_sign($user)) {
@@ -152,15 +168,23 @@ elseif ($option == 'update') {
         }
       }
       $user['avatar'] = $_SESSION['avatar'];
-      if(isset($_FILES['avatar']) && file_exists($_FILES['avatar']['tmp_name'])){
-        require_once('functions.php');
-        $avatar = upload_file ($_FILES['avatar'], 'avatar');
-        if(isset($_SESSION['message_error'])) {
-          echo $_SESSION['message_error'];
+      if(isset($_FILES['avatar'])){
+        if(file_exists($_FILES['avatar']['tmp_name'])) {
+          require_once('functions.php');
+          $avatar = upload_file ($_FILES['avatar'], 'avatar');
+          if(isset($_SESSION['message_error'])) {
+            header("location: settings.php");
+            exit;
+          }
+          else {
+            $user['avatar'] = $avatar;
+          }
+        }
+        else {
+          $_SESSION['message_error'] = 'The image size is more than the value allowed';
           header("location: settings.php");
           exit;
         }
-        $user['avatar'] = $avatar;
       }
       require_once('functions.php');
       $_POST = remove_script($_POST);
@@ -183,10 +207,12 @@ elseif ($option == 'update') {
       $_SESSION['avatar'] = $user['avatar'];
       $_SESSION['message_success'] = 'Your informations have been updated seccessfuly';
       header("location: settings.php");
+      exit;
     }
     else {
-        $_SESSION['message_error'] = "Wrong old password";
-        header("location: settings.php");
+      $_SESSION['message_error'] = "Wrong old password";
+      header("location: settings.php");
+      exit;
     }
   }
   else {
@@ -224,9 +250,25 @@ elseif ($option == 'blog-add') {
       if(strlen($_POST['content']) > 50) {
         require('functions.php');
         $_POST = remove_script($_POST);
-        $bg = upload_file ($_FILES['bg'], 'bg');
-        if(isset($_SESSION['message_error'])) {
-          echo $_SESSION['message_error'];
+        if(isset($_FILES['bg'])){
+          if(file_exists($_FILES['bg']['tmp_name'])) {
+            $bg = upload_file ($_FILES['bg'], 'bg');
+            if(isset($_SESSION['message_error'])) {
+              header("location: post.php");
+              exit;
+            }
+            else {
+              $blog['bg'] = $bg;
+            }
+          }
+          else {
+            $_SESSION['message_error'] = 'The image size is more than the value allowed';
+            header("location: post.php");
+            exit;
+          }
+        }
+        else {
+          $_SESSION['message_error'] = 'You have not uploaded any background for your blog';
           header("location: post.php");
           exit;
         }
@@ -236,8 +278,7 @@ elseif ($option == 'blog-add') {
           'category' => $_POST['category'],
           'pending' => 1,
           'author' => $_SESSION['id'],
-          'creation_date' => date('Y-m-d H:i:s', time()),
-          'bg' => $bg
+          'creation_date' => date('Y-m-d H:i:s', time())
         );
         require_once('blogs.php');
         blog_add($blog);
@@ -264,15 +305,23 @@ elseif ($option == 'blog-update') {
     require('functions.php');
     $_POST = remove_script($_POST);
     $blog['bg'] = $_SESSION['edited_blog_bg'];
-    if(isset($_FILES['bg']) && file_exists($_FILES['bg']['tmp_name'])) {
-      require_once('functions.php');
-      $bg = upload_file ($_FILES['bg'], 'bg');
-      if(isset($_SESSION['message_error'])) {
-        echo $_SESSION['message_error'];
-        header("location: blog-settings.php");
+    if(isset($_FILES['bg'])){
+      if(file_exists($_FILES['bg']['tmp_name'])) {
+        require_once('functions.php');
+        $bg = upload_file ($_FILES['bg'], 'bg');
+        if(isset($_SESSION['message_error'])) {
+          header("location: blog-settings.php?blog=".$_SESSION['edited_blog_id']);
+          exit;
+        }
+        else {
+          $blog['bg'] = $bg;
+        }
+      }
+      else {
+        $_SESSION['message_error'] = 'The image size is more than the value allowed';
+        header("location: blog-settings.php?blog=".$_SESSION['edited_blog_id']);
         exit;
       }
-      $blog['bg'] = $bg;
     }
     $blog['id'] = $_SESSION['edited_blog_id'];
     $blog['title'] = $_POST['title'];

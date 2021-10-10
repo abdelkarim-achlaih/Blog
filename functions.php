@@ -126,15 +126,16 @@ function error ($source=NULL, $type=NULL) {
 function resize_image ($img, $type){//$img = basename.extension
   if($type === 'avatar'){
     $dir = 'avatar';
-    $new_width = 350;
-    $new_height = 350;
+    $new_width = 500;
+    $new_height = 500;
   }
   if($type === 'bg') {
     $dir = 'bg';
-    $new_width = 640;
-    $new_height = 480;
+    $new_width = 1280;
+    $new_height = 720;
   }
-  $dir = __DIR__.'\uploads\\'.$dir.'\\';
+  $now = realpath(getcwd());
+  $dir = $now.'/uploads/'.$dir.'/';
   $path = $dir.$img;
   $tmp = explode('.', $img);
   $extension = strtolower(end($tmp));$tmp = explode('.', $img);
@@ -153,7 +154,7 @@ function resize_image ($img, $type){//$img = basename.extension
   $image_height = imagesy($image);
   imagecopyresampled($new_image, $image, 0, 0, 0, 0, $new_width, $new_height, $image_width, $image_height);
   unlink($path);
-  imagejpeg($new_image, $dir.'\\'.$img);
+  imagejpeg($new_image, $path);
 }
 function upload_file ($file, $type) {
   if($type === 'avatar'){
@@ -162,9 +163,9 @@ function upload_file ($file, $type) {
   if($type === 'bg') {
     $dir = 'bg';
   }
-  $size = 500000;
+  $size = 9999999;
   $errors = array();
-  if($file['error']==4):
+  if($file['error'] == 4):
     $errors[] = '<div> You have not uploded any file !! </div>';
   else:
     if($file['size'] > $size):
@@ -180,7 +181,8 @@ function upload_file ($file, $type) {
   if(empty($errors)):
     $tmp = rand(0, 100000000000);
     $new_name = $tmp.'.'.$extension;
-    move_uploaded_file($file['tmp_name'], __DIR__.'\uploads\\'.$dir.'\\'.$new_name);
+    $now = realpath(getcwd());
+    move_uploaded_file($file['tmp_name'], $now.'/uploads/'.$dir.'/'.$new_name);
     resize_image($new_name, $type);
     return $new_name;
   else:

@@ -1,17 +1,12 @@
 <?php
-  // if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  //   require('functions.php');
-  //   upload_file ($_FILES['avatar'], 'bg');
-  //   if(! isset($_SESSION['message_error'])) {
-  //     header('location: index.php');
-  //   }
-  //   else {
-  //     echo $_SESSION['message_error'];
-  //     unset($_SESSION['message_error']);
-  //   }
-  // }
-  require('functions.php');
-  resize_image('hh.png', 'avatar');
+  echo getcwd();
+  echo '<br>';
+  echo __DIR__;
+  echo '<br>';
+  echo realpath(getcwd());
+  // echo realpath(dirname(getcwd()));
+  // echo realpath(dirname(getcwd()));
+  // echo realpath(dirname(getcwd()));
 ?>
 
 <!-- <form action="" method="POST" enctype="multipart/form-data">
