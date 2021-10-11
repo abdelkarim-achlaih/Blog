@@ -17,8 +17,63 @@
     <link rel="icon" href="images/logo.png" />
   </head>
   <body>
-    <form action="" method="POST" enctype="multipart/form-data">
-      <input type="file" name="avatar" id="avatar" class="upload"/>
-    </form>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="index.php">
+            <img src="images/logo.png" alt="Home" />
+          </a>
+        </div>
+        <nav id="links">
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="post.php">Post</a></li>
+            <li><a href="#" class="soon">Feed</a></li>
+            <li class="menu-handle">
+              <a href="#">Categories</a>
+              <ul class="menu">
+                <li><a>School</a></li>
+                <li><a>Hello</a></li>
+                <li><a>Hello</a></li>
+                <li><a>Hello</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="soon">Services</a></li>
+            <li><a href="mailto:abdelkarima46@gmail.com">Contact</a></li>
+          </ul>
+        </nav>
+        <nav id="sign">
+          <ul>
+            <li>
+              <a href="log.php">Log in</a>
+            </li>
+            <li>
+              <a href="log.php">sign up for free</a>
+            </li>
+            <li class="menu-handle">
+              <a href="account.php">Abdelkarim</a>
+              <ul class="menu">
+                <li>
+                  <a href="account.php"><i class="fas fa-user"></i>Account</a>
+                </li>
+                <li>
+                  <a href="settings.php"><i class="fas fa-cog"></i>Settings</a>
+                </li>
+                <li>
+                  <a href="config.php?option=logout"
+                    ><i class="fas fa-sign-out-alt"></i>Log out</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="button">
+          <i class="fas fa-arrow-down" id="button"
+            ><span class="jsvar" id="jsvar"></span
+          ></i>
+        </div>
+      </div>
+    </header>
   </body>
 </html>

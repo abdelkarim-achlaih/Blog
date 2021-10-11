@@ -131,8 +131,8 @@ function resize_image ($img, $type){//$img = basename.extension
   }
   if($type === 'bg') {
     $dir = 'bg';
-    $new_width = 1280;
-    $new_height = 720;
+    $new_width = 640;
+    $new_height = 480;
   }
   $now = realpath(getcwd());
   $dir = $now.'/uploads/'.$dir.'/';

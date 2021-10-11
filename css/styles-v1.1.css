@@ -156,114 +156,122 @@ header .container .logo {
 header .container .logo a img {
   width: 60px;
 }
-header .container nav {
+
+
+/* ******************************************** */
+
+
+header .container nav:first-of-type:first-of-type {
   flex-grow: 0.6;
 }
-header .container nav ul {
+header .container nav:first-of-type > ul {
   display: flex;
   justify-content: space-evenly;
 }
-header .container nav ul li {
+header .container nav:first-of-type > ul > li {
   padding: 10px;
 }
-header .container nav ul li a {
+header .container nav:first-of-type > ul > li > a {
   color: var(--color1);
   transition-duration: var(--transitionDuration);
   font-weight: 600;
 }
-header .container nav ul li:hover {
+header .container nav:first-of-type > ul > li:hover {
   border-radius: 20px;
   background-color: var(--color1);
 }
-header .container nav ul li:hover a {
+header .container nav:first-of-type > ul > li:hover > a {
   color: white;
 }
-header .container .sign {
+
+
+/* ******************************************** */
+
+
+
+header .container nav:nth-of-type(2) {
   flex-grow: 0.15;
 }
-header .container .sign .links {
+header .container nav:nth-of-type(2) > ul {
   display: flex;
   justify-content: flex-end;
-  position: relative;
 }
-header .container .sign .links > li {
+header .container nav:nth-of-type(2) > ul > li {
   padding: 10px;
-}
-header .container .sign .links > li:last-child {
   margin-left: 20px;
-  position: relative;
-  color: white;
   font-weight: 600;
   text-transform: capitalize;
-}
-header .container .sign .links > li a {
-  color: white;
+  border-radius: 20px;
   transition-duration: var(--transitionDuration);
-  font-weight: 600;
-  text-transform: capitalize;
 }
-header .container .sign .links > .li-sign:last-child:hover > a {
-  color: var(--color2);
-}
-header .container .sign .links > .li-log:first-child a {
-  color: var(--color2);
-}
-header .container .sign .links > .li-log:hover {
+header .container nav:nth-of-type(2) > ul > li:hover {
   background-color: var(--color2);
-  border-radius: 20px;
 }
-header .container .sign .links > .li-log:hover a {
+header .container nav:nth-of-type(2) > ul > li > a {
+  color: var(--color2);
+  font-weight: 600;
+  transition-duration: var(--transitionDuration);
+}
+header .container nav:nth-of-type(2) > ul > li:hover > a {
   color: white;
 }
-header .container .sign .links > .li-sign,
-header .container .sign .links > .li {
+header .container nav:nth-of-type(2) > ul > li:last-of-type {
   background-color: var(--color2);
-  border-radius: 20px;
-  color: white;
-  font-weight: 600;
-  margin-left: 20px;
 }
-header .container .sign .links > .li-sign:hover,
-header .container .sign .links > .li:hover {
+header .container nav:nth-of-type(2) > ul > li:last-of-type:hover {
   background-color: white;
+}
+header .container nav:nth-of-type(2) > ul > li:last-of-type > a {
+  color: white;
+}
+header .container nav:nth-of-type(2) > ul > li:last-of-type:hover > a {
   color: var(--color2);
 }
-header .container .sign .links .toogle {
-  visibility: hidden;
+.menu-handle {
+  position: relative;
+}
+.menu-handle:hover .menu {
+  visibility: visible;
+  opacity: 1;
+}
+.menu {
   position: absolute;
-  top: 50px;
-  right: 0;
+  top: calc(100% + 10px);
+  left: 10px;
+  visibility: hidden;
   opacity: 0;
   transition: var(--transitionDuration);
   background-color: #eee;
+  display: flex;
+  flex-direction: column;
 }
-header .container .sign .links .toogle li {
+.menu > li {
   border-bottom: 1px solid var(--color2);
   padding: 10px 20px 10px 10px;
   text-align: left;
 }
-header .container .sign .links .toogle li a {
+.menu > li > a {
   transition: var(--transitionDuration);
   border-radius: 20px;
   color: black;
   font-weight: 400;
   padding-right: 20px;
+  display: flex;
+  cursor: pointer;
+  text-transform: capitalize;
+  white-space: nowrap;
 }
-header .container .sign .links .toogle li a i {
+.menu > li > a > i {
   margin-right: 10px;
 }
-header .container .sign .links .toogle li a:hover {
+.menu > li:hover > a{
   transform: translateX(20px);
   font-weight: 600;
-}
-header .container .sign .links:hover .toogle {
-  visibility: visible;
-  opacity: 1;
 }
 header .container .button {
   display: none;
 }
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   header .container {
     flex-direction: column;
   }
@@ -342,7 +350,7 @@ header .container .button {
     display: block;
     margin-top: 20px;
   }
-}
+} */
 .button i {
   color: var(--color2);
   font-size: 50px;

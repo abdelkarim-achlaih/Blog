@@ -25,44 +25,68 @@
             <img src="images/logo.png" alt="Home" />
           </a>
         </div>
-        <nav id='nav'>
+        <nav id="links">
           <ul>
-            <li><a href="#">About</a></li>
+            <li class="soon"><a href="#">About</a></li>
             <li><a href="post.php">Post</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Servics</a></li>
+            <li class="soon"><a href="#">Feed</a></li>
+            <li class="menu-handle">
+              <a href="#">Categories</a>
+              <ul class="menu">
+                <?php 
+                  require('categories.php');
+                  $number_of_categories = number_of_categories();
+                  $m = 1;
+                  while($m <= $number_of_categories) {
+                    $category = get_category_infos($m);
+                    echo '
+                      <li><a href="config.php?option=filter_category&category='.$category['id'].'">'.$category['name'].'</a></li>
+                    ';
+                    $m = $m + 1;
+                  }
+                ?>
+              </ul>
+            </li>
+            <li class="soon"><a href="#">Services</a></li>
+            <li><a href="mailto:abdelkarima46@gmail.com" target="_blank">Contact</a></li>
           </ul>
         </nav>
-        <div class="sign" id='sign'>
-          <ul class='links'>
+        <nav id="sign">
+          <ul>
             <?php 
-              if(isset($_SESSION['first_name'])) {
-                echo '
-                  <li class="li">
-                  '.$_SESSION['first_name'].'
-                  </li>
-                  <ul class="toogle">
-                    <li><a href="account.php" ><i class="fas fa-user"></i>Account</a></li>
-                    <li><a href="settings.php"><i class="fas fa-cog"></i>Settings</a></li>
+                if(! isset($_SESSION['first_name'])) {
+                  echo '
                     <li>
-                      <a href="config.php?option=logout"><i class="fas fa-sign-out-alt"></i>Log out</a>
+                      <a href="log.php">Log in</a>
                     </li>
-                  </ul>
-                ';
-              }
-              else {
-                echo '
-                  <li class="li-log">
-                    <a href="log.php">Log in</a>
-                  </li>
-                  <li class="li-sign">
-                    <a href="sign.php">Sign up for free</a>
-                  </li>
-                ';
-              }
+                    <li>
+                      <a href="sign.php">sign up for free</a>
+                    </li>
+                  ';
+                }
+                else {
+                  echo '
+                    <li class="menu-handle">
+                      <a href="account.php">Abdelkarim</a>
+                      <ul class="menu">
+                        <li>
+                          <a href="account.php"><i class="fas fa-user"></i>Account</a>
+                        </li>
+                        <li>
+                          <a href="settings.php"><i class="fas fa-cog"></i>Settings</a>
+                        </li>
+                        <li>
+                          <a href="config.php?option=logout"
+                            ><i class="fas fa-sign-out-alt"></i>Log out</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                  ';
+                }
             ?>
           </ul>
-        </div>
+        </nav>
         <div class="button">
           <i class="fas fa-arrow-down" id="button"><span class='jsvar' id='jsvar'></span></i>
         </div>
