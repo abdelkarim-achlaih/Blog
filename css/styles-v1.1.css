@@ -145,13 +145,14 @@ header {
   padding-top: 10px;
   position: relative;
   z-index: 2;
+  height: 15vh;
 }
 header .container {
   display: flex;
   align-items: center;
 }
 header .container .logo {
-  flex-grow: 0.5;
+  flex-grow: 0.3;
 }
 header .container .logo a img {
   width: 60px;
@@ -160,27 +161,30 @@ header .container .logo a img {
 
 /* ******************************************** */
 
-
-header .container nav:first-of-type:first-of-type {
-  flex-grow: 0.6;
+header .container .nav-container {
+  flex-grow: 0.7;
+  display: flex;
 }
-header .container nav:first-of-type > ul {
+header .container .nav-container nav:first-of-type:first-of-type {
+  flex-grow: 0.7;
+}
+header .container .nav-container nav:first-of-type > ul {
   display: flex;
   justify-content: space-evenly;
 }
-header .container nav:first-of-type > ul > li {
+header .container .nav-container nav:first-of-type > ul > li {
   padding: 10px;
 }
-header .container nav:first-of-type > ul > li > a {
+header .container .nav-container nav:first-of-type > ul > li > a {
   color: var(--color1);
   transition-duration: var(--transitionDuration);
   font-weight: 600;
 }
-header .container nav:first-of-type > ul > li:hover {
+header .container .nav-container nav:first-of-type > ul > li:hover {
   border-radius: 20px;
   background-color: var(--color1);
 }
-header .container nav:first-of-type > ul > li:hover > a {
+header .container .nav-container nav:first-of-type > ul > li:hover > a {
   color: white;
 }
 
@@ -189,14 +193,14 @@ header .container nav:first-of-type > ul > li:hover > a {
 
 
 
-header .container nav:nth-of-type(2) {
-  flex-grow: 0.15;
+header .container .nav-container nav:nth-of-type(2) {
+  flex-grow: 0.3;
 }
-header .container nav:nth-of-type(2) > ul {
+header .container .nav-container nav:nth-of-type(2) > ul {
   display: flex;
   justify-content: flex-end;
 }
-header .container nav:nth-of-type(2) > ul > li {
+header .container .nav-container nav:nth-of-type(2) > ul > li {
   padding: 10px;
   margin-left: 20px;
   font-weight: 600;
@@ -204,27 +208,28 @@ header .container nav:nth-of-type(2) > ul > li {
   border-radius: 20px;
   transition-duration: var(--transitionDuration);
 }
-header .container nav:nth-of-type(2) > ul > li:hover {
+header .container .nav-container nav:nth-of-type(2) > ul > li:hover {
   background-color: var(--color2);
 }
-header .container nav:nth-of-type(2) > ul > li > a {
+header .container .nav-container nav:nth-of-type(2) > ul > li > a {
   color: var(--color2);
   font-weight: 600;
   transition-duration: var(--transitionDuration);
+  white-space: nowrap;
 }
-header .container nav:nth-of-type(2) > ul > li:hover > a {
+header .container .nav-container nav:nth-of-type(2) > ul > li:hover > a {
   color: white;
 }
-header .container nav:nth-of-type(2) > ul > li:last-of-type {
+header .container .nav-container nav:nth-of-type(2) > ul > li:last-of-type {
   background-color: var(--color2);
 }
-header .container nav:nth-of-type(2) > ul > li:last-of-type:hover {
+header .container .nav-container nav:nth-of-type(2) > ul > li:last-of-type:hover {
   background-color: white;
 }
-header .container nav:nth-of-type(2) > ul > li:last-of-type > a {
+header .container .nav-container nav:nth-of-type(2) > ul > li:last-of-type > a {
   color: white;
 }
-header .container nav:nth-of-type(2) > ul > li:last-of-type:hover > a {
+header .container .nav-container nav:nth-of-type(2) > ul > li:last-of-type:hover > a {
   color: var(--color2);
 }
 .menu-handle {
@@ -273,15 +278,10 @@ header .container .button {
 @media (max-width: 767px) {
   header .container {
     flex-direction: column;
-    position: relative;
+    overflow: hidden;
+    margin-bottom: -800px;
   }
   header .container .logo {
-    margin: auto;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    padding-left: 20px;
-    padding-right: 20px;
     display: flex;
     align-items: center;
     color: var(--color2);
@@ -292,31 +292,43 @@ header .container .button {
   header .container .button {
     display: block;
   }
-  header .container .logo a {
-    text-align: center;
+  header .container .nav-container {
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    transition-duration: .7s;
+    margin-right: 0;
+    padding-bottom: 400px;
   }
-  header .container nav:first-of-type {
-    position: absolute;
-    top: 80px;
-    right: 0;
+  header .container .nav-container.hidden {
+    margin-right: -500px;
+    transition-duration: .7s;
+  }
+  header .container .nav-container nav:first-of-type {
     z-index: 95;
     background-color: var(--color1);
-    width: 60%;
+    width: 80%;
+    position: relative;
+    margin-left: auto;
   }
-  header .container nav:last-of-type {
-    width: 60%;
+  header .container .nav-container nav:last-of-type {
+    width: 80%;
     background-color: var(--color1);
     z-index: 90;
-    position: absolute;
-    top: calc(354px + 80px);
-    right: 0;
+    position: relative;
+    margin-left: auto;
+    margin-right: 0;
+    transition-duration: 2;
   }
-  header .container nav > ul {
+  .jsvar {
+    display: none;
+  }
+  header .container .nav-container nav > ul {
     flex-direction: column;
     align-items: flex-start;
   }
-  header .container nav:first-of-type > ul > li,
-  header .container nav:last-of-type > ul > li {
+  header .container .nav-container nav:first-of-type > ul > li,
+  header .container .nav-container nav:last-of-type > ul > li {
     width: 100%;
     border-radius: 0;
     border-bottom: 1px solid var(--color2);
@@ -326,17 +338,17 @@ header .container .button {
     padding-left: 50px;
     margin: 0;
   }
-  header .container nav:first-of-type > ul > li:hover,
-  header .container nav:last-of-type > ul > li:hover {
+  header .container .nav-container nav:first-of-type > ul > li:hover,
+  header .container .nav-container nav:last-of-type > ul > li:hover {
     border-radius: 0;
     background-color: white;
   }
-  header .container nav:first-of-type > ul > li:hover > a,
-  header .container nav:last-of-type > ul > li:hover > a {
+  header .container .nav-container nav:first-of-type > ul > li:hover > a,
+  header .container .nav-container nav:last-of-type > ul > li:hover > a {
     transform: translateX(-20px);
     color: var(--color2);
   }
-  header .container nav:first-of-type > ul > li > a {
+  header .container .nav-container nav:first-of-type > ul > li > a {
     color: white;
   }
   .menu {
@@ -361,9 +373,9 @@ header .container .button {
 .landing {
   text-align: center;
   position: absolute;
-  top: 0;
+  top: 15vh;
   left: 0;
-  height: 100vh;
+  height: 85vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -1655,7 +1667,7 @@ body .data .container .form form input[type="submit"]:focus {
 /* End blog-page section */
 /* Start Filter section */
 .fltr {
-  margin-top: 100vh;
+  margin-top: calc(100vh - 50px);
 }
 .fltr .container {
   margin-bottom: 60px;
