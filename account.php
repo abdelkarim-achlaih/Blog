@@ -12,7 +12,7 @@ error('blog-settings', 1);
       <?php 
         if(isset($_SESSION['avatar'])) {
           echo '
-          src="uploads/avatar/'.$_SESSION['avatar'].'"
+          src="/uploads/avatar/'.$_SESSION['avatar'].'"
           ';
         }
       ?>
